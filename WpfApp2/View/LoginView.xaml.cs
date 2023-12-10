@@ -46,8 +46,9 @@ namespace WpfApp2.View
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             string parolaIntrodusa = new NetworkCredential(string.Empty, txtBoxPassword.Password).Password;
-
-            if (txtBoxUser.Text == "admin" && parolaIntrodusa == "admin")
+            var context = new LanguageLearningApplicationDataContext();
+            var user = (from u in context.Users where u.Email.Equals(txtBoxUser.Text) select u).FirstOrDefault();
+            if (user != null && parolaIntrodusa == user.Password)
             {
                 Home home = new Home();
                 home.Show();
@@ -55,7 +56,7 @@ namespace WpfApp2.View
             }
             else
             {
-                MessageBox.Show("Username sau parola gresite. Va rugam incercati din nou.", "Eroare de autentificare", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Adresa de email sau parola gresite. Va rugam incercati din nou.", "Eroare de autentificare", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

@@ -26,6 +26,8 @@ x86/
 [Ww][Ii][Nn]32/
 [Aa][Rr][Mm]/
 [Aa][Rr][Mm]64/
+[Aa]pp.*
+*.dbml
 bld/
 [Bb]in/
 [Oo]bj/

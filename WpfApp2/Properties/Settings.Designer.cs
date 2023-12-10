@@ -33,5 +33,16 @@ namespace WpfApp2.Properties {
                 return ((string)(this["LanguageLearningAppConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-HF7U2R2;Initial Catalog=LanguageLearningApplication;Integrate" +
+            "d Security=True")]
+        public string LanguageLearningApplicationConnectionString {
+            get {
+                return ((string)(this["LanguageLearningApplicationConnectionString"]));
+            }
+        }
     }
 }

@@ -219,7 +219,7 @@
                            FontWeight="Medium"
                            FontFamily="Montserrat"
                            
-                           ><Run Text="Sign In"/><LineBreak/><Run/></TextBlock>
+                           ><Run Text="Sign Up"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
                     <TextBlock Text="Reset Password"
                            Foreground="DarkGray"
                            FontSize="12"

@@ -50,10 +50,10 @@
                         </Border>
 
                         <!--Menu titles-->
-                        <TextBlock Text="Silvers Club" Foreground="White" FontSize="22"
+                        <TextBlock x:Name="txtWelcomeMessage" Text="Bine ai venit," Foreground="White" FontSize="22"
                                    FontWeight="SemiBold" DockPanel.Dock="Top" TextAlignment="Center"
                                    Margin="5 25 0 10"/>
-                        <TextBlock Text="MEmbers, france" Foreground="#d0bfff" FontSize="14"
+                        <TextBlock x:Name="txtUserName" Text="Username" Foreground="#d0bfff" FontSize="14"
                                    FontWeight="SemiBold" DockPanel.Dock="Top" TextAlignment="Center"/>
                         <!--Menu Separator-->
                         <Separator Margin="25" DockPanel.Dock="Top" Height="0.8" Background="#7e5fdc"/>

@@ -128,7 +128,7 @@
                            FontFamily="Montserrat"
                            TextWrapping="Wrap"
                            TextAlignment="Center" Height="17"/>
-                <TextBlock Text="Username"
+                <TextBlock Text="Email"
                            Foreground="DarkGray"
                            FontSize="12"
                            FontWeight="Medium"

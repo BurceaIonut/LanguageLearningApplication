@@ -38,6 +38,13 @@ namespace WpfApp2.View
                 DragMove();
             }
         }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            LoginView lg = new LoginView();
+            lg.Show();
+            Close();
+        }
     }
     public class Member
     {

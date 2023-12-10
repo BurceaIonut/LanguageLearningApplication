@@ -26,8 +26,11 @@ x86/
 [Ww][Ii][Nn]32/
 [Aa][Rr][Mm]/
 [Aa][Rr][Mm]64/
-[Aa]pp.*
-*.dbml
+App.config
+App.xaml
+LanguageLearningApplication.dbml
+LanguageLearningApplication.dbml.layout
+LanguageLearningApplication.designer.cs
 bld/
 [Bb]in/
 [Oo]bj/

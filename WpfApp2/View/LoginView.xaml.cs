@@ -60,6 +60,11 @@ namespace WpfApp2.View
             }
         }
 
-       
+        private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Register reg = new Register();
+            reg.Show();
+            Close();
+        }
     }
 }

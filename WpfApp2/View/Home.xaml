@@ -60,16 +60,16 @@
 
                         <!--Menu Buttons-->
                         <StackPanel DockPanel.Dock="Top">
-                            <Button Style="{StaticResource menuButton}">
+                            <Button x:Name="BtnUser" Style="{StaticResource menuButton}" Click="BtnUser_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="/imagini/house.png" Height="20"/>
-                                    <TextBlock Text="Dashboard"/>
+                                    <TextBlock Text="User"/>
                                 </StackPanel>
                             </Button>
-                            <Button Style="{StaticResource menuButton}">
+                            <Button x:Name="BtnShowCourses" Style="{StaticResource menuButton}" Click="BtnShowCourses_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="/imagini/house.png" Height="20"/>
-                                    <TextBlock Text="Dashboard"/>
+                                    <TextBlock Text="Cursuri"/>
                                 </StackPanel>
                             </Button>
                             <Button Style="{StaticResource menuButton}">
@@ -102,6 +102,8 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
+
+                <Frame x:Name="FrameMain" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Width="550" Height="397" Panel.ZIndex="1"/>
 
                 <!--Search Textbox-->
                 <Grid Width="300" HorizontalAlignment="Left">

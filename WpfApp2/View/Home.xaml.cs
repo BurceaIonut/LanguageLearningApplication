@@ -45,6 +45,16 @@ namespace WpfApp2.View
             lg.Show();
             Close();
         }
+
+        private void BtnShowCourses_Click(object sender, RoutedEventArgs e)
+        {
+            FrameMain.Content=new PageUserInfo();
+        }
+
+        private void BtnUser_Click(object sender, RoutedEventArgs e)
+        {
+            FrameMain.Content = new PageCourses();
+        }
     }
     public class Member
     {

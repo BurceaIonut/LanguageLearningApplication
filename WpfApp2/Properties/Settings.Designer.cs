@@ -37,11 +37,33 @@ namespace WpfApp2.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-HF7U2R2;Initial Catalog=LanguageLearningApplication;Integrate" +
-            "d Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-MILLONH5;Initial Catalog=LanguageLearningApplication;Integrat" +
+            "ed Security=True")]
         public string LanguageLearningApplicationConnectionString {
             get {
                 return ((string)(this["LanguageLearningApplicationConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-MLLONH5;Initial Catalog=LanguageLearningApplication;Integrate" +
+            "d Security=True")]
+        public string LanguageLearningApplicationConnectionString1 {
+            get {
+                return ((string)(this["LanguageLearningApplicationConnectionString1"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=10.10.23.240;Initial Catalog=LanguageLearningApplication;Persist Secu" +
+            "rity Info=True;User ID=vlad;Password=vlad")]
+        public string LanguageLearningApplicationConnectionString2 {
+            get {
+                return ((string)(this["LanguageLearningApplicationConnectionString2"]));
             }
         }
     }

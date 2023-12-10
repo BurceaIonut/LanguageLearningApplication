@@ -13,10 +13,26 @@
     <Setting Name="LanguageLearningApplicationConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
-  &lt;ConnectionString&gt;Data Source=DESKTOP-HF7U2R2;Initial Catalog=LanguageLearningApplication;Integrated Security=True&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=DESKTOP-MILLONH5;Initial Catalog=LanguageLearningApplication;Integrated Security=True&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=DESKTOP-HF7U2R2;Initial Catalog=LanguageLearningApplication;Integrated Security=True</Value>
+      <Value Profile="(Default)">Data Source=DESKTOP-MILLONH5;Initial Catalog=LanguageLearningApplication;Integrated Security=True</Value>
+    </Setting>
+    <Setting Name="LanguageLearningApplicationConnectionString1" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;ConnectionString&gt;Data Source=DESKTOP-MLLONH5;Initial Catalog=LanguageLearningApplication;Integrated Security=True&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=DESKTOP-MLLONH5;Initial Catalog=LanguageLearningApplication;Integrated Security=True</Value>
+    </Setting>
+    <Setting Name="LanguageLearningApplicationConnectionString2" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;ConnectionString&gt;Data Source=10.10.23.240;Initial Catalog=LanguageLearningApplication;Persist Security Info=True;User ID=vlad;Password=vlad&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=10.10.23.240;Initial Catalog=LanguageLearningApplication;Persist Security Info=True;User ID=vlad;Password=vlad</Value>
     </Setting>
   </Settings>
 </SettingsFile>

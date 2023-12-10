@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="LanguageLearningApplication" Class="LanguageLearningApplicationDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-HF7U2R2;Initial Catalog=LanguageLearningApplication;Integrated Security=True" SettingsObjectName="WpfApp2.Properties.Settings" SettingsPropertyName="LanguageLearningApplicationConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=10.10.23.240;Initial Catalog=LanguageLearningApplication;Persist Security Info=True;User ID=vlad" SettingsObjectName="WpfApp2.Properties.Settings" SettingsPropertyName="LanguageLearningApplicationConnectionString2" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Answers" Member="Answers">
     <Type Name="Answer">
       <Column Name="AID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -7,15 +7,6 @@
       <Column Name="Answer" Member="Answer1" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
       <Column Name="IsCorrect" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Question_Answer" Member="Question" ThisKey="QUID" OtherKey="QUID" Type="Question" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.WordsInFlashcards" Member="WordsInFlashcards">
-    <Type Name="WordsInFlashcard">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="WID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="FID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Flashcard_WordsInFlashcard" Member="Flashcard" ThisKey="FID" OtherKey="FID" Type="Flashcard" IsForeignKey="true" />
-      <Association Name="VocabularyWord_WordsInFlashcard" Member="VocabularyWord" ThisKey="WID" OtherKey="WID" Type="VocabularyWord" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Checkpoints" Member="Checkpoints">
@@ -102,6 +93,15 @@
       <Column Name="Question" Member="Question1" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
       <Association Name="Question_Answer" Member="Answers" ThisKey="QUID" OtherKey="QUID" Type="Answer" />
       <Association Name="Quizze_Question" Member="Quizze" ThisKey="QID" OtherKey="QID" Type="Quizze" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.WordsInFlashcards" Member="WordsInFlashcards">
+    <Type Name="WordsInFlashcard">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="WID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Flashcard_WordsInFlashcard" Member="Flashcard" ThisKey="FID" OtherKey="FID" Type="Flashcard" IsForeignKey="true" />
+      <Association Name="VocabularyWord_WordsInFlashcard" Member="VocabularyWord" ThisKey="WID" OtherKey="WID" Type="VocabularyWord" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Quizzes" Member="Quizzes">

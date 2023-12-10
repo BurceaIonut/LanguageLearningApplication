@@ -33,6 +33,9 @@ namespace WpfApp2
     partial void InsertAnswer(Answer instance);
     partial void UpdateAnswer(Answer instance);
     partial void DeleteAnswer(Answer instance);
+    partial void InsertWordsInFlashcard(WordsInFlashcard instance);
+    partial void UpdateWordsInFlashcard(WordsInFlashcard instance);
+    partial void DeleteWordsInFlashcard(WordsInFlashcard instance);
     partial void InsertCheckpoint(Checkpoint instance);
     partial void UpdateCheckpoint(Checkpoint instance);
     partial void DeleteCheckpoint(Checkpoint instance);
@@ -57,9 +60,6 @@ namespace WpfApp2
     partial void InsertQuestion(Question instance);
     partial void UpdateQuestion(Question instance);
     partial void DeleteQuestion(Question instance);
-    partial void InsertWordsInFlashcard(WordsInFlashcard instance);
-    partial void UpdateWordsInFlashcard(WordsInFlashcard instance);
-    partial void DeleteWordsInFlashcard(WordsInFlashcard instance);
     partial void InsertQuizze(Quizze instance);
     partial void UpdateQuizze(Quizze instance);
     partial void DeleteQuizze(Quizze instance);
@@ -72,7 +72,7 @@ namespace WpfApp2
     #endregion
 		
 		public LanguageLearningApplicationDataContext() : 
-				base(global::WpfApp2.Properties.Settings.Default.LanguageLearningApplicationConnectionString2, mappingSource)
+				base(global::WpfApp2.Properties.Settings.Default.LanguageLearningApplicationConnectionString3, mappingSource)
 		{
 			OnCreated();
 		}
@@ -106,6 +106,14 @@ namespace WpfApp2
 			get
 			{
 				return this.GetTable<Answer>();
+			}
+		}
+		
+		public System.Data.Linq.Table<WordsInFlashcard> WordsInFlashcards
+		{
+			get
+			{
+				return this.GetTable<WordsInFlashcard>();
 			}
 		}
 		
@@ -170,14 +178,6 @@ namespace WpfApp2
 			get
 			{
 				return this.GetTable<Question>();
-			}
-		}
-		
-		public System.Data.Linq.Table<WordsInFlashcard> WordsInFlashcards
-		{
-			get
-			{
-				return this.GetTable<WordsInFlashcard>();
 			}
 		}
 		
@@ -356,6 +356,198 @@ namespace WpfApp2
 						this._QUID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Question");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.WordsInFlashcards")]
+	public partial class WordsInFlashcard : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private System.Nullable<int> _WID;
+		
+		private System.Nullable<int> _FID;
+		
+		private EntityRef<Flashcard> _Flashcard;
+		
+		private EntityRef<VocabularyWord> _VocabularyWord;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnWIDChanging(System.Nullable<int> value);
+    partial void OnWIDChanged();
+    partial void OnFIDChanging(System.Nullable<int> value);
+    partial void OnFIDChanged();
+    #endregion
+		
+		public WordsInFlashcard()
+		{
+			this._Flashcard = default(EntityRef<Flashcard>);
+			this._VocabularyWord = default(EntityRef<VocabularyWord>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WID", DbType="Int")]
+		public System.Nullable<int> WID
+		{
+			get
+			{
+				return this._WID;
+			}
+			set
+			{
+				if ((this._WID != value))
+				{
+					if (this._VocabularyWord.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnWIDChanging(value);
+					this.SendPropertyChanging();
+					this._WID = value;
+					this.SendPropertyChanged("WID");
+					this.OnWIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FID", DbType="Int")]
+		public System.Nullable<int> FID
+		{
+			get
+			{
+				return this._FID;
+			}
+			set
+			{
+				if ((this._FID != value))
+				{
+					if (this._Flashcard.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnFIDChanging(value);
+					this.SendPropertyChanging();
+					this._FID = value;
+					this.SendPropertyChanged("FID");
+					this.OnFIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Flashcard_WordsInFlashcard", Storage="_Flashcard", ThisKey="FID", OtherKey="FID", IsForeignKey=true)]
+		public Flashcard Flashcard
+		{
+			get
+			{
+				return this._Flashcard.Entity;
+			}
+			set
+			{
+				Flashcard previousValue = this._Flashcard.Entity;
+				if (((previousValue != value) 
+							|| (this._Flashcard.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Flashcard.Entity = null;
+						previousValue.WordsInFlashcards.Remove(this);
+					}
+					this._Flashcard.Entity = value;
+					if ((value != null))
+					{
+						value.WordsInFlashcards.Add(this);
+						this._FID = value.FID;
+					}
+					else
+					{
+						this._FID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Flashcard");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="VocabularyWord_WordsInFlashcard", Storage="_VocabularyWord", ThisKey="WID", OtherKey="WID", IsForeignKey=true)]
+		public VocabularyWord VocabularyWord
+		{
+			get
+			{
+				return this._VocabularyWord.Entity;
+			}
+			set
+			{
+				VocabularyWord previousValue = this._VocabularyWord.Entity;
+				if (((previousValue != value) 
+							|| (this._VocabularyWord.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._VocabularyWord.Entity = null;
+						previousValue.WordsInFlashcards.Remove(this);
+					}
+					this._VocabularyWord.Entity = value;
+					if ((value != null))
+					{
+						value.WordsInFlashcards.Add(this);
+						this._WID = value.WID;
+					}
+					else
+					{
+						this._WID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("VocabularyWord");
 				}
 			}
 		}
@@ -2175,198 +2367,6 @@ namespace WpfApp2
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.WordsInFlashcards")]
-	public partial class WordsInFlashcard : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private System.Nullable<int> _WID;
-		
-		private System.Nullable<int> _FID;
-		
-		private EntityRef<Flashcard> _Flashcard;
-		
-		private EntityRef<VocabularyWord> _VocabularyWord;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnWIDChanging(System.Nullable<int> value);
-    partial void OnWIDChanged();
-    partial void OnFIDChanging(System.Nullable<int> value);
-    partial void OnFIDChanged();
-    #endregion
-		
-		public WordsInFlashcard()
-		{
-			this._Flashcard = default(EntityRef<Flashcard>);
-			this._VocabularyWord = default(EntityRef<VocabularyWord>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WID", DbType="Int")]
-		public System.Nullable<int> WID
-		{
-			get
-			{
-				return this._WID;
-			}
-			set
-			{
-				if ((this._WID != value))
-				{
-					if (this._VocabularyWord.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnWIDChanging(value);
-					this.SendPropertyChanging();
-					this._WID = value;
-					this.SendPropertyChanged("WID");
-					this.OnWIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FID", DbType="Int")]
-		public System.Nullable<int> FID
-		{
-			get
-			{
-				return this._FID;
-			}
-			set
-			{
-				if ((this._FID != value))
-				{
-					if (this._Flashcard.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnFIDChanging(value);
-					this.SendPropertyChanging();
-					this._FID = value;
-					this.SendPropertyChanged("FID");
-					this.OnFIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Flashcard_WordsInFlashcard", Storage="_Flashcard", ThisKey="FID", OtherKey="FID", IsForeignKey=true)]
-		public Flashcard Flashcard
-		{
-			get
-			{
-				return this._Flashcard.Entity;
-			}
-			set
-			{
-				Flashcard previousValue = this._Flashcard.Entity;
-				if (((previousValue != value) 
-							|| (this._Flashcard.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Flashcard.Entity = null;
-						previousValue.WordsInFlashcards.Remove(this);
-					}
-					this._Flashcard.Entity = value;
-					if ((value != null))
-					{
-						value.WordsInFlashcards.Add(this);
-						this._FID = value.FID;
-					}
-					else
-					{
-						this._FID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Flashcard");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="VocabularyWord_WordsInFlashcard", Storage="_VocabularyWord", ThisKey="WID", OtherKey="WID", IsForeignKey=true)]
-		public VocabularyWord VocabularyWord
-		{
-			get
-			{
-				return this._VocabularyWord.Entity;
-			}
-			set
-			{
-				VocabularyWord previousValue = this._VocabularyWord.Entity;
-				if (((previousValue != value) 
-							|| (this._VocabularyWord.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._VocabularyWord.Entity = null;
-						previousValue.WordsInFlashcards.Remove(this);
-					}
-					this._VocabularyWord.Entity = value;
-					if ((value != null))
-					{
-						value.WordsInFlashcards.Add(this);
-						this._WID = value.WID;
-					}
-					else
-					{
-						this._WID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("VocabularyWord");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Quizzes")]
 	public partial class Quizze : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2661,7 +2661,7 @@ namespace WpfApp2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(255)")]
 		public string Password
 		{
 			get

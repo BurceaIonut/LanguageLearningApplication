@@ -20,15 +20,10 @@ namespace WpfApp2.View
     /// </summary>
     public partial class Home : Window
     {
-        public Home()
+        public Home(string firstName, string lastName)
         {
             InitializeComponent();
-
-            var converter = new BrushConverter();
-            ObservableCollection<Member> members = new ObservableCollection<Member>();
-
-            members.Add(new Member { Number = "1", Character = "J", BgColor = (Brush)converter.ConvertFromString("#1098AD"), Name = "John Doe", Position = "Coach", Email = "john.doe@gmail.com", Phone = "415-954-1475" });
-
+            txtUserName.Text = firstName + " " + lastName;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

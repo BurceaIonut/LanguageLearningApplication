@@ -184,7 +184,7 @@
                     FontFamily="Montserrat" 
                             Margin="0,10,0,0"
                            />
-                <TextBox x:Name="txtBoxUser_Copy"
+                <TextBox x:Name="txtBoxUserFName"
                     FontSize="13"
                     FontWeight="Medium"
                     FontFamily="Montserrat"
@@ -209,7 +209,7 @@
                     FontFamily="Montserrat"
                             Margin="0,10,0,0"
                            />
-                <TextBox x:Name="txtBoxUser_Copy1"
+                <TextBox x:Name="txtBoxUserLName"
                     FontSize="13"
                     FontWeight="Medium"
                     FontFamily="Montserrat"

@@ -69,6 +69,9 @@ namespace WpfApp2
     partial void InsertVocabularyWord(VocabularyWord instance);
     partial void UpdateVocabularyWord(VocabularyWord instance);
     partial void DeleteVocabularyWord(VocabularyWord instance);
+    partial void InsertSecurityToken(SecurityToken instance);
+    partial void UpdateSecurityToken(SecurityToken instance);
+    partial void DeleteSecurityToken(SecurityToken instance);
     #endregion
 		
 		public LanguageLearningApplicationDataContext() : 
@@ -202,6 +205,14 @@ namespace WpfApp2
 			get
 			{
 				return this.GetTable<VocabularyWord>();
+			}
+		}
+		
+		public System.Data.Linq.Table<SecurityToken> SecurityTokens
+		{
+			get
+			{
+				return this.GetTable<SecurityToken>();
 			}
 		}
 	}
@@ -3175,6 +3186,116 @@ namespace WpfApp2
 		{
 			this.SendPropertyChanging();
 			entity.VocabularyWord = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SecurityTokens")]
+	public partial class SecurityToken : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _TokenID;
+		
+		private string _TokenString;
+		
+		private int _Expired;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTokenIDChanging(int value);
+    partial void OnTokenIDChanged();
+    partial void OnTokenStringChanging(string value);
+    partial void OnTokenStringChanged();
+    partial void OnExpiredChanging(int value);
+    partial void OnExpiredChanged();
+    #endregion
+		
+		public SecurityToken()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TokenID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int TokenID
+		{
+			get
+			{
+				return this._TokenID;
+			}
+			set
+			{
+				if ((this._TokenID != value))
+				{
+					this.OnTokenIDChanging(value);
+					this.SendPropertyChanging();
+					this._TokenID = value;
+					this.SendPropertyChanged("TokenID");
+					this.OnTokenIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TokenString", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string TokenString
+		{
+			get
+			{
+				return this._TokenString;
+			}
+			set
+			{
+				if ((this._TokenString != value))
+				{
+					this.OnTokenStringChanging(value);
+					this.SendPropertyChanging();
+					this._TokenString = value;
+					this.SendPropertyChanged("TokenString");
+					this.OnTokenStringChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Expired", DbType="Int NOT NULL")]
+		public int Expired
+		{
+			get
+			{
+				return this._Expired;
+			}
+			set
+			{
+				if ((this._Expired != value))
+				{
+					this.OnExpiredChanging(value);
+					this.SendPropertyChanging();
+					this._Expired = value;
+					this.SendPropertyChanged("Expired");
+					this.OnExpiredChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

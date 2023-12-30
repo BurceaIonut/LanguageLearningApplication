@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -44,7 +47,26 @@ namespace WpfApp2.View
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
-            Home home = new Home();
+            var user = (from u in AppDataContext.context.Users where u.Email.Equals(txtBoxUser.Text)  select u).FirstOrDefault();
+            if(user != null)
+            {
+                MessageBox.Show("Acest utilizator exista deja! Va rugam incercati alta adresa de email.", "Inregistrare esuata", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            string hashedPassword = ComputeHash(ConvertSecureStringToString(txtBoxPassword.SecurePassword));
+            var newUser = new User
+            {
+                Password = hashedPassword,
+                Email = txtBoxUser.Text,
+                FirstName = txtBoxUserFName.Text,
+                LastName = txtBoxUserLName.Text,
+                RegistrationDate = DateTime.Now,
+                LastLoginDate = DateTime.Now,
+                Role = "Member"
+            };
+            AppDataContext.context.Users.InsertOnSubmit(newUser);
+            AppDataContext.context.SubmitChanges();
+            Home home = new Home(txtBoxUserFName.Text, txtBoxUserLName.Text);
             home.Show();
             Close();
         }
@@ -54,6 +76,26 @@ namespace WpfApp2.View
             LoginView lg = new LoginView();
             lg.Show();
             Close();
+        }
+        private string ConvertSecureStringToString(SecureString secureString)
+        {
+            IntPtr ptr = Marshal.SecureStringToBSTR(secureString);
+            try
+            {
+                return Marshal.PtrToStringBSTR(ptr);
+            }
+            finally
+            {
+                Marshal.ZeroFreeBSTR(ptr);
+            }
+        }
+        private string ComputeHash(string input)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(input));
+                return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
+            }
         }
     }
 }

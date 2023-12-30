@@ -11,7 +11,6 @@ using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 //Data Source = DESKTOP - MLLONH5; Initial Catalog = LanguageLearningApp; Integrated Security = True
 namespace WpfApp2.View
@@ -25,8 +24,6 @@ namespace WpfApp2.View
         {
             InitializeComponent();
             txtUserName.Text = firstName + " " + lastName;
-            FrameMain.Content = new PageUserCourses();
-
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -46,14 +43,12 @@ namespace WpfApp2.View
 
         private void BtnShowCourses_Click(object sender, RoutedEventArgs e)
         {
-            
-            FrameMain.Content= new PageCourses();
+            FrameMain.Content=new PageUserInfo();
         }
 
         private void BtnUser_Click(object sender, RoutedEventArgs e)
         {
-            
-            FrameMain.Content = new PageUserCourses();
+            FrameMain.Content = new PageCourses();
         }
     }
     public class Member

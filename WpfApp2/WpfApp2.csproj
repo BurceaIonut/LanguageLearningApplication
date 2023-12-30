@@ -64,9 +64,6 @@
     <Compile Include="View\PageCourses.xaml.cs">
       <DependentUpon>PageCourses.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\PageUserInfo.xaml.cs">
-      <DependentUpon>PageUserInfo.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
@@ -77,14 +74,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="View\PageUserCourses.xaml.cs">
+      <DependentUpon>PageUserCourses.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
     <Page Include="View\PageCourses.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\PageUserInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -93,6 +89,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PageUserCourses.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -192,6 +192,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="text.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagini\explore_courses.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagini\study.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

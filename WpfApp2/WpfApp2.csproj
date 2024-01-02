@@ -61,11 +61,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LanguageLearningApplication.dbml</DependentUpon>
     </Compile>
+    <Compile Include="View\CoursWindow.xaml.cs">
+      <DependentUpon>CoursWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PageCourses.xaml.cs">
       <DependentUpon>PageCourses.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\PageUserInfo.xaml.cs">
-      <DependentUpon>PageUserInfo.xaml</DependentUpon>
+    <Compile Include="View\PageLesson.xaml.cs">
+      <DependentUpon>PageLesson.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PageUserCourses.xaml.cs">
+      <DependentUpon>PageUserCourses.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
@@ -83,13 +89,21 @@
     <Compile Include="View\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\CoursWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\PageCourses.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\PageUserInfo.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="View\PageLesson.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PageUserCourses.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Home.xaml">
       <SubType>Designer</SubType>
@@ -198,7 +212,8 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="text.txt" />
+    <Resource Include="Imagini\explore_courses.png" />
+    <Resource Include="Imagini\study.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

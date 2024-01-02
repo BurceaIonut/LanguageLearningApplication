@@ -12,16 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WpfApp2.View;
 
-namespace WpfApp2
+namespace WpfApp2.View
 {
     /// <summary>
-    /// Interaction logic for PageCourses.xaml
+    /// Interaction logic for PageUserCourses.xaml
     /// </summary>
-    public partial class PageCourses : Page
+    
+    public partial class PageUserCourses : Page
     {
-        public PageCourses()
+        public PageUserCourses()
         {
             InitializeComponent();
             var coursesData = from Course in AppDataContext.context.Courses
@@ -31,7 +31,23 @@ namespace WpfApp2
                                   CourseName = Course.Name,
                                   CourseDescription = Course.Description
                               };
-            DataGridCourses.ItemsSource = coursesData;
+            DataGridCourses.ItemsSource = coursesData; 
         }
+
+        private void btnResumeCourse_Click(object sender, RoutedEventArgs e)
+        {
+            Window parentWindow = Window.GetWindow(this);
+
+            // Verifică dacă fereastra părinte este disponibilă
+            if (parentWindow != null)
+            {
+
+                CoursWindow lg = new CoursWindow();
+                lg.Show();
+                parentWindow.Close();
+            }
+        }
+
+       
     }
 }

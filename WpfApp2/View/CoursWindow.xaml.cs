@@ -19,10 +19,104 @@ namespace WpfApp2.View
     /// </summary>
     public partial class CoursWindow : Window
     {
-        public CoursWindow()
+        private string firstName;
+        private string lastName;
+        private IEnumerable<Lesson> lessons;
+        IEnumerable<Quizze> quizzes= Enumerable.Empty<Quizze>();
+        public CoursWindow(string firstName,string lastName,int ID)
         {
             InitializeComponent();
-            FrameMain.Content = new PageLesson();
+            this.firstName = firstName;
+            this.lastName = lastName;
+            lessons = (from l in AppDataContext.context.Lessons
+                          where l.CID == ID
+                           orderby l.OrderInCourse descending
+                           select l) ;
+
+            //FrameMain.Content = new PageLesson(content);
+            long nrLessons = 0;
+            foreach (var l in lessons)
+            {
+                
+                Button button = new Button();
+                button.Name = $"btn{ l.OrderInCourse.ToString()}";
+                button.Style = (Style)FindResource("menuButton");
+                button.Content = l.Title;
+                button.Click += Button_Click;
+                stkPnl.Children.Add(button);
+                nrLessons++;
+                Quizze quiz = (from q in AppDataContext.context.Quizzes
+                               where q.LID == l.LID
+                               select q).FirstOrDefault();
+                if (quiz != null)
+                {
+
+                    quizzes.Append(quiz);
+                    Button buttonQuiz = new Button();
+                    // buttonQuiz.Name = $"btnQuiz{l.OrderInCourse.ToString()}";
+                    if (nrLessons == lessons.LongCount())
+                    {
+                        buttonQuiz.Name = $"btnLastQuiz{quiz.QID.ToString()}";
+                    }
+                    else
+                    {
+                        buttonQuiz.Name = $"btnQuiz{quiz.QID.ToString()}";
+                    }
+                    buttonQuiz.Margin = new Thickness(50, 0, 0, 0);
+                    buttonQuiz.Style = (Style)FindResource("menuButton");
+                    buttonQuiz.Content = quiz.Title;
+                    buttonQuiz.Click += Button_Click;
+                    stkPnl.Children.Add(buttonQuiz);
+                }
+
+            }
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            // Obține referința către butonul care a generat evenimentul
+            Button clickedButton = (Button)sender;
+
+            if (clickedButton.Name.Contains("Quiz"))
+            {
+                //De trimis Id-ul Quizului 
+                int order;
+                if (clickedButton.Name.Contains("Last"))
+                     order = int.Parse(clickedButton.Name.Substring(11));
+                else
+                     order = int.Parse(clickedButton.Name.Substring(7));
+                var alreadyCompleted = (from cq in AppDataContext.context.CompletedQuizzes
+                                        where cq.QID == order && cq.UID == UserProfile.user.UID
+                                        select cq).FirstOrDefault() ;
+                if (alreadyCompleted != null)
+                {
+                    MessageBox.Show("Deja ai completat acest quiz!", "Atenție", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                }
+                else
+                {
+                    if(clickedButton.Name.Contains("Last"))
+                        FrameMain.Content = new PageQuiz(order,true);
+                    else
+                        FrameMain.Content = new PageQuiz(order, false);
+                }
+            }
+            else
+            {
+                int orderInCourse = int.Parse(clickedButton.Name.Substring(3));
+                FrameMain.Content = new PageLesson(lessons.ElementAt(orderInCourse - 1).Content);
+            }
+
+            
+            
+            // Afișează un mesaj cu numărul și numele butonului
+            //MessageBox.Show($"Button clicked!\nNumber: {clickedButton.Content}\nName: {clickedButton.Name}");
+        }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            Home h = new Home(this.firstName,this.lastName);
+            h.Show();
+            Close();
         }
     }
 }

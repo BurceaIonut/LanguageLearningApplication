@@ -33,5 +33,10 @@ namespace WpfApp2
                               };
             DataGridCourses.ItemsSource = coursesData;
         }
+
+        private void btnStartCourse_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO
+        }
     }
 }

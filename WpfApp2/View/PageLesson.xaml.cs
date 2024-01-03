@@ -20,14 +20,12 @@ namespace WpfApp2.View
     /// </summary>
     public partial class PageLesson : Page
     {
-        public PageLesson()
+        public PageLesson(string continut)
         {
             InitializeComponent();
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
+            txtBox.Text = continut;
 
         }
+
     }
 }

@@ -21,11 +21,15 @@ namespace WpfApp2.View
     /// </summary>
     public partial class Home : Window
     {
+        private string firstName; 
+        private string lastName;
         public Home(string firstName, string lastName)
         {
             InitializeComponent();
+            this.firstName = firstName;
+            this.lastName = lastName;
             txtUserName.Text = firstName + " " + lastName;
-            FrameMain.Content = new PageUserCourses();
+            FrameMain.Content = new PageUserCourses(this.firstName,this.lastName);
 
         }
 
@@ -40,6 +44,7 @@ namespace WpfApp2.View
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
             LoginView lg = new LoginView();
+            
             lg.Show();
             Close();
         }
@@ -53,7 +58,7 @@ namespace WpfApp2.View
         private void BtnUser_Click(object sender, RoutedEventArgs e)
         {
             
-            FrameMain.Content = new PageUserCourses();
+            FrameMain.Content = new PageUserCourses(this.firstName, this.lastName);
         }
     }
     public class Member

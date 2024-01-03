@@ -25,6 +25,10 @@ namespace WpfApp2.View
     {
         public static LanguageLearningApplicationDataContext context = new LanguageLearningApplicationDataContext();
     }
+    public static class UserProfile
+    {
+      static  public User user;
+    }
     public partial class LoginView : Window
     {
         public LoginView()
@@ -54,8 +58,11 @@ namespace WpfApp2.View
         {
             string hashedPassword = ComputeHash(ConvertSecureStringToString(txtBoxPassword.SecurePassword));
             var user = (from u in AppDataContext.context.Users where u.Email.Equals(txtBoxUser.Text) select u).FirstOrDefault();
+            
             if (user != null && hashedPassword == user.Password)
             {
+                UserProfile.user = user;
+
                 Home home = new Home(user.FirstName, user.LastName);
                 user.LastLoginDate= DateTime.Now;
                 AppDataContext.context.SubmitChanges();

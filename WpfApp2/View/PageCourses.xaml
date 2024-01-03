@@ -40,14 +40,14 @@
             </DataGrid.ColumnHeaderStyle>
 
         </DataGrid>
-        <Button x:Name="btnLogin"
+        <Button x:Name="btnStartCourse"
             BorderThickness="0"
             Content="Start course"
             Foreground="White"
             FontSize="12"
             FontFamily="Montserrat"
             Cursor="Hand"
-             Margin="345,490,0,0">
+             Margin="345,480,0,10" Click="btnStartCourse_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#462AD8"/>

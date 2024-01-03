@@ -21,9 +21,15 @@ namespace WpfApp2.View
     
     public partial class PageUserCourses : Page
     {
-        public PageUserCourses()
+        private string firstName;
+        private string lastName;
+
+        public PageUserCourses(string firstName, string lastName)
         {
             InitializeComponent();
+
+            this.firstName = firstName;
+            this.lastName = lastName;
             var coursesData = from Course in AppDataContext.context.Courses
                               select new
                               {
@@ -36,18 +42,43 @@ namespace WpfApp2.View
 
         private void btnResumeCourse_Click(object sender, RoutedEventArgs e)
         {
-            Window parentWindow = Window.GetWindow(this);
+            //Window parentWindow = Window.GetWindow(this);
 
             // Verifică dacă fereastra părinte este disponibilă
-            if (parentWindow != null)
-            {
+            //if (parentWindow != null)
+            //{
 
-                CoursWindow lg = new CoursWindow();
+            //    CoursWindow lg = new CoursWindow(DataGridCourses.Items[0].);
+            //    lg.Show();
+            //    parentWindow.Close();
+            //}
+
+            var selectedCourse = DataGridCourses.SelectedItem as dynamic;
+
+            // Verificarea dacă există un curs selectat
+            if (selectedCourse != null)
+            {
+                // Obținerea ID-ului cursului selectat
+                int courseId = selectedCourse.CourseID;
+
+                // Crearea unei noi instanțe a ferestrei CoursWindow și trecerea ID-ului cursului
+                CoursWindow lg = new CoursWindow(this.firstName, this.lastName, courseId);
+
+                // Afișarea ferestrei noi
                 lg.Show();
-                parentWindow.Close();
+
+                // Închiderea ferestrei curente (a părintelui)
+                Window.GetWindow(this)?.Close();
+            }
+            else
+            {
+                // În cazul în care nu există niciun curs selectat, poți afișa un mesaj sau să iei alte acțiuni
+                MessageBox.Show("Selectează un curs înainte de a continua.", "Avertisment", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+    }
 
        
     }
-}
+
+

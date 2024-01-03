@@ -61,6 +61,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LanguageLearningApplication.dbml</DependentUpon>
     </Compile>
+    <Compile Include="View\CoursWindow.xaml.cs">
+      <DependentUpon>CoursWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PageCourses.xaml.cs">
       <DependentUpon>PageCourses.xaml</DependentUpon>
     </Compile>
@@ -74,12 +77,25 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="View\PageLesson.xaml.cs">
+      <DependentUpon>PageLesson.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PageQuiz.xaml.cs">
+      <DependentUpon>PageQuiz.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PageUserCourses.xaml.cs">
       <DependentUpon>PageUserCourses.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RecoverPasswordView.xaml.cs">
+      <DependentUpon>RecoverPasswordView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\CoursWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\PageCourses.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -92,9 +108,21 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\PageLesson.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PageQuiz.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\PageUserCourses.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RecoverPasswordView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Register.xaml">
       <SubType>Designer</SubType>

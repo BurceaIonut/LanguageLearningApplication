@@ -9,37 +9,7 @@
       Title="PageLesson">
 
     <Grid Background="White">
-        <Button x:Name="btnTakeQuiz"
-            BorderThickness="0"
-            Content="Take quiz"
-            Foreground="White"
-            FontSize="12"
-            FontFamily="Montserrat"
-            Cursor="Hand"
-             Margin="363,480,-18,10">
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Background" Value="#462AD8"/>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#28AEED"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-
-            <Button.Template>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Width="150" Height="40"
-                        CornerRadius="20"
-                        Background="{TemplateBinding Background}">
-                        <ContentPresenter VerticalAlignment="Center"
-                            HorizontalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-        <TextBox HorizontalAlignment="Left" IsReadOnly="True" Margin="27,24,0,0" TextWrapping="Wrap" Text="asdasdasdasdasdas&#xD;&#xA;sads ad s&#xD;&#xA;&#xD;&#xA;&#xD;&#xA; asdasdasdasdasdasdsf                                                           &#xD;&#xA;sdfds&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;sadfsdfds&#xD;&#xA;dsfasdfds&#xD;&#xA;fdsafdsf&#xD;&#xA;dsfds&#xD;&#xA;" VerticalAlignment="Top" Width="500" Height="428" TextChanged="TextBox_TextChanged"/>
+        <TextBox x:Name="txtBox" HorizontalAlignment="Left" IsReadOnly="True" Margin="27,0,0,0" TextWrapping="Wrap" Text="asdasdasdasdasdas&#xD;&#xA;sads ad s&#xD;&#xA;&#xD;&#xA;&#xD;&#xA; asdasdasdasdasdasdsf                                                           &#xD;&#xA;sdfds&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;sadfsdfds&#xD;&#xA;dsfasdfds&#xD;&#xA;fdsafdsf&#xD;&#xA;dsfds&#xD;&#xA;" VerticalAlignment="Center" Width="538" Height="482"/>
 
     </Grid>
 </Page>

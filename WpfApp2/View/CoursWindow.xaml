@@ -37,33 +37,11 @@
                         <Separator Margin="25" DockPanel.Dock="Top" Height="0.8" Background="#7e5fdc"/>
 
                         <!--Menu Buttons-->
-                        <StackPanel DockPanel.Dock="Top" Height="241">
-                            <Button x:Name="BtnUser" Style="{StaticResource menuButton}" >
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="/imagini/study.png" Height="20"/>
-                                    <TextBlock Text="LEctie 1.."/>
-                                </StackPanel>
-                            </Button>
-                            <Button x:Name="BtnQuiz1" Style="{StaticResource menuButton}" Width="102" Height="25" >
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="/imagini/quiz.png" Height="20"/>
-                                    <TextBlock Text="LEctie 2..."/>
-                                </StackPanel>
-                            </Button>
-                            <Button x:Name="BtnShowCourses" Style="{StaticResource menuButton}" >
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="/imagini/explore_courses.png" Height="20"/>
-                                    <TextBlock Text="LEctie 2..."/>
-                                </StackPanel>
-                            </Button>
-                            <Button Style="{StaticResource menuButton}" Height="33" Width="165">
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="/imagini/house.png" Height="20"/>
-                                    <TextBlock Text="Lectie 3.."/>
-                                </StackPanel>
-                            </Button>
+                        <StackPanel x:Name="stkPnl" DockPanel.Dock="Top" Height="241">
+                            
+                            
                         </StackPanel>
-                        <Button x:Name="LogoutButton" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 20" >
+                        <Button x:Name="LogoutButton" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 20" Click="LogoutButton_Click" >
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="/imagini/logout.png" Height="20"/>
                                 <TextBlock Text="Inapoi" RenderTransformOrigin="1.026,0.654"/>
@@ -76,7 +54,7 @@
 
 
 
-            <Frame x:Name="FrameMain" Panel.ZIndex="1" Margin="5,10,0,10" Grid.Column="1" NavigationUIVisibility="Hidden"/>
+            <Frame x:Name="FrameMain" Panel.ZIndex="1" Margin="5,10,0,10" Grid.Column="1" NavigationUIVisibility="Hidden" Height="514"/>
 
 
             <!--Top buttons-->

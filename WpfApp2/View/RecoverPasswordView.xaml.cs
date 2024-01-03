@@ -58,7 +58,7 @@ namespace WpfApp2.View
                 MessageBox.Show("Completati adresa de email!", "Eroare de procesare", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            //TODO send email to adress
+            
             if(btnRecover.Content.ToString() == "Recover password")
             {
                 var user = (from u in AppDataContext.context.Users where u.Email.Equals(txtBoxEmail_Password.Text) select u).FirstOrDefault();

@@ -29,6 +29,7 @@
       <Column Name="CreatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Course_Lesson" Member="Lessons" ThisKey="CID" OtherKey="CID" Type="Lesson" />
       <Association Name="Course_CompletedCourse" Member="CompletedCourses" ThisKey="CID" OtherKey="CID" Type="CompletedCourse" />
+      <Association Name="Course_StartedCourse" Member="StartedCourses" ThisKey="CID" OtherKey="CID" Type="StartedCourse" />
       <Association Name="User_Course" Member="User" ThisKey="CreatedBy" OtherKey="UID" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
@@ -121,6 +122,7 @@
       <Association Name="User_Progress" Member="Progresses" ThisKey="UID" OtherKey="UID" Type="Progress" />
       <Association Name="User_CompletedQuizze" Member="CompletedQuizzes" ThisKey="UID" OtherKey="UID" Type="CompletedQuizze" />
       <Association Name="User_CompletedCourse" Member="CompletedCourses" ThisKey="UID" OtherKey="UID" Type="CompletedCourse" />
+      <Association Name="User_StartedCourse" Member="StartedCourses" ThisKey="UID" OtherKey="UID" Type="StartedCourse" />
     </Type>
   </Table>
   <Table Name="dbo.VocabularyWords" Member="VocabularyWords">
@@ -159,6 +161,15 @@
       <Column Name="DateCompleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="Course_CompletedCourse" Member="Course" ThisKey="CID" OtherKey="CID" Type="Course" IsForeignKey="true" />
       <Association Name="User_CompletedCourse" Member="User" ThisKey="UID" OtherKey="UID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StartedCourses" Member="StartedCourses">
+    <Type Name="StartedCourse">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Course_StartedCourse" Member="Course" ThisKey="CID" OtherKey="CID" Type="Course" IsForeignKey="true" />
+      <Association Name="User_StartedCourse" Member="User" ThisKey="UID" OtherKey="UID" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

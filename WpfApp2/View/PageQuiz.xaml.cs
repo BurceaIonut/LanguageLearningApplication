@@ -94,7 +94,7 @@ namespace WpfApp2.View
             }
             MessageBox.Show($"Ai raspuns corect la {nr} intrebari din 3!", "Felicitari", MessageBoxButton.OK, MessageBoxImage.Information);
 
-            if (nr >= 2)
+            if (nr >= 3/4*questions.Count())
             {
                 var completed = new CompletedQuizze
                 {
@@ -117,7 +117,36 @@ namespace WpfApp2.View
                         DateCompleted = DateTime.Now
                     };
                     AppDataContext.context.CompletedCourses.InsertOnSubmit(completedCourse);
+                    var StartedCourse = (from s in AppDataContext.context.StartedCourses
+                               join c in AppDataContext.context.Courses on s.CID equals c.CID
+                               join u in AppDataContext.context.Users on UserProfile.user.UID equals u.UID
+                               select s).FirstOrDefault();
+                    AppDataContext.context.StartedCourses.DeleteOnSubmit(StartedCourse);
                     AppDataContext.context.SubmitChanges();
+
+                    var progress = (from p in AppDataContext.context.Progresses
+                                    where p.UID == UserProfile.user.UID
+                                    select p).FirstOrDefault();
+                    if(progress == null)
+                    {
+                        Progress progres = new Progress {
+                            UID = UserProfile.user.UID,
+                            CompletedLessons = 1,//todo
+                            DailyStreak = 0,
+                            QuizScores = nr,
+                            TimeSpentLearning = 0
+
+                        };
+                        AppDataContext.context.Progresses.InsertOnSubmit(progres);
+                        AppDataContext.context.SubmitChanges();
+                    }
+                    else
+                    {
+                        progress.QuizScores += nr;
+                        progress.CompletedLessons++;//to do 
+                        AppDataContext.context.SubmitChanges();
+                    }
+
                 }
 
                 NavigationService.Navigate(null);

@@ -90,7 +90,6 @@ namespace WpfApp2.View
                 if (alreadyCompleted != null)
                 {
                     MessageBox.Show("Deja ai completat acest quiz!", "Atenție", MessageBoxButton.OK, MessageBoxImage.Warning);
-
                 }
                 else
                 {

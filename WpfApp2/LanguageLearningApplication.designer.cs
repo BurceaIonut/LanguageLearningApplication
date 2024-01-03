@@ -75,6 +75,9 @@ namespace WpfApp2
     partial void InsertCompletedCourse(CompletedCourse instance);
     partial void UpdateCompletedCourse(CompletedCourse instance);
     partial void DeleteCompletedCourse(CompletedCourse instance);
+    partial void InsertStartedCourse(StartedCourse instance);
+    partial void UpdateStartedCourse(StartedCourse instance);
+    partial void DeleteStartedCourse(StartedCourse instance);
     #endregion
 		
 		public LanguageLearningApplicationDataContext() : 
@@ -224,6 +227,14 @@ namespace WpfApp2
 			get
 			{
 				return this.GetTable<CompletedCourse>();
+			}
+		}
+		
+		public System.Data.Linq.Table<StartedCourse> StartedCourses
+		{
+			get
+			{
+				return this.GetTable<StartedCourse>();
 			}
 		}
 	}
@@ -619,6 +630,8 @@ namespace WpfApp2
 		
 		private EntitySet<CompletedCourse> _CompletedCourses;
 		
+		private EntitySet<StartedCourse> _StartedCourses;
+		
 		private EntityRef<User> _User;
 		
     #region Extensibility Method Definitions
@@ -645,6 +658,7 @@ namespace WpfApp2
 		{
 			this._Lessons = new EntitySet<Lesson>(new Action<Lesson>(this.attach_Lessons), new Action<Lesson>(this.detach_Lessons));
 			this._CompletedCourses = new EntitySet<CompletedCourse>(new Action<CompletedCourse>(this.attach_CompletedCourses), new Action<CompletedCourse>(this.detach_CompletedCourses));
+			this._StartedCourses = new EntitySet<StartedCourse>(new Action<StartedCourse>(this.attach_StartedCourses), new Action<StartedCourse>(this.detach_StartedCourses));
 			this._User = default(EntityRef<User>);
 			OnCreated();
 		}
@@ -819,6 +833,19 @@ namespace WpfApp2
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Course_StartedCourse", Storage="_StartedCourses", ThisKey="CID", OtherKey="CID")]
+		public EntitySet<StartedCourse> StartedCourses
+		{
+			get
+			{
+				return this._StartedCourses;
+			}
+			set
+			{
+				this._StartedCourses.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Course", Storage="_User", ThisKey="CreatedBy", OtherKey="UID", IsForeignKey=true)]
 		public User User
 		{
@@ -892,6 +919,18 @@ namespace WpfApp2
 		}
 		
 		private void detach_CompletedCourses(CompletedCourse entity)
+		{
+			this.SendPropertyChanging();
+			entity.Course = null;
+		}
+		
+		private void attach_StartedCourses(StartedCourse entity)
+		{
+			this.SendPropertyChanging();
+			entity.Course = this;
+		}
+		
+		private void detach_StartedCourses(StartedCourse entity)
 		{
 			this.SendPropertyChanging();
 			entity.Course = null;
@@ -2360,6 +2399,8 @@ namespace WpfApp2
 		
 		private EntitySet<CompletedCourse> _CompletedCourses;
 		
+		private EntitySet<StartedCourse> _StartedCourses;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -2393,6 +2434,7 @@ namespace WpfApp2
 			this._Progresses = new EntitySet<Progress>(new Action<Progress>(this.attach_Progresses), new Action<Progress>(this.detach_Progresses));
 			this._CompletedQuizzes = new EntitySet<CompletedQuizze>(new Action<CompletedQuizze>(this.attach_CompletedQuizzes), new Action<CompletedQuizze>(this.detach_CompletedQuizzes));
 			this._CompletedCourses = new EntitySet<CompletedCourse>(new Action<CompletedCourse>(this.attach_CompletedCourses), new Action<CompletedCourse>(this.detach_CompletedCourses));
+			this._StartedCourses = new EntitySet<StartedCourse>(new Action<StartedCourse>(this.attach_StartedCourses), new Action<StartedCourse>(this.detach_StartedCourses));
 			OnCreated();
 		}
 		
@@ -2667,6 +2709,19 @@ namespace WpfApp2
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_StartedCourse", Storage="_StartedCourses", ThisKey="UID", OtherKey="UID")]
+		public EntitySet<StartedCourse> StartedCourses
+		{
+			get
+			{
+				return this._StartedCourses;
+			}
+			set
+			{
+				this._StartedCourses.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -2766,6 +2821,18 @@ namespace WpfApp2
 		}
 		
 		private void detach_CompletedCourses(CompletedCourse entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_StartedCourses(StartedCourse entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_StartedCourses(StartedCourse entity)
 		{
 			this.SendPropertyChanging();
 			entity.User = null;
@@ -3526,6 +3593,198 @@ namespace WpfApp2
 					if ((value != null))
 					{
 						value.CompletedCourses.Add(this);
+						this._UID = value.UID;
+					}
+					else
+					{
+						this._UID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.StartedCourses")]
+	public partial class StartedCourse : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private System.Nullable<int> _UID;
+		
+		private System.Nullable<int> _CID;
+		
+		private EntityRef<Course> _Course;
+		
+		private EntityRef<User> _User;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnUIDChanging(System.Nullable<int> value);
+    partial void OnUIDChanged();
+    partial void OnCIDChanging(System.Nullable<int> value);
+    partial void OnCIDChanged();
+    #endregion
+		
+		public StartedCourse()
+		{
+			this._Course = default(EntityRef<Course>);
+			this._User = default(EntityRef<User>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UID", DbType="Int")]
+		public System.Nullable<int> UID
+		{
+			get
+			{
+				return this._UID;
+			}
+			set
+			{
+				if ((this._UID != value))
+				{
+					if (this._User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUIDChanging(value);
+					this.SendPropertyChanging();
+					this._UID = value;
+					this.SendPropertyChanged("UID");
+					this.OnUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CID", DbType="Int")]
+		public System.Nullable<int> CID
+		{
+			get
+			{
+				return this._CID;
+			}
+			set
+			{
+				if ((this._CID != value))
+				{
+					if (this._Course.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCIDChanging(value);
+					this.SendPropertyChanging();
+					this._CID = value;
+					this.SendPropertyChanged("CID");
+					this.OnCIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Course_StartedCourse", Storage="_Course", ThisKey="CID", OtherKey="CID", IsForeignKey=true)]
+		public Course Course
+		{
+			get
+			{
+				return this._Course.Entity;
+			}
+			set
+			{
+				Course previousValue = this._Course.Entity;
+				if (((previousValue != value) 
+							|| (this._Course.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Course.Entity = null;
+						previousValue.StartedCourses.Remove(this);
+					}
+					this._Course.Entity = value;
+					if ((value != null))
+					{
+						value.StartedCourses.Add(this);
+						this._CID = value.CID;
+					}
+					else
+					{
+						this._CID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Course");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_StartedCourse", Storage="_User", ThisKey="UID", OtherKey="UID", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.StartedCourses.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.StartedCourses.Add(this);
 						this._UID = value.UID;
 					}
 					else

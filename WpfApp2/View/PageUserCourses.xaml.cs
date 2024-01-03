@@ -30,14 +30,26 @@ namespace WpfApp2.View
 
             this.firstName = firstName;
             this.lastName = lastName;
-            var coursesData = from Course in AppDataContext.context.Courses
-                              select new
-                              {
-                                  CourseID = Course.CID,
-                                  CourseName = Course.Name,
-                                  CourseDescription = Course.Description
-                              };
-            DataGridCourses.ItemsSource = coursesData; 
+            //var coursesData = from Course in AppDataContext.context.Courses
+            //                  select new
+            //                  {
+            //                      CourseID = Course.CID,
+            //                      CourseName = Course.Name,
+            //                      CourseDescription = Course.Description
+            //                  };
+            var startedCourses = from s in AppDataContext.context.StartedCourses
+                                 join u in AppDataContext.context.Users on s.UID equals u.UID
+                                 join c in AppDataContext.context.Courses on s.CID equals c.CID
+                                 where u.UID == UserProfile.user.UID
+                                 select new
+                                 {
+                                     CourseID = c.CID,
+                                     Name = c.Name,
+                                     Language= c.Language,
+                                     Description = c.Description,
+                                     Difficulry = c.DifficultyLevel
+                                 };
+            DataGridCourses.ItemsSource = startedCourses; 
         }
 
         private void btnResumeCourse_Click(object sender, RoutedEventArgs e)

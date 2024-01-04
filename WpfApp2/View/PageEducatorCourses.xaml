@@ -1,26 +1,57 @@
-﻿<Page x:Class="WpfApp2.PageCourses"
+﻿<Page x:Class="WpfApp2.View.PageEducatorCourses"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:WpfApp2"
+      xmlns:local="clr-namespace:WpfApp2.View"
       mc:Ignorable="d" 
       d:DesignHeight="530" d:DesignWidth="595"
-      Title="PageCourses">
+      Title="PageEducatorCourses">
 
     <Grid Background="White">
+
+        <Button x:Name="btnDeleteCourse"
+            BorderThickness="0"
+            Content="Delete course"
+            Foreground="White"
+            FontSize="12"
+            FontFamily="Montserrat"
+            Cursor="Hand"
+             Margin="363,480,-18,10" Click="btnDeleteCourse_Click">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#462AD8"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#28AEED"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Width="150" Height="40"
+                        CornerRadius="20"
+                        Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center"
+                            HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
         <DataGrid x:Name="DataGridCourses" d:ItemsSource="{d:SampleData ItemCount=5}"
           AutoGenerateColumns="False" AlternatingRowBackground="#F2F2F2" GridLinesVisibility="All"
           HorizontalGridLinesBrush="#E1E1E1" VerticalGridLinesBrush="#E1E1E1"
           CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False"
-          SelectionMode="Single" SelectionUnit="FullRow" Margin="0,47,0,50" >
+          SelectionMode="Single" SelectionUnit="FullRow" Margin="0,24,0,73" CellEditEnding="DataGridCourses_CellEditEnding">
 
             <DataGrid.Columns>
-
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="300"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding CID}" Width="0" Visibility="Hidden"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="270"/>
                 <DataGridTextColumn Header="Language" Binding="{Binding Language}" Width="69"/>
                 <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="150"/>
-                <DataGridTextColumn Header="Difficulty" Binding="{Binding DifficultyLanguage}" Width="150"/>
+                <DataGridTextColumn Header="Difficulty" Binding="{Binding DifficultyLevel}" Width="150"/>
                 <!-- Alte coloane, dacă există -->
 
             </DataGrid.Columns>
@@ -44,14 +75,14 @@
             </DataGrid.ColumnHeaderStyle>
 
         </DataGrid>
-        <Button x:Name="btnStartCourse"
+        <Button x:Name="btnEditCourse"
             BorderThickness="0"
-            Content="Start course"
+            Content="Edit lessons for this course"
             Foreground="White"
             FontSize="12"
             FontFamily="Montserrat"
             Cursor="Hand"
-             Margin="345,480,0,10" Click="btnStartCourse_Click">
+            Margin="172,480,173,10" Click="btnEditCourse_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#462AD8"/>
@@ -74,5 +105,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
+
     </Grid>
 </Page>
+

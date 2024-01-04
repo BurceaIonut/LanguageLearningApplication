@@ -10,7 +10,7 @@
 
     <Grid x:Name="stkPnl" Background="White">
         <StackPanel x:Name="stkPnl1" Margin="10,10,10,126"/>
-        <Button x:Name="btnSubmitAns" Content="     Submit answers" Background="#623ed0" Style="{StaticResource menuButton}" HorizontalAlignment="Left" Margin="422,469,0,0" VerticalAlignment="Top" Width="124" Click="btnSubmitAns_Click" />
+        <Button x:Name="btnSubmitAns" Content="     Submit answers" Background="#623ed0" Style="{StaticResource menuButton}" HorizontalAlignment="Left" Margin="418,419,0,0" VerticalAlignment="Top" Width="124" Click="btnSubmitAns_Click" />
 
     </Grid>
 </Page>

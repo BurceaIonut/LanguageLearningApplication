@@ -37,7 +37,7 @@
                         <Separator Margin="25" DockPanel.Dock="Top" Height="0.8" Background="#7e5fdc"/>
 
                         <!--Menu Buttons-->
-                        <StackPanel x:Name="stkPnl" DockPanel.Dock="Top" Height="241">
+                        <StackPanel x:Name="stkPnl" DockPanel.Dock="Top" Height="308">
                             
                             
                         </StackPanel>

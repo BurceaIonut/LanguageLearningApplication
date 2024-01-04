@@ -62,11 +62,20 @@ namespace WpfApp2.View
             if (user != null && hashedPassword == user.Password)
             {
                 UserProfile.user = user;
-
-                Home home = new Home(user.FirstName, user.LastName);
+                if(UserProfile.user.Role == "Educator")
+                {
+                    HomeEducator homeEd = new HomeEducator();
+                    homeEd.Show();
+                }
+                else
+                {
+                    Home home = new Home(user.FirstName, user.LastName);
+                    home.Show();
+                }
+                
                 user.LastLoginDate= DateTime.Now;
                 AppDataContext.context.SubmitChanges();
-                home.Show();
+                
                 Close();
             }
             else

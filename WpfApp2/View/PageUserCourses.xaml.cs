@@ -47,9 +47,11 @@ namespace WpfApp2.View
                                      Name = c.Name,
                                      Language= c.Language,
                                      Description = c.Description,
-                                     Difficulry = c.DifficultyLevel
+                                     Difficulty = c.DifficultyLevel
                                  };
-            DataGridCourses.ItemsSource = startedCourses; 
+            if (startedCourses.LongCount() > (long)0)
+                DataGridCourses.ItemsSource = startedCourses;
+            
         }
 
         private void btnResumeCourse_Click(object sender, RoutedEventArgs e)

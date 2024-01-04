@@ -43,7 +43,7 @@ namespace WpfApp2
                             {
                                 CourseID = course.CID,
                                Name= course.Name,
-                               Difficulty= course.DifficultyLevel,
+                               DifficultyLanguage= course.DifficultyLevel,
                                Language = course.Language,
                                Description = course.Description
                             });
@@ -67,13 +67,20 @@ namespace WpfApp2
                 // Afișarea ferestrei noi
                 lg.Show();
 
-                StartedCourse startedCourse = new StartedCourse 
-                { 
-                  CID= courseId,
-                  UID = UserProfile.user.UID
-                };
-                AppDataContext.context.StartedCourses.InsertOnSubmit(startedCourse);
-                AppDataContext.context.SubmitChanges();
+                var completedCourse = (from c in AppDataContext.context.CompletedCourses
+                                       where c.UID == UserProfile.user.UID && c.CID == courseId
+                                       select c);
+                if(completedCourse.LongCount() == 0 )
+                {
+                    StartedCourse startedCourse = new StartedCourse
+                    {
+                        CID = courseId,
+                        UID = UserProfile.user.UID
+                    };
+                    AppDataContext.context.StartedCourses.InsertOnSubmit(startedCourse);
+                    AppDataContext.context.SubmitChanges();
+                }
+                
                 // Închiderea ferestrei curente (a părintelui)
                 Window.GetWindow(this)?.Close();
             }
@@ -83,5 +90,7 @@ namespace WpfApp2
                 MessageBox.Show("Selectează un curs înainte de a continua.", "Avertisment", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
+       
     }
 }

@@ -121,6 +121,7 @@ namespace WpfApp2.View
                                join c in AppDataContext.context.Courses on s.CID equals c.CID
                                join u in AppDataContext.context.Users on UserProfile.user.UID equals u.UID
                                select s).FirstOrDefault();
+                    AppDataContext.context.SubmitChanges();
                     AppDataContext.context.StartedCourses.DeleteOnSubmit(StartedCourse);
                     AppDataContext.context.SubmitChanges();
 

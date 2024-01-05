@@ -67,8 +67,17 @@
     <Compile Include="View\HomeEducator.xaml.cs">
       <DependentUpon>HomeEducator.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PageAddCourses.xaml.cs">
+      <DependentUpon>PageAddCourses.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PageAddLesson.xaml.cs">
       <DependentUpon>PageAddLesson.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PageAddQuestion.xaml.cs">
+      <DependentUpon>PageAddQuestion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PageAddQuizee.xaml.cs">
+      <DependentUpon>PageAddQuizee.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PageCourses.xaml.cs">
       <DependentUpon>PageCourses.xaml</DependentUpon>
@@ -88,6 +97,9 @@
     </Compile>
     <Compile Include="View\PageEducatorLessons.xaml.cs">
       <DependentUpon>PageEducatorLessons.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PageEducatorQuizee.xaml.cs">
+      <DependentUpon>PageEducatorQuizee.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PageLesson.xaml.cs">
       <DependentUpon>PageLesson.xaml</DependentUpon>
@@ -112,7 +124,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\PageAddCourses.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\PageAddLesson.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PageAddQuestion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PageAddQuizee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -133,6 +157,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PageEducatorLessons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PageEducatorQuizee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

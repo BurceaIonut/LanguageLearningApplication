@@ -49,7 +49,7 @@ namespace WpfApp2.View
                                      Description = c.Description,
                                      Difficulty = c.DifficultyLevel
                                  };
-            if (startedCourses.LongCount() > (long)0)
+            
                 DataGridCourses.ItemsSource = startedCourses;
             
         }

@@ -30,7 +30,7 @@ namespace WpfApp2.View
             this.lastName = lastName;
             lessons = (from l in AppDataContext.context.Lessons
                           where l.CID == ID
-                           orderby l.OrderInCourse descending
+                           orderby l.OrderInCourse 
                            select l) ;
 
             //FrameMain.Content = new PageLesson(content);

@@ -45,5 +45,10 @@ namespace WpfApp2.View
             lg.Show();
             Close();
         }
+
+        private void BtnAddCourses_Click(object sender, RoutedEventArgs e)
+        {
+            FrameMain.Content =new PageAddCourses();
+        }
     }
 }

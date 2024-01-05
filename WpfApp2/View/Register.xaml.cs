@@ -66,6 +66,7 @@ namespace WpfApp2.View
             };
             AppDataContext.context.Users.InsertOnSubmit(newUser);
             AppDataContext.context.SubmitChanges();
+            UserProfile.user = (from u in AppDataContext.context.Users where u.Email.Equals(newUser.Email) select u).FirstOrDefault();
             Home home = new Home(txtBoxUserFName.Text, txtBoxUserLName.Text);
             home.Show();
             Close();

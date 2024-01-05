@@ -64,7 +64,7 @@
                                     <TextBlock Text="Cursurile mele"/>
                                 </StackPanel>
                             </Button>
-                            <Button x:Name="BtnAddCourses" Style="{StaticResource menuButton}">
+                            <Button x:Name="BtnAddCourses" Style="{StaticResource menuButton}" Click="BtnAddCourses_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="/imagini/explore_courses.png" Height="20"/>
                                     <TextBlock Text="Adauga curs"/>

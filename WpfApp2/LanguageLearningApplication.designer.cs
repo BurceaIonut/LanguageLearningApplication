@@ -30,9 +30,6 @@ namespace WpfApp2
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertAnswer(Answer instance);
-    partial void UpdateAnswer(Answer instance);
-    partial void DeleteAnswer(Answer instance);
     partial void InsertCheckpoint(Checkpoint instance);
     partial void UpdateCheckpoint(Checkpoint instance);
     partial void DeleteCheckpoint(Checkpoint instance);
@@ -51,9 +48,6 @@ namespace WpfApp2
     partial void InsertProgress(Progress instance);
     partial void UpdateProgress(Progress instance);
     partial void DeleteProgress(Progress instance);
-    partial void InsertQuestion(Question instance);
-    partial void UpdateQuestion(Question instance);
-    partial void DeleteQuestion(Question instance);
     partial void InsertQuizze(Quizze instance);
     partial void UpdateQuizze(Quizze instance);
     partial void DeleteQuizze(Quizze instance);
@@ -78,6 +72,9 @@ namespace WpfApp2
     partial void InsertStartedCourse(StartedCourse instance);
     partial void UpdateStartedCourse(StartedCourse instance);
     partial void DeleteStartedCourse(StartedCourse instance);
+    partial void InsertQuestion(Question instance);
+    partial void UpdateQuestion(Question instance);
+    partial void DeleteQuestion(Question instance);
     #endregion
 		
 		public LanguageLearningApplicationDataContext() : 
@@ -108,14 +105,6 @@ namespace WpfApp2
 				base(connection, mappingSource)
 		{
 			OnCreated();
-		}
-		
-		public System.Data.Linq.Table<Answer> Answers
-		{
-			get
-			{
-				return this.GetTable<Answer>();
-			}
 		}
 		
 		public System.Data.Linq.Table<Checkpoint> Checkpoints
@@ -163,14 +152,6 @@ namespace WpfApp2
 			get
 			{
 				return this.GetTable<Progress>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Question> Questions
-		{
-			get
-			{
-				return this.GetTable<Question>();
 			}
 		}
 		
@@ -237,179 +218,12 @@ namespace WpfApp2
 				return this.GetTable<StartedCourse>();
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Answers")]
-	public partial class Answer : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _AID;
-		
-		private System.Nullable<int> _QUID;
-		
-		private string _Answer1;
-		
-		private int _IsCorrect;
-		
-		private EntityRef<Question> _Question;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnAIDChanging(int value);
-    partial void OnAIDChanged();
-    partial void OnQUIDChanging(System.Nullable<int> value);
-    partial void OnQUIDChanged();
-    partial void OnAnswer1Changing(string value);
-    partial void OnAnswer1Changed();
-    partial void OnIsCorrectChanging(int value);
-    partial void OnIsCorrectChanged();
-    #endregion
-		
-		public Answer()
-		{
-			this._Question = default(EntityRef<Question>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int AID
+		public System.Data.Linq.Table<Question> Questions
 		{
 			get
 			{
-				return this._AID;
-			}
-			set
-			{
-				if ((this._AID != value))
-				{
-					this.OnAIDChanging(value);
-					this.SendPropertyChanging();
-					this._AID = value;
-					this.SendPropertyChanged("AID");
-					this.OnAIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QUID", DbType="Int")]
-		public System.Nullable<int> QUID
-		{
-			get
-			{
-				return this._QUID;
-			}
-			set
-			{
-				if ((this._QUID != value))
-				{
-					if (this._Question.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnQUIDChanging(value);
-					this.SendPropertyChanging();
-					this._QUID = value;
-					this.SendPropertyChanged("QUID");
-					this.OnQUIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="Answer", Storage="_Answer1", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
-		public string Answer1
-		{
-			get
-			{
-				return this._Answer1;
-			}
-			set
-			{
-				if ((this._Answer1 != value))
-				{
-					this.OnAnswer1Changing(value);
-					this.SendPropertyChanging();
-					this._Answer1 = value;
-					this.SendPropertyChanged("Answer1");
-					this.OnAnswer1Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsCorrect", DbType="Int NOT NULL")]
-		public int IsCorrect
-		{
-			get
-			{
-				return this._IsCorrect;
-			}
-			set
-			{
-				if ((this._IsCorrect != value))
-				{
-					this.OnIsCorrectChanging(value);
-					this.SendPropertyChanging();
-					this._IsCorrect = value;
-					this.SendPropertyChanged("IsCorrect");
-					this.OnIsCorrectChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Question_Answer", Storage="_Question", ThisKey="QUID", OtherKey="QUID", IsForeignKey=true)]
-		public Question Question
-		{
-			get
-			{
-				return this._Question.Entity;
-			}
-			set
-			{
-				Question previousValue = this._Question.Entity;
-				if (((previousValue != value) 
-							|| (this._Question.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Question.Entity = null;
-						previousValue.Answers.Remove(this);
-					}
-					this._Question.Entity = value;
-					if ((value != null))
-					{
-						value.Answers.Add(this);
-						this._QUID = value.QUID;
-					}
-					else
-					{
-						this._QUID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Question");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+				return this.GetTable<Question>();
 			}
 		}
 	}
@@ -1841,185 +1655,6 @@ namespace WpfApp2
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Questions")]
-	public partial class Question : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _QUID;
-		
-		private System.Nullable<int> _QID;
-		
-		private string _Question1;
-		
-		private EntitySet<Answer> _Answers;
-		
-		private EntityRef<Quizze> _Quizze;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnQUIDChanging(int value);
-    partial void OnQUIDChanged();
-    partial void OnQIDChanging(System.Nullable<int> value);
-    partial void OnQIDChanged();
-    partial void OnQuestion1Changing(string value);
-    partial void OnQuestion1Changed();
-    #endregion
-		
-		public Question()
-		{
-			this._Answers = new EntitySet<Answer>(new Action<Answer>(this.attach_Answers), new Action<Answer>(this.detach_Answers));
-			this._Quizze = default(EntityRef<Quizze>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QUID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int QUID
-		{
-			get
-			{
-				return this._QUID;
-			}
-			set
-			{
-				if ((this._QUID != value))
-				{
-					this.OnQUIDChanging(value);
-					this.SendPropertyChanging();
-					this._QUID = value;
-					this.SendPropertyChanged("QUID");
-					this.OnQUIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QID", DbType="Int")]
-		public System.Nullable<int> QID
-		{
-			get
-			{
-				return this._QID;
-			}
-			set
-			{
-				if ((this._QID != value))
-				{
-					if (this._Quizze.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnQIDChanging(value);
-					this.SendPropertyChanging();
-					this._QID = value;
-					this.SendPropertyChanged("QID");
-					this.OnQIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="Question", Storage="_Question1", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
-		public string Question1
-		{
-			get
-			{
-				return this._Question1;
-			}
-			set
-			{
-				if ((this._Question1 != value))
-				{
-					this.OnQuestion1Changing(value);
-					this.SendPropertyChanging();
-					this._Question1 = value;
-					this.SendPropertyChanged("Question1");
-					this.OnQuestion1Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Question_Answer", Storage="_Answers", ThisKey="QUID", OtherKey="QUID")]
-		public EntitySet<Answer> Answers
-		{
-			get
-			{
-				return this._Answers;
-			}
-			set
-			{
-				this._Answers.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Quizze_Question", Storage="_Quizze", ThisKey="QID", OtherKey="QID", IsForeignKey=true)]
-		public Quizze Quizze
-		{
-			get
-			{
-				return this._Quizze.Entity;
-			}
-			set
-			{
-				Quizze previousValue = this._Quizze.Entity;
-				if (((previousValue != value) 
-							|| (this._Quizze.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Quizze.Entity = null;
-						previousValue.Questions.Remove(this);
-					}
-					this._Quizze.Entity = value;
-					if ((value != null))
-					{
-						value.Questions.Add(this);
-						this._QID = value.QID;
-					}
-					else
-					{
-						this._QID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Quizze");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Answers(Answer entity)
-		{
-			this.SendPropertyChanging();
-			entity.Question = this;
-		}
-		
-		private void detach_Answers(Answer entity)
-		{
-			this.SendPropertyChanging();
-			entity.Question = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Quizzes")]
 	public partial class Quizze : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2034,9 +1669,9 @@ namespace WpfApp2
 		
 		private string _DifficultyLevel;
 		
-		private EntitySet<Question> _Questions;
-		
 		private EntitySet<CompletedQuizze> _CompletedQuizzes;
+		
+		private EntitySet<Question> _Questions;
 		
 		private EntityRef<Lesson> _Lesson;
 		
@@ -2056,8 +1691,8 @@ namespace WpfApp2
 		
 		public Quizze()
 		{
-			this._Questions = new EntitySet<Question>(new Action<Question>(this.attach_Questions), new Action<Question>(this.detach_Questions));
 			this._CompletedQuizzes = new EntitySet<CompletedQuizze>(new Action<CompletedQuizze>(this.attach_CompletedQuizzes), new Action<CompletedQuizze>(this.detach_CompletedQuizzes));
+			this._Questions = new EntitySet<Question>(new Action<Question>(this.attach_Questions), new Action<Question>(this.detach_Questions));
 			this._Lesson = default(EntityRef<Lesson>);
 			OnCreated();
 		}
@@ -2146,19 +1781,6 @@ namespace WpfApp2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Quizze_Question", Storage="_Questions", ThisKey="QID", OtherKey="QID")]
-		public EntitySet<Question> Questions
-		{
-			get
-			{
-				return this._Questions;
-			}
-			set
-			{
-				this._Questions.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Quizze_CompletedQuizze", Storage="_CompletedQuizzes", ThisKey="QID", OtherKey="QID")]
 		public EntitySet<CompletedQuizze> CompletedQuizzes
 		{
@@ -2169,6 +1791,19 @@ namespace WpfApp2
 			set
 			{
 				this._CompletedQuizzes.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Quizze_Question", Storage="_Questions", ThisKey="QID", OtherKey="QID")]
+		public EntitySet<Question> Questions
+		{
+			get
+			{
+				return this._Questions;
+			}
+			set
+			{
+				this._Questions.Assign(value);
 			}
 		}
 		
@@ -2226,18 +1861,6 @@ namespace WpfApp2
 			}
 		}
 		
-		private void attach_Questions(Question entity)
-		{
-			this.SendPropertyChanging();
-			entity.Quizze = this;
-		}
-		
-		private void detach_Questions(Question entity)
-		{
-			this.SendPropertyChanging();
-			entity.Quizze = null;
-		}
-		
 		private void attach_CompletedQuizzes(CompletedQuizze entity)
 		{
 			this.SendPropertyChanging();
@@ -2245,6 +1868,18 @@ namespace WpfApp2
 		}
 		
 		private void detach_CompletedQuizzes(CompletedQuizze entity)
+		{
+			this.SendPropertyChanging();
+			entity.Quizze = null;
+		}
+		
+		private void attach_Questions(Question entity)
+		{
+			this.SendPropertyChanging();
+			entity.Quizze = this;
+		}
+		
+		private void detach_Questions(Question entity)
 		{
 			this.SendPropertyChanging();
 			entity.Quizze = null;
@@ -3792,6 +3427,253 @@ namespace WpfApp2
 						this._UID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Questions")]
+	public partial class Question : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _QUID;
+		
+		private System.Nullable<int> _QID;
+		
+		private string _Question1;
+		
+		private string _FirstAnswer;
+		
+		private string _SecondAnswer;
+		
+		private string _ThirdAnswer;
+		
+		private string _IsCorrect;
+		
+		private EntityRef<Quizze> _Quizze;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnQUIDChanging(int value);
+    partial void OnQUIDChanged();
+    partial void OnQIDChanging(System.Nullable<int> value);
+    partial void OnQIDChanged();
+    partial void OnQuestion1Changing(string value);
+    partial void OnQuestion1Changed();
+    partial void OnFirstAnswerChanging(string value);
+    partial void OnFirstAnswerChanged();
+    partial void OnSecondAnswerChanging(string value);
+    partial void OnSecondAnswerChanged();
+    partial void OnThirdAnswerChanging(string value);
+    partial void OnThirdAnswerChanged();
+    partial void OnIsCorrectChanging(string value);
+    partial void OnIsCorrectChanged();
+    #endregion
+		
+		public Question()
+		{
+			this._Quizze = default(EntityRef<Quizze>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QUID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int QUID
+		{
+			get
+			{
+				return this._QUID;
+			}
+			set
+			{
+				if ((this._QUID != value))
+				{
+					this.OnQUIDChanging(value);
+					this.SendPropertyChanging();
+					this._QUID = value;
+					this.SendPropertyChanged("QUID");
+					this.OnQUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QID", DbType="Int")]
+		public System.Nullable<int> QID
+		{
+			get
+			{
+				return this._QID;
+			}
+			set
+			{
+				if ((this._QID != value))
+				{
+					if (this._Quizze.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnQIDChanging(value);
+					this.SendPropertyChanging();
+					this._QID = value;
+					this.SendPropertyChanged("QID");
+					this.OnQIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="Question", Storage="_Question1", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
+		public string Question1
+		{
+			get
+			{
+				return this._Question1;
+			}
+			set
+			{
+				if ((this._Question1 != value))
+				{
+					this.OnQuestion1Changing(value);
+					this.SendPropertyChanging();
+					this._Question1 = value;
+					this.SendPropertyChanged("Question1");
+					this.OnQuestion1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstAnswer", DbType="NVarChar(200)")]
+		public string FirstAnswer
+		{
+			get
+			{
+				return this._FirstAnswer;
+			}
+			set
+			{
+				if ((this._FirstAnswer != value))
+				{
+					this.OnFirstAnswerChanging(value);
+					this.SendPropertyChanging();
+					this._FirstAnswer = value;
+					this.SendPropertyChanged("FirstAnswer");
+					this.OnFirstAnswerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SecondAnswer", DbType="NVarChar(200)")]
+		public string SecondAnswer
+		{
+			get
+			{
+				return this._SecondAnswer;
+			}
+			set
+			{
+				if ((this._SecondAnswer != value))
+				{
+					this.OnSecondAnswerChanging(value);
+					this.SendPropertyChanging();
+					this._SecondAnswer = value;
+					this.SendPropertyChanged("SecondAnswer");
+					this.OnSecondAnswerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThirdAnswer", DbType="NVarChar(200)")]
+		public string ThirdAnswer
+		{
+			get
+			{
+				return this._ThirdAnswer;
+			}
+			set
+			{
+				if ((this._ThirdAnswer != value))
+				{
+					this.OnThirdAnswerChanging(value);
+					this.SendPropertyChanging();
+					this._ThirdAnswer = value;
+					this.SendPropertyChanged("ThirdAnswer");
+					this.OnThirdAnswerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsCorrect", DbType="NVarChar(50)")]
+		public string IsCorrect
+		{
+			get
+			{
+				return this._IsCorrect;
+			}
+			set
+			{
+				if ((this._IsCorrect != value))
+				{
+					this.OnIsCorrectChanging(value);
+					this.SendPropertyChanging();
+					this._IsCorrect = value;
+					this.SendPropertyChanged("IsCorrect");
+					this.OnIsCorrectChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Quizze_Question", Storage="_Quizze", ThisKey="QID", OtherKey="QID", IsForeignKey=true)]
+		public Quizze Quizze
+		{
+			get
+			{
+				return this._Quizze.Entity;
+			}
+			set
+			{
+				Quizze previousValue = this._Quizze.Entity;
+				if (((previousValue != value) 
+							|| (this._Quizze.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Quizze.Entity = null;
+						previousValue.Questions.Remove(this);
+					}
+					this._Quizze.Entity = value;
+					if ((value != null))
+					{
+						value.Questions.Add(this);
+						this._QID = value.QID;
+					}
+					else
+					{
+						this._QID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Quizze");
 				}
 			}
 		}

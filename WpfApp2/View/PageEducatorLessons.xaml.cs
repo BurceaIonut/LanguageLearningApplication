@@ -144,7 +144,17 @@ namespace WpfApp2.View
 
         private void btnEditQuizee_Click(object sender, RoutedEventArgs e)
         {
-
+            var selectedLesson = DataGridLessons.SelectedItem as Lesson;
+            PageEducatorQuizee peq = new PageEducatorQuizee(this.CID,selectedLesson.LID);
+            var parentWindow = Window.GetWindow(this);
+            if (parentWindow != null)
+            {
+                var frame = LogicalTreeHelper.FindLogicalNode(parentWindow, "FrameMain") as Frame;
+                if (frame != null)
+                {
+                    frame.Content = peq;
+                }
+            }
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)

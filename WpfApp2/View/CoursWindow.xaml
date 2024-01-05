@@ -27,7 +27,7 @@
 
                 <Border Background="#623ed0" CornerRadius="0 50 0 30" Margin="0,43,0,0" Grid.RowSpan="2">
                     <DockPanel>
-                       
+
 
                         <!--Menu titles-->
                         <TextBlock Text="Nume Curs" Foreground="White" FontSize="22"
@@ -37,10 +37,8 @@
                         <Separator Margin="25" DockPanel.Dock="Top" Height="0.8" Background="#7e5fdc"/>
 
                         <!--Menu Buttons-->
-                        <StackPanel x:Name="stkPnl" DockPanel.Dock="Top" Height="308">
-                            
-                            
-                        </StackPanel>
+                        
+                        <StackPanel x:Name="stkPnl" DockPanel.Dock="Top" Height="308" Width="195" />
                         <Button x:Name="LogoutButton" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 20" Click="LogoutButton_Click" >
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="/imagini/logout.png" Height="20"/>

@@ -24,7 +24,7 @@ namespace WpfApp2.View
         {
             InitializeComponent();
             txtBox.Text = continut;
-
+            
         }
 
     }

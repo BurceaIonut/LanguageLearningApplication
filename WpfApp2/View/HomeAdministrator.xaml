@@ -1,26 +1,24 @@
-﻿<Window x:Class="WpfApp2.View.Home"
+﻿<Window x:Class="WpfApp2.View.HomeAdministrator"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2.View"
         mc:Ignorable="d"
-        Title="Home" Height="550" Width="800"
+        Title="HomeAdministrator" Height="550" Width="800"
         WindowStyle="None"
         ResizeMode="CanResizeWithGrip"
         WindowStartupLocation="CenterScreen"
          MouseDown="Window_MouseDown"
         AllowsTransparency="True"
-        Background="Transparent"
-        >
-
+        Background="Transparent">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
     </Window.Resources>
 
     <Border Background="#eff2f7">
         <Grid>
-                
+
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
@@ -33,7 +31,7 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                
+
                 <!--Menu Icon-->
                 <Button Margin="20,28,0,35" Style="{StaticResource topButton}"/>
 
@@ -41,16 +39,14 @@
                     <DockPanel>
                         <!--MEnu Logo-->
                         <Border Width="80" Height="80" Padding="3" Background="White" CornerRadius="100"
-                                DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="20 -30 0 0" Panel.ZIndex="1">
-                            <Ellipse x:Name="myEllipse">
+                                DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="20 -30 0 0">
+                            <Ellipse>
                                 <Ellipse.Fill>
                                     <ImageBrush ImageSource="/imagini/user2.png"/>
                                 </Ellipse.Fill>
                             </Ellipse>
-
-
                         </Border>
-                        
+
                         <!--Menu titles-->
                         <TextBlock Text="Bine ai venit," Foreground="White" FontSize="22"
                                    FontWeight="SemiBold" DockPanel.Dock="Top" TextAlignment="Center"
@@ -62,19 +58,13 @@
 
                         <!--Menu Buttons-->
                         <StackPanel DockPanel.Dock="Top">
-                            <Button x:Name="BtnUser" Style="{StaticResource menuButton}" Click="BtnUser_Click">
+                            <Button x:Name="BtnUseri" Style="{StaticResource menuButton}" Click="BtnUseri_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="/imagini/study.png" Height="20"/>
-                                    <TextBlock Text="Cursurile mele"/>
+                                    <TextBlock Text="Useri"/>
                                 </StackPanel>
                             </Button>
-                            <Button x:Name="BtnShowCourses" Style="{StaticResource menuButton}" Click="BtnShowCourses_Click">
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="/imagini/explore_courses.png" Height="20"/>
-                                    <TextBlock Text="Find more courses"/>
-                                </StackPanel>
-                            </Button>
-                            <Button x:Name="btnProfile" Style="{StaticResource menuButton}" Click="btnProfile_Click">
+                            <Button Style="{StaticResource menuButton}">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="/imagini/house.png" Height="20"/>
                                     <TextBlock Text="Profil"/>
@@ -94,14 +84,11 @@
 
 
 
-            <Frame x:Name="FrameMain" Panel.ZIndex="1" Margin="5,10,0,10" Grid.Column="1" NavigationUIVisibility="Hidden">
-                
-            </Frame>
+            <Frame x:Name="FrameMain" Panel.ZIndex="1" Margin="5,10,0,10" Grid.Column="1" NavigationUIVisibility="Hidden"/>
 
 
             <!--Top buttons-->
             <Button Style="{StaticResource topButton}" Margin="0 0 55 0"/>
-            
 
 
         </Grid>

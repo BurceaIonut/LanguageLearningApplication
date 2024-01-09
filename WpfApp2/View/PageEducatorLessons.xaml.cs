@@ -71,7 +71,7 @@ namespace WpfApp2.View
             else
             {
                 // În cazul în care nu există niciun curs selectat, poți afișa un mesaj sau să iei alte acțiuni
-                MessageBox.Show("Selectează un curs înainte de a continua.", "Avertisment", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Selectează o lectie înainte de a continua.", "Avertisment", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -145,16 +145,24 @@ namespace WpfApp2.View
         private void btnEditQuizee_Click(object sender, RoutedEventArgs e)
         {
             var selectedLesson = DataGridLessons.SelectedItem as Lesson;
-            PageEducatorQuizee peq = new PageEducatorQuizee(this.CID,selectedLesson.LID);
-            var parentWindow = Window.GetWindow(this);
-            if (parentWindow != null)
+            if (selectedLesson != null)
             {
-                var frame = LogicalTreeHelper.FindLogicalNode(parentWindow, "FrameMain") as Frame;
-                if (frame != null)
+                PageEducatorQuizee peq = new PageEducatorQuizee(this.CID, selectedLesson.LID);
+                var parentWindow = Window.GetWindow(this);
+                if (parentWindow != null)
                 {
-                    frame.Content = peq;
+                    var frame = LogicalTreeHelper.FindLogicalNode(parentWindow, "FrameMain") as Frame;
+                    if (frame != null)
+                    {
+                        frame.Content = peq;
+                    }
                 }
             }
+            else
+            {
+                MessageBox.Show("Selectează o lectie înainte de a continua.", "Avertisment", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+           
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)

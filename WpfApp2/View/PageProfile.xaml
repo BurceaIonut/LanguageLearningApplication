@@ -1,0 +1,133 @@
+﻿<Page x:Class="WpfApp2.View.PageProfile"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp2.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="530" d:DesignWidth="800"
+      Title="PageProfile">
+
+    <Grid Background="White">
+        <Button x:Name="btnChangePasswd"
+            BorderThickness="0"
+            Content="Change Password"
+            Foreground="White"
+            FontSize="12"
+            FontFamily="Montserrat"
+            Cursor="Hand"
+            Margin="399,476,39,14" Click="btnChangePasswd_Click" >
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#462AD8"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#28AEED"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Width="150" Height="40"
+                        CornerRadius="20"
+                        Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center"
+                            HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Label Content="First Name" 
+       HorizontalAlignment="Left" 
+       VerticalAlignment="Top" 
+       Margin="10,33,0,0" 
+       Width="68" 
+       FontSize="11" 
+       FontWeight="Bold" 
+       Foreground="#2C3E50"/>
+        <TextBox x:Name="txtBFName" 
+         HorizontalAlignment="Left" 
+         VerticalAlignment="Top" 
+         Margin="139,28,0,0" 
+         Width="417" 
+         Height="36" 
+         FontSize="14" 
+         Padding="5" 
+         BorderThickness="1" 
+         BorderBrush="#3498DB" 
+         Background="#ECF0F1" 
+         Foreground="#2C3E50"/>
+        <Label Content="Last Name" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top" Width="77"/>
+        <TextBox x:Name="txtBLName" HorizontalAlignment="Left" AcceptsReturn="True" AcceptsTab="True" Margin="139,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" Height="29" RenderTransformOrigin="0.483,0.603"/>
+        <Label Content="Email" HorizontalAlignment="Left" Margin="10,160,0,0" VerticalAlignment="Top" Width="94"/>
+        <TextBox x:Name="txtBEmail" HorizontalAlignment="Left" AcceptsReturn="True" AcceptsTab="True" Margin="139,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" Height="29" RenderTransformOrigin="0.483,0.603"/>
+        <Label x:Name="lblPasswd" Content="Password" HorizontalAlignment="Left" Margin="10,399,0,0" VerticalAlignment="Top" Width="94"/>
+        <PasswordBox x:Name="txtBPasswd" HorizontalAlignment="Left"  Margin="139,396,0,0" VerticalAlignment="Top" Width="417" Height="29" RenderTransformOrigin="0.483,0.603"/>
+        <Label Content="Role" HorizontalAlignment="Left" Margin="10,239,0,0" VerticalAlignment="Top" Width="94"/>
+        <TextBox x:Name="txtBRole" IsReadOnly="True" HorizontalAlignment="Left" AcceptsReturn="True" AcceptsTab="True" Margin="139,236,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" Height="29" RenderTransformOrigin="0.483,0.603" IsEnabled="False"/>
+        <Button x:Name="btnSavePasswd"
+            BorderThickness="0"
+            Content="Save Password"
+            Foreground="White"
+            FontSize="12"
+            FontFamily="Montserrat"
+            Cursor="Hand"
+            Margin="194,476,244,14" Click="btnSavePasswd_Click" >
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#462AD8"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#28AEED"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Width="150" Height="40"
+                        CornerRadius="20"
+                        Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center"
+                            HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button x:Name="btnAddProfilePicture"
+            BorderThickness="0"
+            Content="Change Profile Picture"
+            Foreground="White"
+            FontSize="12"
+            FontFamily="Montserrat"
+            Cursor="Hand"
+            Margin="-14,476,452,14" Click="btnAddProfilePicture_Click" >
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#462AD8"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#28AEED"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Width="150" Height="40"
+                        CornerRadius="20"
+                        Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center"
+                            HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+
+    </Grid>
+</Page>

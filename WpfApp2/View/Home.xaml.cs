@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +33,17 @@ namespace WpfApp2.View
             txtUserName.Text = firstName + " " + lastName;
             FrameMain.Content = new PageUserCourses(this.firstName,this.lastName);
 
+
+            if (UserProfile.user.ProfilePicture != null)
+            {
+                BitmapImage bitmapImage = ConvertToBitmapImage(UserProfile.user.ProfilePicture.ToArray());
+                if (myEllipse.Fill is ImageBrush imageBrush)
+                {
+                    imageBrush.ImageSource = bitmapImage;
+                }
+            }
+
+
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -60,7 +73,45 @@ namespace WpfApp2.View
             
             FrameMain.Content = new PageUserCourses(this.firstName, this.lastName);
         }
+
+        private void btnProfile_Click(object sender, RoutedEventArgs e)
+        {
+            FrameMain.Content = new PageProfile();
+
+            //OpenFileDialog openDialog = new OpenFileDialog();
+            //openDialog.Filter = "Image files|*.bmp;*.jpg;*.png";
+            //openDialog.FilterIndex = 1;
+
+            //if (openDialog.ShowDialog() == true)
+            //{
+               
+            //    imagePicture.Source = new BitmapImage(new Uri(openDialog.FileName));
+                
+            //}
+
+
+
+        }
+        private BitmapImage ConvertToBitmapImage(byte[] imageData)
+        {
+            if (imageData == null || imageData.Length == 0)
+            {
+                return null;
+            }
+
+            BitmapImage bitmapImage = new BitmapImage();
+            using (MemoryStream memoryStream = new MemoryStream(imageData))
+            {
+                bitmapImage.BeginInit();
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.StreamSource = memoryStream;
+                bitmapImage.EndInit();
+            }
+
+            return bitmapImage;
+        }
     }
+
     public class Member
     {
         public string Character { get; set; }

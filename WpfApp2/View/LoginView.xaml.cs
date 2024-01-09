@@ -67,6 +67,11 @@ namespace WpfApp2.View
                     HomeEducator homeEd = new HomeEducator();
                     homeEd.Show();
                 }
+                if(UserProfile.user.Role == "admin")
+                {
+                    HomeAdministrator homeAd = new HomeAdministrator();
+                    homeAd.Show();
+                }
                 else
                 {
                     Home home = new Home(user.FirstName, user.LastName);

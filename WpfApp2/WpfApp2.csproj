@@ -64,6 +64,9 @@
     <Compile Include="View\CoursWindow.xaml.cs">
       <DependentUpon>CoursWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\HomeAdministrator.xaml.cs">
+      <DependentUpon>HomeAdministrator.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\HomeEducator.xaml.cs">
       <DependentUpon>HomeEducator.xaml</DependentUpon>
     </Compile>
@@ -78,6 +81,12 @@
     </Compile>
     <Compile Include="View\PageAddQuizee.xaml.cs">
       <DependentUpon>PageAddQuizee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PageAddUser.xaml.cs">
+      <DependentUpon>PageAddUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PageAdminUsers.xaml.cs">
+      <DependentUpon>PageAdminUsers.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PageCourses.xaml.cs">
       <DependentUpon>PageCourses.xaml</DependentUpon>
@@ -104,6 +113,9 @@
     <Compile Include="View\PageLesson.xaml.cs">
       <DependentUpon>PageLesson.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PageProfile.xaml.cs">
+      <DependentUpon>PageProfile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PageQuiz.xaml.cs">
       <DependentUpon>PageQuiz.xaml</DependentUpon>
     </Compile>
@@ -119,6 +131,10 @@
     <Page Include="View\CoursWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\HomeAdministrator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\HomeEducator.xaml">
       <SubType>Designer</SubType>
@@ -137,6 +153,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PageAddQuizee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PageAddUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PageAdminUsers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -167,6 +191,10 @@
     <Page Include="View\PageLesson.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PageProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PageQuiz.xaml">
       <SubType>Designer</SubType>

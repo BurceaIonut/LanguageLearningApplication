@@ -21,6 +21,7 @@ namespace WpfApp2.View
     {
         private string firstName;
         private string lastName;
+        private DateTime timeSpent;
         private IEnumerable<Lesson> lessons;
         IEnumerable<Quizze> quizzes= Enumerable.Empty<Quizze>();
         public CoursWindow(string firstName,string lastName,int ID)
@@ -28,6 +29,7 @@ namespace WpfApp2.View
             InitializeComponent();
             this.firstName = firstName;
             this.lastName = lastName;
+            this.timeSpent = DateTime.Now;
             lessons = (from l in AppDataContext.context.Lessons
                           where l.CID == ID
                            orderby l.OrderInCourse 
@@ -113,6 +115,36 @@ namespace WpfApp2.View
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
+
+
+            DateTime actualLearningTime = DateTime.Now;
+            TimeSpan difference = actualLearningTime - this.timeSpent;
+            var updateProgress = (from p in AppDataContext.context.Progresses
+                                  where p.UID == UserProfile.user.UID
+                                  select p).FirstOrDefault();
+            int hours = difference.Hours;
+            int minutes = difference.Minutes;
+            int seconds = difference.Seconds;
+            int total_time = hours / 60 / 60 + minutes / 60 + seconds;
+            if (updateProgress != null)
+            {
+                updateProgress.TimeSpentLearning += total_time;
+                AppDataContext.context.SubmitChanges();
+            }
+            else
+            {
+                Progress newProgress = new Progress
+                {
+                    UID = UserProfile.user.UID,
+                    CompletedLessons = 0,
+                    DailyStreak = 0,
+                    QuizScores = 0,
+                    TimeSpentLearning = total_time
+                };
+                AppDataContext.context.Progresses.InsertOnSubmit(newProgress);
+                AppDataContext.context.SubmitChanges();
+            }
+
             Home h = new Home(this.firstName,this.lastName);
             h.Show();
             Close();

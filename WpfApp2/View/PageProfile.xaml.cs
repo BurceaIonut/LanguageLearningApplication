@@ -32,6 +32,15 @@ namespace WpfApp2.View
             txtBPasswd.Visibility = Visibility.Hidden;
             btnSavePasswd.Visibility = Visibility.Hidden;
 
+            var progress =(from p in AppDataContext.context.Progresses
+                       where p.UID == UserProfile.user.UID
+                       select p).FirstOrDefault();
+            if(progress != null)
+            {
+                txtBQuizeesScore.Text = progress.QuizScores.ToString();
+                txtBTSL.Text = $"{progress.TimeSpentLearning/60/60} hours, {progress.TimeSpentLearning/60%60} minutes, {progress.TimeSpentLearning%60} seconds "; 
+            }
+            
             txtBRole.Text = UserProfile.user.Role;
             txtBLName.Text = UserProfile.user.LastName;
             txtBFName.Text = UserProfile.user.FirstName;
@@ -45,6 +54,7 @@ namespace WpfApp2.View
             txtBPasswd.Visibility = Visibility.Visible;
             btnSavePasswd.Visibility = Visibility.Visible;
         }
+        
 
         private void btnSavePasswd_Click(object sender, RoutedEventArgs e)
         {
@@ -117,6 +127,74 @@ namespace WpfApp2.View
                 UserProfile.user.ProfilePicture = imageData;
                 AppDataContext.context.SubmitChanges();
             }
+        }
+
+        private void txtBFName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                var user = (from u in AppDataContext.context.Users
+                            where u.UID == UserProfile.user.UID
+                            select u).FirstOrDefault();
+
+                user.FirstName = txtBFName.Text;
+
+                AppDataContext.context.SubmitChanges();
+            }
+        }
+
+        private void txtBLName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                var user = (from u in AppDataContext.context.Users
+                            where u.UID == UserProfile.user.UID
+                            select u).FirstOrDefault();
+
+                user.LastName = txtBLName.Text;
+
+                AppDataContext.context.SubmitChanges();
+            }
+        }
+
+        private void txtBEmail_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                var existingMail = (from m in AppDataContext.context.Users
+                                    where m.Email == txtBEmail.Text
+                                    select m).FirstOrDefault();
+
+                if (existingMail != null)
+                {
+                    MessageBox.Show("Nu pot exista doi utilizatori cu acelasi email!", "Avertisment", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    txtBEmail.Text = UserProfile.user.Email;
+                    return;
+                }
+
+                var user = (from u in AppDataContext.context.Users
+                            where u.UID == UserProfile.user.UID
+                            select u).FirstOrDefault();
+
+                user.Email = txtBEmail.Text;
+
+                AppDataContext.context.SubmitChanges();
+            }
+        }
+
+        private void txtBFName_LostFocus(object sender, RoutedEventArgs e)
+        {
+            txtBFName.Text= UserProfile.user.FirstName;
+        }
+
+        private void txtBLName_LostFocus(object sender, RoutedEventArgs e)
+        {
+            txtBLName.Text= UserProfile.user.LastName;
+        }
+
+        private void txtBEmail_LostFocus(object sender, RoutedEventArgs e)
+        {
+            txtBEmail.Text= UserProfile.user.Email;
         }
     }
 }

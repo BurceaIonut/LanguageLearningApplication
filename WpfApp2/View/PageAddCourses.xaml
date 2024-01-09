@@ -39,14 +39,42 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Label Content="Title" HorizontalAlignment="Left" Margin="19,64,0,0" VerticalAlignment="Top" Width="68"/>
-        <TextBox x:Name="txtBTitle" HorizontalAlignment="Left" Margin="108,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="448" Height="36" RenderTransformOrigin="0.483,0.603"/>
-        <Label Content="Language" HorizontalAlignment="Left" Margin="19,131,0,0" VerticalAlignment="Top" Width="68"/>
-        <TextBox x:Name="txtBLanguage" HorizontalAlignment="Left" Margin="108,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="448" Height="36" RenderTransformOrigin="0.483,0.603"/>
-        <Label Content="Description" HorizontalAlignment="Left" Margin="19,204,0,0" VerticalAlignment="Top" Width="84"/>
-        <TextBox x:Name="txtBDescription" HorizontalAlignment="Left" Margin="108,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="448" Height="36" RenderTransformOrigin="0.483,0.603"/>
-        <Label Content="Difficulty" HorizontalAlignment="Left" Margin="19,265,0,0" VerticalAlignment="Top" Width="68"/>
-        <TextBox x:Name="txtBDifficulty" HorizontalAlignment="Left" Margin="108,265,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="448" Height="36" RenderTransformOrigin="0.483,0.603"/>
+        <Label Content="Title" FontSize="11" 
+       FontWeight="Bold" 
+       Foreground="#2C3E50" HorizontalAlignment="Left" Margin="19,64,0,0" VerticalAlignment="Top" Width="68"/>
+        <TextBox x:Name="txtBTitle" FontSize="14" 
+         Padding="5" 
+         BorderThickness="1" 
+         BorderBrush="#3498DB" 
+         Background="#ECF0F1" 
+         Foreground="#2C3E50" HorizontalAlignment="Left" Margin="108,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="448" Height="36" RenderTransformOrigin="0.483,0.603"/>
+        <Label Content="Language" FontSize="11" 
+       FontWeight="Bold" 
+       Foreground="#2C3E50" HorizontalAlignment="Left" Margin="19,131,0,0" VerticalAlignment="Top" Width="68"/>
+        <TextBox x:Name="txtBLanguage" FontSize="14" 
+         Padding="5" 
+         BorderThickness="1" 
+         BorderBrush="#3498DB" 
+         Background="#ECF0F1" 
+         Foreground="#2C3E50" HorizontalAlignment="Left" Margin="108,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="448" Height="36" RenderTransformOrigin="0.483,0.603"/>
+        <Label Content="Description" FontSize="11" 
+       FontWeight="Bold" 
+       Foreground="#2C3E50" HorizontalAlignment="Left" Margin="19,204,0,0" VerticalAlignment="Top" Width="84"/>
+        <TextBox x:Name="txtBDescription" FontSize="14" 
+         Padding="5" 
+         BorderThickness="1" 
+         BorderBrush="#3498DB" 
+         Background="#ECF0F1" 
+         Foreground="#2C3E50" HorizontalAlignment="Left" Margin="108,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="448" Height="36" RenderTransformOrigin="0.483,0.603"/>
+        <Label Content="Difficulty" FontSize="11" 
+       FontWeight="Bold" 
+       Foreground="#2C3E50" HorizontalAlignment="Left" Margin="19,265,0,0" VerticalAlignment="Top" Width="68"/>
+        <TextBox x:Name="txtBDifficulty" FontSize="14" 
+         Padding="5" 
+         BorderThickness="1" 
+         BorderBrush="#3498DB" 
+         Background="#ECF0F1" 
+         Foreground="#2C3E50" HorizontalAlignment="Left" Margin="108,265,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="448" Height="36" RenderTransformOrigin="0.483,0.603"/>
 
 
     </Grid>

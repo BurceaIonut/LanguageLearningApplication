@@ -10,7 +10,7 @@
 
     <Grid x:Name="stkPnl" Background="White">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <StackPanel x:Name="stkPnl1" Margin="10,10,10,126"/>
+            <StackPanel x:Name="stkPnl1" Margin="10,10,10,126"/>
         </ScrollViewer>
         <Button x:Name="btnSubmitAns" Content="     Submit answers" Background="#623ed0" Style="{StaticResource menuButton}" HorizontalAlignment="Left" Margin="418,419,0,0" VerticalAlignment="Top" Width="124" Click="btnSubmitAns_Click" />
 

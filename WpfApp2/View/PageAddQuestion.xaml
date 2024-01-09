@@ -70,16 +70,51 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Label Content="Question" HorizontalAlignment="Left" Margin="19,28,0,0" VerticalAlignment="Top" Width="68"/>
-        <TextBox x:Name="txtBQuestion" HorizontalAlignment="Left" Margin="139,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" Height="36" RenderTransformOrigin="0.483,0.603"/>
-        <Label Content="First Answer" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top" Width="77"/>
-        <TextBox x:Name="txtBFirstAns" HorizontalAlignment="Left" AcceptsReturn="True" AcceptsTab="True" Margin="139,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" Height="29" RenderTransformOrigin="0.483,0.603"/>
-        <Label Content="Second Answer" HorizontalAlignment="Left" Margin="10,160,0,0" VerticalAlignment="Top" Width="94"/>
-        <TextBox x:Name="txtBSecondAns" HorizontalAlignment="Left" AcceptsReturn="True" AcceptsTab="True" Margin="139,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" Height="29" RenderTransformOrigin="0.483,0.603"/>
-        <Label Content="Third Answer" HorizontalAlignment="Left" Margin="10,238,0,0" VerticalAlignment="Top" Width="94"/>
-        <TextBox x:Name="txtBThirdAns" HorizontalAlignment="Left" AcceptsReturn="True" AcceptsTab="True" Margin="139,236,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" Height="29" RenderTransformOrigin="0.483,0.603"/>
-        <Label Content="Correct Answer" HorizontalAlignment="Left" Margin="10,316,0,0" VerticalAlignment="Top" Width="94"/>
-        <TextBox x:Name="txtBCorrect" HorizontalAlignment="Left" AcceptsReturn="True" AcceptsTab="True" Margin="139,314,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" Height="29" RenderTransformOrigin="0.483,0.603"/>
+        <Label Content="Question" FontSize="11" 
+       FontWeight="Bold" 
+       Foreground="#2C3E50" HorizontalAlignment="Left" Margin="19,28,0,0" VerticalAlignment="Top" Width="68"/>
+        <TextBox x:Name="txtBQuestion" FontSize="14" 
+         Padding="5" 
+         BorderThickness="1" 
+         BorderBrush="#3498DB" 
+         Background="#ECF0F1" 
+         Foreground="#2C3E50" HorizontalAlignment="Left" Margin="139,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" Height="36" RenderTransformOrigin="0.483,0.603"/>
+        <Label Content="First Answer" FontSize="11" 
+       FontWeight="Bold" 
+       Foreground="#2C3E50" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top" Width="77"/>
+        <TextBox x:Name="txtBFirstAns" FontSize="14" 
+         Padding="5" 
+         BorderThickness="1" 
+         BorderBrush="#3498DB" 
+         Background="#ECF0F1" 
+         Foreground="#2C3E50" HorizontalAlignment="Left" AcceptsReturn="True" AcceptsTab="True" Margin="139,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" Height="29" RenderTransformOrigin="0.483,0.603"/>
+        <Label Content="Second Answer" FontSize="11" 
+       FontWeight="Bold" 
+       Foreground="#2C3E50" HorizontalAlignment="Left" Margin="10,160,0,0" VerticalAlignment="Top" Width="94"/>
+        <TextBox x:Name="txtBSecondAns" FontSize="14" 
+         Padding="5" 
+         BorderThickness="1" 
+         BorderBrush="#3498DB" 
+         Background="#ECF0F1" 
+         Foreground="#2C3E50" HorizontalAlignment="Left" AcceptsReturn="True" AcceptsTab="True" Margin="139,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" Height="29" RenderTransformOrigin="0.483,0.603"/>
+        <Label Content="Third Answer" FontSize="11" 
+       FontWeight="Bold" 
+       Foreground="#2C3E50" HorizontalAlignment="Left" Margin="10,238,0,0" VerticalAlignment="Top" Width="94"/>
+        <TextBox x:Name="txtBThirdAns" FontSize="14" 
+         Padding="5" 
+         BorderThickness="1" 
+         BorderBrush="#3498DB" 
+         Background="#ECF0F1" 
+         Foreground="#2C3E50" HorizontalAlignment="Left" AcceptsReturn="True" AcceptsTab="True" Margin="139,236,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" Height="29" RenderTransformOrigin="0.483,0.603"/>
+        <Label Content="Correct Answer" FontSize="11" 
+       FontWeight="Bold" 
+       Foreground="#2C3E50" HorizontalAlignment="Left" Margin="10,316,0,0" VerticalAlignment="Top" Width="94"/>
+        <TextBox x:Name="txtBCorrect" FontSize="14" 
+         Padding="5" 
+         BorderThickness="1" 
+         BorderBrush="#3498DB" 
+         Background="#ECF0F1" 
+         Foreground="#2C3E50" HorizontalAlignment="Left" AcceptsReturn="True" AcceptsTab="True" Margin="139,314,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" Height="29" RenderTransformOrigin="0.483,0.603"/>
 
 
     </Grid>

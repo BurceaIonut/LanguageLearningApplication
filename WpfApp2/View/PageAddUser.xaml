@@ -70,16 +70,51 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Label Content="First Name" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top" Width="68"/>
-        <TextBox x:Name="txtBFName" HorizontalAlignment="Left" Margin="139,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" Height="36" RenderTransformOrigin="0.483,0.603"/>
-        <Label Content="Last Name" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top" Width="77"/>
-        <TextBox x:Name="txtBLName" HorizontalAlignment="Left" AcceptsReturn="True" AcceptsTab="True" Margin="139,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" Height="29" RenderTransformOrigin="0.483,0.603"/>
-        <Label Content="Email" HorizontalAlignment="Left" Margin="10,160,0,0" VerticalAlignment="Top" Width="94"/>
-        <TextBox x:Name="txtBEmail" HorizontalAlignment="Left" AcceptsReturn="True" AcceptsTab="True" Margin="139,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" Height="29" RenderTransformOrigin="0.483,0.603"/>
-        <Label Content="Password" HorizontalAlignment="Left" Margin="10,238,0,0" VerticalAlignment="Top" Width="94"/>
-        <TextBox x:Name="txtBPasswd" HorizontalAlignment="Left" AcceptsReturn="True" AcceptsTab="True" Margin="139,236,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" Height="29" RenderTransformOrigin="0.483,0.603"/>
-        <Label Content="Role" HorizontalAlignment="Left" Margin="10,316,0,0" VerticalAlignment="Top" Width="94"/>
-        <TextBox x:Name="txtBRole" HorizontalAlignment="Left" AcceptsReturn="True" AcceptsTab="True" Margin="139,314,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" Height="29" RenderTransformOrigin="0.483,0.603"/>
+        <Label Content="First Name" FontSize="11" 
+       FontWeight="Bold" 
+       Foreground="#2C3E50" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top" Width="68"/>
+        <TextBox x:Name="txtBFName" FontSize="14" 
+         Padding="5" 
+         BorderThickness="1" 
+         BorderBrush="#3498DB" 
+         Background="#ECF0F1" 
+         Foreground="#2C3E50" HorizontalAlignment="Left" Margin="139,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" Height="30" RenderTransformOrigin="0.483,0.603"/>
+        <Label Content="Last Name" FontSize="11" 
+       FontWeight="Bold" 
+       Foreground="#2C3E50" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top" Width="77"/>
+        <TextBox x:Name="txtBLName" FontSize="14" 
+         Padding="5" 
+         BorderThickness="1" 
+         BorderBrush="#3498DB" 
+         Background="#ECF0F1" 
+         Foreground="#2C3E50" HorizontalAlignment="Left" AcceptsReturn="True" AcceptsTab="True" Margin="139,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" Height="30" RenderTransformOrigin="0.483,0.603"/>
+        <Label Content="Email" FontSize="11" 
+       FontWeight="Bold" 
+       Foreground="#2C3E50" HorizontalAlignment="Left" Margin="10,160,0,0" VerticalAlignment="Top" Width="94"/>
+        <TextBox x:Name="txtBEmail" FontSize="14" 
+         Padding="5" 
+         BorderThickness="1" 
+         BorderBrush="#3498DB" 
+         Background="#ECF0F1" 
+         Foreground="#2C3E50" HorizontalAlignment="Left" AcceptsReturn="True" AcceptsTab="True" Margin="139,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" Height="30" RenderTransformOrigin="0.483,0.603"/>
+        <Label Content="Password" FontSize="11" 
+       FontWeight="Bold" 
+       Foreground="#2C3E50" HorizontalAlignment="Left" Margin="10,238,0,0" VerticalAlignment="Top" Width="94"/>
+        <TextBox x:Name="txtBPasswd" FontSize="14" 
+         Padding="5" 
+         BorderThickness="1" 
+         BorderBrush="#3498DB" 
+         Background="#ECF0F1" 
+         Foreground="#2C3E50" HorizontalAlignment="Left" AcceptsReturn="True" AcceptsTab="True" Margin="139,236,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" Height="30" RenderTransformOrigin="0.483,0.603"/>
+        <Label Content="Role" FontSize="11" 
+       FontWeight="Bold" 
+       Foreground="#2C3E50" HorizontalAlignment="Left" Margin="10,316,0,0" VerticalAlignment="Top" Width="94"/>
+        <TextBox x:Name="txtBRole" FontSize="14" 
+         Padding="5" 
+         BorderThickness="1" 
+         BorderBrush="#3498DB" 
+         Background="#ECF0F1" 
+         Foreground="#2C3E50" HorizontalAlignment="Left" AcceptsReturn="True" AcceptsTab="True" Margin="139,314,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" Height="30" RenderTransformOrigin="0.483,0.603"/>
 
 
     </Grid>

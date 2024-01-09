@@ -6,7 +6,20 @@
         xmlns:local="clr-namespace:WpfApp2.View"
         mc:Ignorable="d"
         Title="CoursWindow" Height="550" Width="800">
-    <Border Background="#eff2f7">
+    <Border >
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#462AD8" Offset="0"/>
+                <GradientStop Color="#DA34AE" Offset="0.75"/>
+                <GradientStop Color="#8A16C1" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                <GradientStop Color="#060531" Offset="0"/>
+                <GradientStop Color="#181448" Offset="0.75"/>
+            </LinearGradientBrush>
+        </Border.Background>
         <Grid>
 
 

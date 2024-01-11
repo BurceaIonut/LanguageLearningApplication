@@ -47,9 +47,13 @@
           SelectionMode="Single" SelectionUnit="FullRow" Margin="0,24,0,73">
 
     <DataGrid.Columns>
-        <DataGridTextColumn Header="Course ID" Binding="{Binding CourseID}" Width="*" />
-        <DataGridTextColumn Header="Course Name" Binding="{Binding CourseName}" Width="*" />
-        <DataGridTextColumn Header="Description" Binding="{Binding CourseDescription}" Width="*" />
+               
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="300"/>
+                    <DataGridTextColumn Header="Language" Binding="{Binding Language}" Width="69"/>
+                    <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="150"/>
+                    <DataGridTextColumn Header="Difficulty" Binding="{Binding Difficulty}" Width="150"/>
+                    
+               
     </DataGrid.Columns>
 
     <DataGrid.RowStyle>

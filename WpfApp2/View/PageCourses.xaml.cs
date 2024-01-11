@@ -16,22 +16,63 @@ using WpfApp2.View;
 
 namespace WpfApp2
 {
-    /// <summary>
-    /// Interaction logic for PageCourses.xaml
-    /// </summary>
     public partial class PageCourses : Page
     {
         public PageCourses()
         {
             InitializeComponent();
-            var coursesData = from Course in AppDataContext.context.Courses
-                              select new
-                              {
-                                  CourseID = Course.CID,
-                                  CourseName = Course.Name,
-                                  CourseDescription = Course.Description
-                              };
-            DataGridCourses.ItemsSource = coursesData;
+            var coursesNotStarted = AppDataContext.context.Courses
+                    .Where(course =>
+                        !AppDataContext.context.StartedCourses.Any(startedCourse =>
+                            startedCourse.CID == course.CID && startedCourse.UID == UserProfile.user.UID))
+                            .Select(course => new
+                            {
+                                CourseID = course.CID,
+                               Name= course.Name,
+                               DifficultyLanguage= course.DifficultyLevel,
+                               Language = course.Language,
+                               Description = course.Description
+                            });
+            DataGridCourses.ItemsSource = coursesNotStarted;
         }
+
+        private void btnStartCourse_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedCourse = DataGridCourses.SelectedItem as dynamic;
+
+            if (selectedCourse != null)
+            {
+
+                int courseId = selectedCourse.CourseID;
+
+
+                CoursWindow lg = new CoursWindow(UserProfile.user.FirstName, UserProfile.user.LastName, courseId);
+
+
+                lg.Show();
+
+                var completedCourse = (from c in AppDataContext.context.CompletedCourses
+                                       where c.UID == UserProfile.user.UID && c.CID == courseId
+                                       select c);
+                if(completedCourse.LongCount() == 0 )
+                {
+                    StartedCourse startedCourse = new StartedCourse
+                    {
+                        CID = courseId,
+                        UID = UserProfile.user.UID
+                    };
+                    AppDataContext.context.StartedCourses.InsertOnSubmit(startedCourse);
+                    AppDataContext.context.SubmitChanges();
+                }
+
+                Window.GetWindow(this)?.Close();
+            }
+            else
+            {
+                MessageBox.Show("Selectează un curs înainte de a continua.", "Avertisment", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+       
     }
 }

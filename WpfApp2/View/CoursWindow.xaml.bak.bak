@@ -5,13 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2.View"
         mc:Ignorable="d"
-        Title="LanguageLearningApplication" Height="550" Width="800"
-        WindowStyle="None"
-        ResizeMode="CanResizeWithGrip"
-        WindowStartupLocation="CenterScreen"
-        Background="Transparent"
-        AllowsTransparency="True"
-        MouseDown="Window_MouseDown">
+        Title="CoursWindow" Height="550" Width="800">
     <Border >
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -33,30 +27,38 @@
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+
+            <!--Left Menu-->
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
+                <!--Menu Icon-->
                 <Button Margin="20,28,0,35" Style="{StaticResource topButton}"/>
 
                 <Border Background="#623ed0" CornerRadius="0 50 0 30" Margin="0,43,0,0" Grid.RowSpan="2">
                     <DockPanel>
-                        <TextBlock x:Name="lblCoursNAme" Text="Nume Curs" Foreground="White" FontSize="22"
+                        <!--Menu titles-->
+                        <TextBlock Text="Nume Curs" Foreground="White" FontSize="22"
                        FontWeight="SemiBold" DockPanel.Dock="Top" TextAlignment="Center"
                        Margin="5 25 0 10"/>
+                        <!--Menu Separator-->
                         <Separator Margin="25" DockPanel.Dock="Top" Height="0.8" Background="#7e5fdc"/>
 
+                        <!--Menu Buttons-->
                         <Button x:Name="LogoutButton" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 20" Click="LogoutButton_Click" >
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="/imagini/logout.png" Height="20"/>
-                                <TextBlock Text="Back" RenderTransformOrigin="1.026,0.654"/>
+                                <TextBlock Text="Inapoi" RenderTransformOrigin="1.026,0.654"/>
                             </StackPanel>
                         </Button>
 
+                        <!--ScrollViewer pentru conținutul principal-->
                         <ScrollViewer Width="196" VerticalScrollBarVisibility="Auto" CanContentScroll="True">
                             <StackPanel x:Name="stkPnl" Height="308" Width="195">
+                                <!-- Adaugă aici conținutul care va fi rulat în cadrul ScrollViewer -->
                             </StackPanel>
                         </ScrollViewer>
                     </DockPanel>
@@ -68,6 +70,8 @@
 
             <Frame x:Name="FrameMain" Panel.ZIndex="1" Margin="5,10,0,10" Grid.Column="1" NavigationUIVisibility="Hidden" Height="514"/>
 
+
+            <!--Top buttons-->
             <Button Style="{StaticResource topButton}" Margin="0 0 55 0"/>
 
 

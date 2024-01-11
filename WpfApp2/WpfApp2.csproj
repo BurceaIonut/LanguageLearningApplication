@@ -61,66 +61,32 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LanguageLearningApplication.dbml</DependentUpon>
     </Compile>
-    <Compile Include="View\CoursWindow.xaml.cs">
-      <DependentUpon>CoursWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\PageCourses.xaml.cs">
-      <DependentUpon>PageCourses.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\PageLesson.xaml.cs">
-      <DependentUpon>PageLesson.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\PageUserCourses.xaml.cs">
-      <DependentUpon>PageUserCourses.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Home.xaml.cs">
-      <DependentUpon>Home.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\LoginView.xaml.cs">
-      <DependentUpon>LoginView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\RecoverPasswordView.xaml.cs">
-      <DependentUpon>RecoverPasswordView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Register.xaml.cs">
-      <DependentUpon>Register.xaml</DependentUpon>
-    </Compile>
-    <Page Include="View\CoursWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\PageCourses.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\PageLesson.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\PageUserCourses.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\Home.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\LoginView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\RecoverPasswordView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Register.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Compile Include="View\CoursWindow.xaml.cs" />
+    <Compile Include="View\Home.xaml.cs" />
+    <Compile Include="View\HomeAdministrator.xaml.cs" />
+    <Compile Include="View\HomeEducator.xaml.cs" />
+    <Compile Include="View\LoginView.xaml.cs" />
+    <Compile Include="View\PageAddCourses.xaml.cs" />
+    <Compile Include="View\PageAddLesson.xaml.cs" />
+    <Compile Include="View\PageAddQuestion.xaml.cs" />
+    <Compile Include="View\PageAddQuizee.xaml.cs" />
+    <Compile Include="View\PageAddUser.xaml.cs" />
+    <Compile Include="View\PageAdminUsers.xaml.cs" />
+    <Compile Include="View\PageCourses.xaml.cs" />
+    <Compile Include="View\PageEducatorCourses.xaml.cs" />
+    <Compile Include="View\PageEducatorLessons.xaml.cs" />
+    <Compile Include="View\PageEducatorModifyContent.xaml.cs" />
+    <Compile Include="View\PageEducatorQuizee.xaml.cs" />
+    <Compile Include="View\PageLesson.xaml.cs" />
+    <Compile Include="View\PageProfile.xaml.cs" />
+    <Compile Include="View\PageQuiz.xaml.cs" />
+    <Compile Include="View\PageUserCourses.xaml.cs" />
+    <Compile Include="View\RecoverPasswordView.xaml.cs" />
+    <Compile Include="View\Register.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -152,6 +118,15 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="View\CoursWindow.xaml.bak" />
+    <None Include="View\CoursWindow.xaml.bak.bak" />
+    <None Include="View\CoursWindow.xaml.cs.bak" />
+    <None Include="View\Home.xaml.bak" />
+    <None Include="View\Home.xaml.cs.bak" />
+    <None Include="View\HomeAdministrator.xaml.bak" />
+    <None Include="View\PageCourses.xaml.bak" />
+    <None Include="View\PageUserInfo.xaml.bak" />
+    <None Include="View\PageUserInfo.xaml.cs.bak" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -214,6 +189,96 @@
   <ItemGroup>
     <Resource Include="Imagini\explore_courses.png" />
     <Resource Include="Imagini\study.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="View\CoursWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Home.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\HomeAdministrator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\HomeEducator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\LoginView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PageAddCourses.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PageAddLesson.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PageAddQuestion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PageAddQuizee.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PageAddUser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PageAdminUsers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PageCourses.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PageEducatorCourses.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PageEducatorLessons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PageEducatorModifyContent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PageEducatorQuizee.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PageLesson.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PageProfile.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PageQuiz.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PageUserCourses.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\RecoverPasswordView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Register.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

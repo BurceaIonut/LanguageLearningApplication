@@ -21,33 +21,55 @@ namespace WpfApp2.View
     
     public partial class PageUserCourses : Page
     {
-        public PageUserCourses()
+        private string firstName;
+        private string lastName;
+
+        public PageUserCourses(string firstName, string lastName)
         {
             InitializeComponent();
-            var coursesData = from Course in AppDataContext.context.Courses
-                              select new
-                              {
-                                  CourseID = Course.CID,
-                                  CourseName = Course.Name,
-                                  CourseDescription = Course.Description
-                              };
-            DataGridCourses.ItemsSource = coursesData; 
+
+            this.firstName = firstName;
+            this.lastName = lastName;
+          
+            var startedCourses = from s in AppDataContext.context.StartedCourses
+                                 join u in AppDataContext.context.Users on s.UID equals u.UID
+                                 join c in AppDataContext.context.Courses on s.CID equals c.CID
+                                 where u.UID == UserProfile.user.UID
+                                 select new
+                                 {
+                                     CourseID = c.CID,
+                                     Name = c.Name,
+                                     Language= c.Language,
+                                     Description = c.Description,
+                                     Difficulty = c.DifficultyLevel
+                                 };
+            
+                DataGridCourses.ItemsSource = startedCourses;
+            
         }
 
         private void btnResumeCourse_Click(object sender, RoutedEventArgs e)
         {
-            Window parentWindow = Window.GetWindow(this);
+            
+            var selectedCourse = DataGridCourses.SelectedItem as dynamic;
 
-            // Verifică dacă fereastra părinte este disponibilă
-            if (parentWindow != null)
+            if (selectedCourse != null)
             {
+                int courseId = selectedCourse.CourseID;
 
-                CoursWindow lg = new CoursWindow();
+                CoursWindow lg = new CoursWindow(this.firstName, this.lastName, courseId);
+
                 lg.Show();
-                parentWindow.Close();
+                Window.GetWindow(this)?.Close();
+            }
+            else
+            {
+                MessageBox.Show("Selectează un curs înainte de a continua.", "Avertisment", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+    }
 
        
     }
-}
+
+

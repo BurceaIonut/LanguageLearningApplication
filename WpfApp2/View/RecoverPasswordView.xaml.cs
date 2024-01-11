@@ -19,9 +19,7 @@ using System.Security;
 
 namespace WpfApp2.View
 {
-    /// <summary>
-    /// Interaction logic for RecoverPasswordView.xaml
-    /// </summary>
+    
     public partial class RecoverPasswordView : Window
     {
         public RecoverPasswordView()
@@ -58,7 +56,7 @@ namespace WpfApp2.View
                 MessageBox.Show("Completati adresa de email!", "Eroare de procesare", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            //TODO send email to adress
+            
             if(btnRecover.Content.ToString() == "Recover password")
             {
                 var user = (from u in AppDataContext.context.Users where u.Email.Equals(txtBoxEmail_Password.Text) select u).FirstOrDefault();
@@ -77,7 +75,7 @@ namespace WpfApp2.View
                 AppDataContext.context.SubmitChanges();
                 try
                 {
-                    // Step 3: Send Password Reset Email
+                    
                     MailMessage mailMessage = new MailMessage("llaengineers1@gmail.com", txtBoxEmail_Password.Text);
                     mailMessage.Subject = "Password Reset";
                     mailMessage.Body = $"This is the unique token generated for you: {resetToken}";
@@ -147,7 +145,7 @@ namespace WpfApp2.View
         }
         private string GenerateResetToken()
         {
-            // Generate a unique token (you can use a library or a secure method)
+            
             byte[] randomBytes = new byte[32];
             using (var rng = new RNGCryptoServiceProvider())
             {

@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WpfApp2.View"
       mc:Ignorable="d" 
-      d:DesignHeight="530" d:DesignWidth="800"
+      d:DesignHeight="530" d:DesignWidth="595"
       Title="PageProfile">
 
     <Grid Background="White">
@@ -16,7 +16,7 @@
             FontSize="12"
             FontFamily="Montserrat"
             Cursor="Hand"
-            Margin="399,476,39,14" Click="btnChangePasswd_Click" >
+            Margin="382,466,59,24" Click="btnChangePasswd_Click" >
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#462AD8"/>
@@ -102,7 +102,7 @@
             FontSize="12"
             FontFamily="Montserrat"
             Cursor="Hand"
-            Margin="194,476,244,14" Click="btnSavePasswd_Click" >
+            Margin="200,466,247,24" Click="btnSavePasswd_Click" >
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#462AD8"/>
@@ -132,7 +132,7 @@
             FontSize="12"
             FontFamily="Montserrat"
             Cursor="Hand"
-            Margin="-14,476,452,14" Click="btnAddProfilePicture_Click" >
+            Margin="10,466,424,24" Click="btnAddProfilePicture_Click" >
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#462AD8"/>
@@ -155,7 +155,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Label Content="Time Spent Learning" FontSize="11" 
+        <Label x:Name="lblTime" Content="Time Spent Learning" FontSize="11" 
             FontWeight="Bold" 
             Foreground="#2C3E50" HorizontalAlignment="Left" Margin="10,295,0,0" VerticalAlignment="Top" Width="124"/>
         <TextBox x:Name="txtBTSL" FontSize="14" 
@@ -164,7 +164,7 @@
             BorderBrush="#3498DB" 
             Background="#ECF0F1" 
             Foreground="#2C3E50" IsReadOnly="True" HorizontalAlignment="Left" AcceptsReturn="True" AcceptsTab="True" Margin="139,292,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" Height="29" RenderTransformOrigin="0.483,0.603" IsEnabled="False"/>
-        <Label Content="Quizees Score" FontSize="11" 
+        <Label x:Name="lblScore" Content="Quizees Score" FontSize="11" 
             FontWeight="Bold" 
             Foreground="#2C3E50" HorizontalAlignment="Left" Margin="10,349,0,0" VerticalAlignment="Top" Width="94"/>
         <TextBox x:Name="txtBQuizeesScore" FontSize="14" 

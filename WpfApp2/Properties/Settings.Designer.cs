@@ -66,5 +66,16 @@ namespace WpfApp2.Properties {
                 return ((string)(this["LanguageLearningApplicationConnectionString2"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=10.10.23.0;Initial Catalog=LanguageLearningApplication;Persist Securi" +
+            "ty Info=True;User ID=vlad;Password=vlad")]
+        public string LanguageLearningApplicationConnectionString3 {
+            get {
+                return ((string)(this["LanguageLearningApplicationConnectionString3"]));
+            }
+        }
     }
 }

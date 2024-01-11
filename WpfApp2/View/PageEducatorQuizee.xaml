@@ -60,7 +60,7 @@
                 </DataGridTextColumn>
                 
                 <DataGridTextColumn Header="Difficulty level" Binding="{Binding DifficultyLevel}" Width="100"/>
-                <!-- Alte coloane, dacă există -->
+                
 
             </DataGrid.Columns>
 
@@ -159,7 +159,6 @@
                 <DataGridTextColumn Header="Third Answer" Binding="{Binding ThirdAnswer}" Width="145"/>
                 <DataGridTextColumn Header="Correct Answer" Binding="{Binding IsCorrect}" Width="100"/>
                 
-                <!-- Alte coloane, dacă există -->
 
             </DataGrid.Columns>
 

@@ -52,7 +52,7 @@
                     <DataGridTextColumn Header="Language" Binding="{Binding Language}" Width="69"/>
                     <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="150"/>
                     <DataGridTextColumn Header="Difficulty" Binding="{Binding Difficulty}" Width="150"/>
-                    <!-- Alte coloane, dacă există -->
+                    
                
     </DataGrid.Columns>
 

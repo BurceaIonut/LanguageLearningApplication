@@ -59,7 +59,7 @@
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Order in Course" Binding="{Binding OrderInCourse}" Width="100"/>
                 <DataGridTextColumn Header="Content" Binding="{Binding Content}" Width="450"/>
-                <!-- Alte coloane, dacă există -->
+               
 
             </DataGrid.Columns>
 

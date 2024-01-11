@@ -53,7 +53,7 @@
                         <!--MEnu Logo-->
                         <Border Width="80" Height="80" Padding="3" Background="White" CornerRadius="100"
                                 DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="20 -30 0 0">
-                            <Ellipse>
+                            <Ellipse x:Name="myEllipse">
                                 <Ellipse.Fill>
                                     <ImageBrush ImageSource="/imagini/user2.png"/>
                                 </Ellipse.Fill>
@@ -83,7 +83,7 @@
                                     <TextBlock Text="Adauga curs"/>
                                 </StackPanel>
                             </Button>
-                            <Button x:Name="BtnShowProfile" Style="{StaticResource menuButton}">
+                            <Button x:Name="BtnShowProfile" Style="{StaticResource menuButton}" Click="BtnShowProfile_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="/imagini/house.png" Height="20"/>
                                     <TextBlock Text="Profil"/>

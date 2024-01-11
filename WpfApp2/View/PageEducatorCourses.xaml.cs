@@ -38,7 +38,6 @@ namespace WpfApp2.View
         {
             var selectedCourse = DataGridCourses.SelectedItem as Course;
 
-            // Verificarea dacă există un curs selectat
             if (selectedCourse != null)
             {
                 var course = (from c in AppDataContext.context.Courses where c.CID == selectedCourse.CID select c).FirstOrDefault(); 
@@ -54,7 +53,6 @@ namespace WpfApp2.View
             }
             else
             {
-                // În cazul în care nu există niciun curs selectat, poți afișa un mesaj sau să iei alte acțiuni
                 MessageBox.Show("Selectează un curs înainte de a continua.", "Avertisment", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
@@ -63,7 +61,6 @@ namespace WpfApp2.View
         {
             var selectedCourse = DataGridCourses.SelectedItem as Course;
 
-            // Verificarea dacă există un curs selectat
             if (selectedCourse != null)
             {
                 PageEducatorLessons pel = new PageEducatorLessons(selectedCourse.CID);
@@ -79,7 +76,6 @@ namespace WpfApp2.View
             }
             else
             {
-                // În cazul în care nu există niciun curs selectat, poți afișa un mesaj sau să iei alte acțiuni
                 MessageBox.Show("Selectează un curs înainte de a continua.", "Avertisment", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
@@ -91,7 +87,6 @@ namespace WpfApp2.View
             {
                 var editedCourse = e.Row.Item as Course;
 
-                // Verifică dacă cursul este nul și efectuează acțiunile necesare
                 if (editedCourse != null)
                 {
                     string colName = e.Column.Header.ToString();
@@ -120,8 +115,6 @@ namespace WpfApp2.View
                     }
 
                     AppDataContext.context.SubmitChanges();
-                    // Aici poți efectua acțiunile necesare pentru salvarea modificărilor
-                    // Poți utiliza valorile noi din e.EditingElement pentru a actualiza obiectul Course.
                 }
             }
             

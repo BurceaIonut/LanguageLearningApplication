@@ -33,6 +33,15 @@ namespace WpfApp2
     partial void InsertCheckpoint(Checkpoint instance);
     partial void UpdateCheckpoint(Checkpoint instance);
     partial void DeleteCheckpoint(Checkpoint instance);
+    partial void InsertWordsInFlashcard(WordsInFlashcard instance);
+    partial void UpdateWordsInFlashcard(WordsInFlashcard instance);
+    partial void DeleteWordsInFlashcard(WordsInFlashcard instance);
+    partial void InsertCompletedCourse(CompletedCourse instance);
+    partial void UpdateCompletedCourse(CompletedCourse instance);
+    partial void DeleteCompletedCourse(CompletedCourse instance);
+    partial void InsertCompletedQuizze(CompletedQuizze instance);
+    partial void UpdateCompletedQuizze(CompletedQuizze instance);
+    partial void DeleteCompletedQuizze(CompletedQuizze instance);
     partial void InsertCourse(Course instance);
     partial void UpdateCourse(Course instance);
     partial void DeleteCourse(Course instance);
@@ -48,37 +57,28 @@ namespace WpfApp2
     partial void InsertProgress(Progress instance);
     partial void UpdateProgress(Progress instance);
     partial void DeleteProgress(Progress instance);
+    partial void InsertQuestion(Question instance);
+    partial void UpdateQuestion(Question instance);
+    partial void DeleteQuestion(Question instance);
     partial void InsertQuizze(Quizze instance);
     partial void UpdateQuizze(Quizze instance);
     partial void DeleteQuizze(Quizze instance);
     partial void InsertSecurityToken(SecurityToken instance);
     partial void UpdateSecurityToken(SecurityToken instance);
     partial void DeleteSecurityToken(SecurityToken instance);
+    partial void InsertStartedCourse(StartedCourse instance);
+    partial void UpdateStartedCourse(StartedCourse instance);
+    partial void DeleteStartedCourse(StartedCourse instance);
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
     partial void InsertVocabularyWord(VocabularyWord instance);
     partial void UpdateVocabularyWord(VocabularyWord instance);
     partial void DeleteVocabularyWord(VocabularyWord instance);
-    partial void InsertWordsInFlashcard(WordsInFlashcard instance);
-    partial void UpdateWordsInFlashcard(WordsInFlashcard instance);
-    partial void DeleteWordsInFlashcard(WordsInFlashcard instance);
-    partial void InsertCompletedQuizze(CompletedQuizze instance);
-    partial void UpdateCompletedQuizze(CompletedQuizze instance);
-    partial void DeleteCompletedQuizze(CompletedQuizze instance);
-    partial void InsertCompletedCourse(CompletedCourse instance);
-    partial void UpdateCompletedCourse(CompletedCourse instance);
-    partial void DeleteCompletedCourse(CompletedCourse instance);
-    partial void InsertStartedCourse(StartedCourse instance);
-    partial void UpdateStartedCourse(StartedCourse instance);
-    partial void DeleteStartedCourse(StartedCourse instance);
-    partial void InsertQuestion(Question instance);
-    partial void UpdateQuestion(Question instance);
-    partial void DeleteQuestion(Question instance);
     #endregion
 		
 		public LanguageLearningApplicationDataContext() : 
-				base(global::WpfApp2.Properties.Settings.Default.LanguageLearningApplicationConnectionString1, mappingSource)
+				base(global::WpfApp2.Properties.Settings.Default.LanguageLearningApplicationConnectionString3, mappingSource)
 		{
 			OnCreated();
 		}
@@ -112,6 +112,30 @@ namespace WpfApp2
 			get
 			{
 				return this.GetTable<Checkpoint>();
+			}
+		}
+		
+		public System.Data.Linq.Table<WordsInFlashcard> WordsInFlashcards
+		{
+			get
+			{
+				return this.GetTable<WordsInFlashcard>();
+			}
+		}
+		
+		public System.Data.Linq.Table<CompletedCourse> CompletedCourses
+		{
+			get
+			{
+				return this.GetTable<CompletedCourse>();
+			}
+		}
+		
+		public System.Data.Linq.Table<CompletedQuizze> CompletedQuizzes
+		{
+			get
+			{
+				return this.GetTable<CompletedQuizze>();
 			}
 		}
 		
@@ -155,6 +179,14 @@ namespace WpfApp2
 			}
 		}
 		
+		public System.Data.Linq.Table<Question> Questions
+		{
+			get
+			{
+				return this.GetTable<Question>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Quizze> Quizzes
 		{
 			get
@@ -171,6 +203,14 @@ namespace WpfApp2
 			}
 		}
 		
+		public System.Data.Linq.Table<StartedCourse> StartedCourses
+		{
+			get
+			{
+				return this.GetTable<StartedCourse>();
+			}
+		}
+		
 		public System.Data.Linq.Table<User> Users
 		{
 			get
@@ -184,46 +224,6 @@ namespace WpfApp2
 			get
 			{
 				return this.GetTable<VocabularyWord>();
-			}
-		}
-		
-		public System.Data.Linq.Table<WordsInFlashcard> WordsInFlashcards
-		{
-			get
-			{
-				return this.GetTable<WordsInFlashcard>();
-			}
-		}
-		
-		public System.Data.Linq.Table<CompletedQuizze> CompletedQuizzes
-		{
-			get
-			{
-				return this.GetTable<CompletedQuizze>();
-			}
-		}
-		
-		public System.Data.Linq.Table<CompletedCourse> CompletedCourses
-		{
-			get
-			{
-				return this.GetTable<CompletedCourse>();
-			}
-		}
-		
-		public System.Data.Linq.Table<StartedCourse> StartedCourses
-		{
-			get
-			{
-				return this.GetTable<StartedCourse>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Question> Questions
-		{
-			get
-			{
-				return this.GetTable<Question>();
 			}
 		}
 	}
@@ -420,6 +420,754 @@ namespace WpfApp2
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.WordsInFlashcards")]
+	public partial class WordsInFlashcard : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private System.Nullable<int> _WID;
+		
+		private System.Nullable<int> _FID;
+		
+		private EntityRef<Flashcard> _Flashcard;
+		
+		private EntityRef<VocabularyWord> _VocabularyWord;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnWIDChanging(System.Nullable<int> value);
+    partial void OnWIDChanged();
+    partial void OnFIDChanging(System.Nullable<int> value);
+    partial void OnFIDChanged();
+    #endregion
+		
+		public WordsInFlashcard()
+		{
+			this._Flashcard = default(EntityRef<Flashcard>);
+			this._VocabularyWord = default(EntityRef<VocabularyWord>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WID", DbType="Int")]
+		public System.Nullable<int> WID
+		{
+			get
+			{
+				return this._WID;
+			}
+			set
+			{
+				if ((this._WID != value))
+				{
+					if (this._VocabularyWord.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnWIDChanging(value);
+					this.SendPropertyChanging();
+					this._WID = value;
+					this.SendPropertyChanged("WID");
+					this.OnWIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FID", DbType="Int")]
+		public System.Nullable<int> FID
+		{
+			get
+			{
+				return this._FID;
+			}
+			set
+			{
+				if ((this._FID != value))
+				{
+					if (this._Flashcard.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnFIDChanging(value);
+					this.SendPropertyChanging();
+					this._FID = value;
+					this.SendPropertyChanged("FID");
+					this.OnFIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Flashcard_WordsInFlashcard", Storage="_Flashcard", ThisKey="FID", OtherKey="FID", IsForeignKey=true)]
+		public Flashcard Flashcard
+		{
+			get
+			{
+				return this._Flashcard.Entity;
+			}
+			set
+			{
+				Flashcard previousValue = this._Flashcard.Entity;
+				if (((previousValue != value) 
+							|| (this._Flashcard.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Flashcard.Entity = null;
+						previousValue.WordsInFlashcards.Remove(this);
+					}
+					this._Flashcard.Entity = value;
+					if ((value != null))
+					{
+						value.WordsInFlashcards.Add(this);
+						this._FID = value.FID;
+					}
+					else
+					{
+						this._FID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Flashcard");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="VocabularyWord_WordsInFlashcard", Storage="_VocabularyWord", ThisKey="WID", OtherKey="WID", IsForeignKey=true)]
+		public VocabularyWord VocabularyWord
+		{
+			get
+			{
+				return this._VocabularyWord.Entity;
+			}
+			set
+			{
+				VocabularyWord previousValue = this._VocabularyWord.Entity;
+				if (((previousValue != value) 
+							|| (this._VocabularyWord.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._VocabularyWord.Entity = null;
+						previousValue.WordsInFlashcards.Remove(this);
+					}
+					this._VocabularyWord.Entity = value;
+					if ((value != null))
+					{
+						value.WordsInFlashcards.Add(this);
+						this._WID = value.WID;
+					}
+					else
+					{
+						this._WID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("VocabularyWord");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CompletedCourses")]
+	public partial class CompletedCourse : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private System.Nullable<int> _UID;
+		
+		private System.Nullable<int> _CID;
+		
+		private System.Nullable<System.DateTime> _DateCompleted;
+		
+		private EntityRef<Course> _Course;
+		
+		private EntityRef<Course> _Course1;
+		
+		private EntityRef<User> _User;
+		
+		private EntityRef<User> _User1;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnUIDChanging(System.Nullable<int> value);
+    partial void OnUIDChanged();
+    partial void OnCIDChanging(System.Nullable<int> value);
+    partial void OnCIDChanged();
+    partial void OnDateCompletedChanging(System.Nullable<System.DateTime> value);
+    partial void OnDateCompletedChanged();
+    #endregion
+		
+		public CompletedCourse()
+		{
+			this._Course = default(EntityRef<Course>);
+			this._Course1 = default(EntityRef<Course>);
+			this._User = default(EntityRef<User>);
+			this._User1 = default(EntityRef<User>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UID", DbType="Int")]
+		public System.Nullable<int> UID
+		{
+			get
+			{
+				return this._UID;
+			}
+			set
+			{
+				if ((this._UID != value))
+				{
+					if ((this._User.HasLoadedOrAssignedValue || this._User1.HasLoadedOrAssignedValue))
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUIDChanging(value);
+					this.SendPropertyChanging();
+					this._UID = value;
+					this.SendPropertyChanged("UID");
+					this.OnUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CID", DbType="Int")]
+		public System.Nullable<int> CID
+		{
+			get
+			{
+				return this._CID;
+			}
+			set
+			{
+				if ((this._CID != value))
+				{
+					if ((this._Course.HasLoadedOrAssignedValue || this._Course1.HasLoadedOrAssignedValue))
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCIDChanging(value);
+					this.SendPropertyChanging();
+					this._CID = value;
+					this.SendPropertyChanged("CID");
+					this.OnCIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateCompleted", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DateCompleted
+		{
+			get
+			{
+				return this._DateCompleted;
+			}
+			set
+			{
+				if ((this._DateCompleted != value))
+				{
+					this.OnDateCompletedChanging(value);
+					this.SendPropertyChanging();
+					this._DateCompleted = value;
+					this.SendPropertyChanged("DateCompleted");
+					this.OnDateCompletedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Course_CompletedCourse", Storage="_Course", ThisKey="CID", OtherKey="CID", IsForeignKey=true)]
+		public Course Course
+		{
+			get
+			{
+				return this._Course.Entity;
+			}
+			set
+			{
+				Course previousValue = this._Course.Entity;
+				if (((previousValue != value) 
+							|| (this._Course.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Course.Entity = null;
+						previousValue.CompletedCourses.Remove(this);
+					}
+					this._Course.Entity = value;
+					if ((value != null))
+					{
+						value.CompletedCourses.Add(this);
+						this._CID = value.CID;
+					}
+					else
+					{
+						this._CID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Course");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Course_CompletedCourse1", Storage="_Course1", ThisKey="CID", OtherKey="CID", IsForeignKey=true, DeleteRule="CASCADE")]
+		public Course Course1
+		{
+			get
+			{
+				return this._Course1.Entity;
+			}
+			set
+			{
+				Course previousValue = this._Course1.Entity;
+				if (((previousValue != value) 
+							|| (this._Course1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Course1.Entity = null;
+						previousValue.CompletedCourses1.Remove(this);
+					}
+					this._Course1.Entity = value;
+					if ((value != null))
+					{
+						value.CompletedCourses1.Add(this);
+						this._CID = value.CID;
+					}
+					else
+					{
+						this._CID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Course1");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_CompletedCourse", Storage="_User", ThisKey="UID", OtherKey="UID", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.CompletedCourses.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.CompletedCourses.Add(this);
+						this._UID = value.UID;
+					}
+					else
+					{
+						this._UID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_CompletedCourse1", Storage="_User1", ThisKey="UID", OtherKey="UID", IsForeignKey=true, DeleteRule="CASCADE")]
+		public User User1
+		{
+			get
+			{
+				return this._User1.Entity;
+			}
+			set
+			{
+				User previousValue = this._User1.Entity;
+				if (((previousValue != value) 
+							|| (this._User1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User1.Entity = null;
+						previousValue.CompletedCourses1.Remove(this);
+					}
+					this._User1.Entity = value;
+					if ((value != null))
+					{
+						value.CompletedCourses1.Add(this);
+						this._UID = value.UID;
+					}
+					else
+					{
+						this._UID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("User1");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CompletedQuizzes")]
+	public partial class CompletedQuizze : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private System.Nullable<int> _UID;
+		
+		private System.Nullable<int> _QID;
+		
+		private EntityRef<Quizze> _Quizze;
+		
+		private EntityRef<Quizze> _Quizze1;
+		
+		private EntityRef<User> _User;
+		
+		private EntityRef<User> _User1;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnUIDChanging(System.Nullable<int> value);
+    partial void OnUIDChanged();
+    partial void OnQIDChanging(System.Nullable<int> value);
+    partial void OnQIDChanged();
+    #endregion
+		
+		public CompletedQuizze()
+		{
+			this._Quizze = default(EntityRef<Quizze>);
+			this._Quizze1 = default(EntityRef<Quizze>);
+			this._User = default(EntityRef<User>);
+			this._User1 = default(EntityRef<User>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UID", DbType="Int")]
+		public System.Nullable<int> UID
+		{
+			get
+			{
+				return this._UID;
+			}
+			set
+			{
+				if ((this._UID != value))
+				{
+					if ((this._User.HasLoadedOrAssignedValue || this._User1.HasLoadedOrAssignedValue))
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUIDChanging(value);
+					this.SendPropertyChanging();
+					this._UID = value;
+					this.SendPropertyChanged("UID");
+					this.OnUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QID", DbType="Int")]
+		public System.Nullable<int> QID
+		{
+			get
+			{
+				return this._QID;
+			}
+			set
+			{
+				if ((this._QID != value))
+				{
+					if ((this._Quizze.HasLoadedOrAssignedValue || this._Quizze1.HasLoadedOrAssignedValue))
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnQIDChanging(value);
+					this.SendPropertyChanging();
+					this._QID = value;
+					this.SendPropertyChanged("QID");
+					this.OnQIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Quizze_CompletedQuizze", Storage="_Quizze", ThisKey="QID", OtherKey="QID", IsForeignKey=true)]
+		public Quizze Quizze
+		{
+			get
+			{
+				return this._Quizze.Entity;
+			}
+			set
+			{
+				Quizze previousValue = this._Quizze.Entity;
+				if (((previousValue != value) 
+							|| (this._Quizze.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Quizze.Entity = null;
+						previousValue.CompletedQuizzes.Remove(this);
+					}
+					this._Quizze.Entity = value;
+					if ((value != null))
+					{
+						value.CompletedQuizzes.Add(this);
+						this._QID = value.QID;
+					}
+					else
+					{
+						this._QID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Quizze");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Quizze_CompletedQuizze1", Storage="_Quizze1", ThisKey="QID", OtherKey="QID", IsForeignKey=true, DeleteRule="CASCADE")]
+		public Quizze Quizze1
+		{
+			get
+			{
+				return this._Quizze1.Entity;
+			}
+			set
+			{
+				Quizze previousValue = this._Quizze1.Entity;
+				if (((previousValue != value) 
+							|| (this._Quizze1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Quizze1.Entity = null;
+						previousValue.CompletedQuizzes1.Remove(this);
+					}
+					this._Quizze1.Entity = value;
+					if ((value != null))
+					{
+						value.CompletedQuizzes1.Add(this);
+						this._QID = value.QID;
+					}
+					else
+					{
+						this._QID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Quizze1");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_CompletedQuizze", Storage="_User", ThisKey="UID", OtherKey="UID", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.CompletedQuizzes.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.CompletedQuizzes.Add(this);
+						this._UID = value.UID;
+					}
+					else
+					{
+						this._UID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_CompletedQuizze1", Storage="_User1", ThisKey="UID", OtherKey="UID", IsForeignKey=true, DeleteRule="CASCADE")]
+		public User User1
+		{
+			get
+			{
+				return this._User1.Entity;
+			}
+			set
+			{
+				User previousValue = this._User1.Entity;
+				if (((previousValue != value) 
+							|| (this._User1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User1.Entity = null;
+						previousValue.CompletedQuizzes1.Remove(this);
+					}
+					this._User1.Entity = value;
+					if ((value != null))
+					{
+						value.CompletedQuizzes1.Add(this);
+						this._UID = value.UID;
+					}
+					else
+					{
+						this._UID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("User1");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Courses")]
 	public partial class Course : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -440,11 +1188,17 @@ namespace WpfApp2
 		
 		private System.Nullable<int> _CreatedBy;
 		
-		private EntitySet<Lesson> _Lessons;
-		
 		private EntitySet<CompletedCourse> _CompletedCourses;
 		
+		private EntitySet<CompletedCourse> _CompletedCourses1;
+		
+		private EntitySet<Lesson> _Lessons;
+		
+		private EntitySet<Lesson> _Lessons1;
+		
 		private EntitySet<StartedCourse> _StartedCourses;
+		
+		private EntitySet<StartedCourse> _StartedCourses1;
 		
 		private EntityRef<User> _User;
 		
@@ -470,9 +1224,12 @@ namespace WpfApp2
 		
 		public Course()
 		{
-			this._Lessons = new EntitySet<Lesson>(new Action<Lesson>(this.attach_Lessons), new Action<Lesson>(this.detach_Lessons));
 			this._CompletedCourses = new EntitySet<CompletedCourse>(new Action<CompletedCourse>(this.attach_CompletedCourses), new Action<CompletedCourse>(this.detach_CompletedCourses));
+			this._CompletedCourses1 = new EntitySet<CompletedCourse>(new Action<CompletedCourse>(this.attach_CompletedCourses1), new Action<CompletedCourse>(this.detach_CompletedCourses1));
+			this._Lessons = new EntitySet<Lesson>(new Action<Lesson>(this.attach_Lessons), new Action<Lesson>(this.detach_Lessons));
+			this._Lessons1 = new EntitySet<Lesson>(new Action<Lesson>(this.attach_Lessons1), new Action<Lesson>(this.detach_Lessons1));
 			this._StartedCourses = new EntitySet<StartedCourse>(new Action<StartedCourse>(this.attach_StartedCourses), new Action<StartedCourse>(this.detach_StartedCourses));
+			this._StartedCourses1 = new EntitySet<StartedCourse>(new Action<StartedCourse>(this.attach_StartedCourses1), new Action<StartedCourse>(this.detach_StartedCourses1));
 			this._User = default(EntityRef<User>);
 			OnCreated();
 		}
@@ -621,19 +1378,6 @@ namespace WpfApp2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Course_Lesson", Storage="_Lessons", ThisKey="CID", OtherKey="CID")]
-		public EntitySet<Lesson> Lessons
-		{
-			get
-			{
-				return this._Lessons;
-			}
-			set
-			{
-				this._Lessons.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Course_CompletedCourse", Storage="_CompletedCourses", ThisKey="CID", OtherKey="CID")]
 		public EntitySet<CompletedCourse> CompletedCourses
 		{
@@ -647,6 +1391,45 @@ namespace WpfApp2
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Course_CompletedCourse1", Storage="_CompletedCourses1", ThisKey="CID", OtherKey="CID")]
+		public EntitySet<CompletedCourse> CompletedCourses1
+		{
+			get
+			{
+				return this._CompletedCourses1;
+			}
+			set
+			{
+				this._CompletedCourses1.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Course_Lesson", Storage="_Lessons", ThisKey="CID", OtherKey="CID")]
+		public EntitySet<Lesson> Lessons
+		{
+			get
+			{
+				return this._Lessons;
+			}
+			set
+			{
+				this._Lessons.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Course_Lesson1", Storage="_Lessons1", ThisKey="CID", OtherKey="CID")]
+		public EntitySet<Lesson> Lessons1
+		{
+			get
+			{
+				return this._Lessons1;
+			}
+			set
+			{
+				this._Lessons1.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Course_StartedCourse", Storage="_StartedCourses", ThisKey="CID", OtherKey="CID")]
 		public EntitySet<StartedCourse> StartedCourses
 		{
@@ -657,6 +1440,19 @@ namespace WpfApp2
 			set
 			{
 				this._StartedCourses.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Course_StartedCourse1", Storage="_StartedCourses1", ThisKey="CID", OtherKey="CID")]
+		public EntitySet<StartedCourse> StartedCourses1
+		{
+			get
+			{
+				return this._StartedCourses1;
+			}
+			set
+			{
+				this._StartedCourses1.Assign(value);
 			}
 		}
 		
@@ -714,18 +1510,6 @@ namespace WpfApp2
 			}
 		}
 		
-		private void attach_Lessons(Lesson entity)
-		{
-			this.SendPropertyChanging();
-			entity.Course = this;
-		}
-		
-		private void detach_Lessons(Lesson entity)
-		{
-			this.SendPropertyChanging();
-			entity.Course = null;
-		}
-		
 		private void attach_CompletedCourses(CompletedCourse entity)
 		{
 			this.SendPropertyChanging();
@@ -738,6 +1522,42 @@ namespace WpfApp2
 			entity.Course = null;
 		}
 		
+		private void attach_CompletedCourses1(CompletedCourse entity)
+		{
+			this.SendPropertyChanging();
+			entity.Course1 = this;
+		}
+		
+		private void detach_CompletedCourses1(CompletedCourse entity)
+		{
+			this.SendPropertyChanging();
+			entity.Course1 = null;
+		}
+		
+		private void attach_Lessons(Lesson entity)
+		{
+			this.SendPropertyChanging();
+			entity.Course = this;
+		}
+		
+		private void detach_Lessons(Lesson entity)
+		{
+			this.SendPropertyChanging();
+			entity.Course = null;
+		}
+		
+		private void attach_Lessons1(Lesson entity)
+		{
+			this.SendPropertyChanging();
+			entity.Course1 = this;
+		}
+		
+		private void detach_Lessons1(Lesson entity)
+		{
+			this.SendPropertyChanging();
+			entity.Course1 = null;
+		}
+		
 		private void attach_StartedCourses(StartedCourse entity)
 		{
 			this.SendPropertyChanging();
@@ -748,6 +1568,18 @@ namespace WpfApp2
 		{
 			this.SendPropertyChanging();
 			entity.Course = null;
+		}
+		
+		private void attach_StartedCourses1(StartedCourse entity)
+		{
+			this.SendPropertyChanging();
+			entity.Course1 = this;
+		}
+		
+		private void detach_StartedCourses1(StartedCourse entity)
+		{
+			this.SendPropertyChanging();
+			entity.Course1 = null;
 		}
 	}
 	
@@ -1197,7 +2029,11 @@ namespace WpfApp2
 		
 		private EntitySet<Quizze> _Quizzes;
 		
+		private EntitySet<Quizze> _Quizzes1;
+		
 		private EntityRef<Course> _Course;
+		
+		private EntityRef<Course> _Course1;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1219,7 +2055,9 @@ namespace WpfApp2
 		{
 			this._Checkpoints = new EntitySet<Checkpoint>(new Action<Checkpoint>(this.attach_Checkpoints), new Action<Checkpoint>(this.detach_Checkpoints));
 			this._Quizzes = new EntitySet<Quizze>(new Action<Quizze>(this.attach_Quizzes), new Action<Quizze>(this.detach_Quizzes));
+			this._Quizzes1 = new EntitySet<Quizze>(new Action<Quizze>(this.attach_Quizzes1), new Action<Quizze>(this.detach_Quizzes1));
 			this._Course = default(EntityRef<Course>);
+			this._Course1 = default(EntityRef<Course>);
 			OnCreated();
 		}
 		
@@ -1254,7 +2092,7 @@ namespace WpfApp2
 			{
 				if ((this._CID != value))
 				{
-					if (this._Course.HasLoadedOrAssignedValue)
+					if ((this._Course.HasLoadedOrAssignedValue || this._Course1.HasLoadedOrAssignedValue))
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1353,6 +2191,19 @@ namespace WpfApp2
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lesson_Quizze1", Storage="_Quizzes1", ThisKey="LID", OtherKey="LID")]
+		public EntitySet<Quizze> Quizzes1
+		{
+			get
+			{
+				return this._Quizzes1;
+			}
+			set
+			{
+				this._Quizzes1.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Course_Lesson", Storage="_Course", ThisKey="CID", OtherKey="CID", IsForeignKey=true)]
 		public Course Course
 		{
@@ -1383,6 +2234,40 @@ namespace WpfApp2
 						this._CID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Course");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Course_Lesson1", Storage="_Course1", ThisKey="CID", OtherKey="CID", IsForeignKey=true, DeleteRule="CASCADE")]
+		public Course Course1
+		{
+			get
+			{
+				return this._Course1.Entity;
+			}
+			set
+			{
+				Course previousValue = this._Course1.Entity;
+				if (((previousValue != value) 
+							|| (this._Course1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Course1.Entity = null;
+						previousValue.Lessons1.Remove(this);
+					}
+					this._Course1.Entity = value;
+					if ((value != null))
+					{
+						value.Lessons1.Add(this);
+						this._CID = value.CID;
+					}
+					else
+					{
+						this._CID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Course1");
 				}
 			}
 		}
@@ -1430,6 +2315,18 @@ namespace WpfApp2
 			this.SendPropertyChanging();
 			entity.Lesson = null;
 		}
+		
+		private void attach_Quizzes1(Quizze entity)
+		{
+			this.SendPropertyChanging();
+			entity.Lesson1 = this;
+		}
+		
+		private void detach_Quizzes1(Quizze entity)
+		{
+			this.SendPropertyChanging();
+			entity.Lesson1 = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Progresses")]
@@ -1452,6 +2349,8 @@ namespace WpfApp2
 		
 		private EntityRef<User> _User;
 		
+		private EntityRef<User> _User1;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1473,6 +2372,7 @@ namespace WpfApp2
 		public Progress()
 		{
 			this._User = default(EntityRef<User>);
+			this._User1 = default(EntityRef<User>);
 			OnCreated();
 		}
 		
@@ -1507,7 +2407,7 @@ namespace WpfApp2
 			{
 				if ((this._UID != value))
 				{
-					if (this._User.HasLoadedOrAssignedValue)
+					if ((this._User.HasLoadedOrAssignedValue || this._User1.HasLoadedOrAssignedValue))
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1634,6 +2534,324 @@ namespace WpfApp2
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Progress1", Storage="_User1", ThisKey="UID", OtherKey="UID", IsForeignKey=true, DeleteRule="CASCADE")]
+		public User User1
+		{
+			get
+			{
+				return this._User1.Entity;
+			}
+			set
+			{
+				User previousValue = this._User1.Entity;
+				if (((previousValue != value) 
+							|| (this._User1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User1.Entity = null;
+						previousValue.Progresses1.Remove(this);
+					}
+					this._User1.Entity = value;
+					if ((value != null))
+					{
+						value.Progresses1.Add(this);
+						this._UID = value.UID;
+					}
+					else
+					{
+						this._UID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("User1");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Questions")]
+	public partial class Question : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _QUID;
+		
+		private System.Nullable<int> _QID;
+		
+		private string _Question1;
+		
+		private string _FirstAnswer;
+		
+		private string _SecondAnswer;
+		
+		private string _ThirdAnswer;
+		
+		private string _IsCorrect;
+		
+		private EntityRef<Quizze> _Quizze;
+		
+		private EntityRef<Quizze> _Quizze1;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnQUIDChanging(int value);
+    partial void OnQUIDChanged();
+    partial void OnQIDChanging(System.Nullable<int> value);
+    partial void OnQIDChanged();
+    partial void OnQuestion1Changing(string value);
+    partial void OnQuestion1Changed();
+    partial void OnFirstAnswerChanging(string value);
+    partial void OnFirstAnswerChanged();
+    partial void OnSecondAnswerChanging(string value);
+    partial void OnSecondAnswerChanged();
+    partial void OnThirdAnswerChanging(string value);
+    partial void OnThirdAnswerChanged();
+    partial void OnIsCorrectChanging(string value);
+    partial void OnIsCorrectChanged();
+    #endregion
+		
+		public Question()
+		{
+			this._Quizze = default(EntityRef<Quizze>);
+			this._Quizze1 = default(EntityRef<Quizze>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QUID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int QUID
+		{
+			get
+			{
+				return this._QUID;
+			}
+			set
+			{
+				if ((this._QUID != value))
+				{
+					this.OnQUIDChanging(value);
+					this.SendPropertyChanging();
+					this._QUID = value;
+					this.SendPropertyChanged("QUID");
+					this.OnQUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QID", DbType="Int")]
+		public System.Nullable<int> QID
+		{
+			get
+			{
+				return this._QID;
+			}
+			set
+			{
+				if ((this._QID != value))
+				{
+					if ((this._Quizze.HasLoadedOrAssignedValue || this._Quizze1.HasLoadedOrAssignedValue))
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnQIDChanging(value);
+					this.SendPropertyChanging();
+					this._QID = value;
+					this.SendPropertyChanged("QID");
+					this.OnQIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="Question", Storage="_Question1", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
+		public string Question1
+		{
+			get
+			{
+				return this._Question1;
+			}
+			set
+			{
+				if ((this._Question1 != value))
+				{
+					this.OnQuestion1Changing(value);
+					this.SendPropertyChanging();
+					this._Question1 = value;
+					this.SendPropertyChanged("Question1");
+					this.OnQuestion1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstAnswer", DbType="NVarChar(200)")]
+		public string FirstAnswer
+		{
+			get
+			{
+				return this._FirstAnswer;
+			}
+			set
+			{
+				if ((this._FirstAnswer != value))
+				{
+					this.OnFirstAnswerChanging(value);
+					this.SendPropertyChanging();
+					this._FirstAnswer = value;
+					this.SendPropertyChanged("FirstAnswer");
+					this.OnFirstAnswerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SecondAnswer", DbType="NVarChar(200)")]
+		public string SecondAnswer
+		{
+			get
+			{
+				return this._SecondAnswer;
+			}
+			set
+			{
+				if ((this._SecondAnswer != value))
+				{
+					this.OnSecondAnswerChanging(value);
+					this.SendPropertyChanging();
+					this._SecondAnswer = value;
+					this.SendPropertyChanged("SecondAnswer");
+					this.OnSecondAnswerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThirdAnswer", DbType="NVarChar(200)")]
+		public string ThirdAnswer
+		{
+			get
+			{
+				return this._ThirdAnswer;
+			}
+			set
+			{
+				if ((this._ThirdAnswer != value))
+				{
+					this.OnThirdAnswerChanging(value);
+					this.SendPropertyChanging();
+					this._ThirdAnswer = value;
+					this.SendPropertyChanged("ThirdAnswer");
+					this.OnThirdAnswerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsCorrect", DbType="NVarChar(50)")]
+		public string IsCorrect
+		{
+			get
+			{
+				return this._IsCorrect;
+			}
+			set
+			{
+				if ((this._IsCorrect != value))
+				{
+					this.OnIsCorrectChanging(value);
+					this.SendPropertyChanging();
+					this._IsCorrect = value;
+					this.SendPropertyChanged("IsCorrect");
+					this.OnIsCorrectChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Quizze_Question", Storage="_Quizze", ThisKey="QID", OtherKey="QID", IsForeignKey=true)]
+		public Quizze Quizze
+		{
+			get
+			{
+				return this._Quizze.Entity;
+			}
+			set
+			{
+				Quizze previousValue = this._Quizze.Entity;
+				if (((previousValue != value) 
+							|| (this._Quizze.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Quizze.Entity = null;
+						previousValue.Questions.Remove(this);
+					}
+					this._Quizze.Entity = value;
+					if ((value != null))
+					{
+						value.Questions.Add(this);
+						this._QID = value.QID;
+					}
+					else
+					{
+						this._QID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Quizze");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Quizze_Question1", Storage="_Quizze1", ThisKey="QID", OtherKey="QID", IsForeignKey=true, DeleteRule="CASCADE")]
+		public Quizze Quizze1
+		{
+			get
+			{
+				return this._Quizze1.Entity;
+			}
+			set
+			{
+				Quizze previousValue = this._Quizze1.Entity;
+				if (((previousValue != value) 
+							|| (this._Quizze1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Quizze1.Entity = null;
+						previousValue.Questions1.Remove(this);
+					}
+					this._Quizze1.Entity = value;
+					if ((value != null))
+					{
+						value.Questions1.Add(this);
+						this._QID = value.QID;
+					}
+					else
+					{
+						this._QID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Quizze1");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1671,9 +2889,15 @@ namespace WpfApp2
 		
 		private EntitySet<CompletedQuizze> _CompletedQuizzes;
 		
+		private EntitySet<CompletedQuizze> _CompletedQuizzes1;
+		
 		private EntitySet<Question> _Questions;
 		
+		private EntitySet<Question> _Questions1;
+		
 		private EntityRef<Lesson> _Lesson;
+		
+		private EntityRef<Lesson> _Lesson1;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1692,8 +2916,11 @@ namespace WpfApp2
 		public Quizze()
 		{
 			this._CompletedQuizzes = new EntitySet<CompletedQuizze>(new Action<CompletedQuizze>(this.attach_CompletedQuizzes), new Action<CompletedQuizze>(this.detach_CompletedQuizzes));
+			this._CompletedQuizzes1 = new EntitySet<CompletedQuizze>(new Action<CompletedQuizze>(this.attach_CompletedQuizzes1), new Action<CompletedQuizze>(this.detach_CompletedQuizzes1));
 			this._Questions = new EntitySet<Question>(new Action<Question>(this.attach_Questions), new Action<Question>(this.detach_Questions));
+			this._Questions1 = new EntitySet<Question>(new Action<Question>(this.attach_Questions1), new Action<Question>(this.detach_Questions1));
 			this._Lesson = default(EntityRef<Lesson>);
+			this._Lesson1 = default(EntityRef<Lesson>);
 			OnCreated();
 		}
 		
@@ -1728,7 +2955,7 @@ namespace WpfApp2
 			{
 				if ((this._LID != value))
 				{
-					if (this._Lesson.HasLoadedOrAssignedValue)
+					if ((this._Lesson.HasLoadedOrAssignedValue || this._Lesson1.HasLoadedOrAssignedValue))
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1794,6 +3021,19 @@ namespace WpfApp2
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Quizze_CompletedQuizze1", Storage="_CompletedQuizzes1", ThisKey="QID", OtherKey="QID")]
+		public EntitySet<CompletedQuizze> CompletedQuizzes1
+		{
+			get
+			{
+				return this._CompletedQuizzes1;
+			}
+			set
+			{
+				this._CompletedQuizzes1.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Quizze_Question", Storage="_Questions", ThisKey="QID", OtherKey="QID")]
 		public EntitySet<Question> Questions
 		{
@@ -1804,6 +3044,19 @@ namespace WpfApp2
 			set
 			{
 				this._Questions.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Quizze_Question1", Storage="_Questions1", ThisKey="QID", OtherKey="QID")]
+		public EntitySet<Question> Questions1
+		{
+			get
+			{
+				return this._Questions1;
+			}
+			set
+			{
+				this._Questions1.Assign(value);
 			}
 		}
 		
@@ -1841,6 +3094,40 @@ namespace WpfApp2
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lesson_Quizze1", Storage="_Lesson1", ThisKey="LID", OtherKey="LID", IsForeignKey=true, DeleteRule="CASCADE")]
+		public Lesson Lesson1
+		{
+			get
+			{
+				return this._Lesson1.Entity;
+			}
+			set
+			{
+				Lesson previousValue = this._Lesson1.Entity;
+				if (((previousValue != value) 
+							|| (this._Lesson1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Lesson1.Entity = null;
+						previousValue.Quizzes1.Remove(this);
+					}
+					this._Lesson1.Entity = value;
+					if ((value != null))
+					{
+						value.Quizzes1.Add(this);
+						this._LID = value.LID;
+					}
+					else
+					{
+						this._LID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Lesson1");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1873,6 +3160,18 @@ namespace WpfApp2
 			entity.Quizze = null;
 		}
 		
+		private void attach_CompletedQuizzes1(CompletedQuizze entity)
+		{
+			this.SendPropertyChanging();
+			entity.Quizze1 = this;
+		}
+		
+		private void detach_CompletedQuizzes1(CompletedQuizze entity)
+		{
+			this.SendPropertyChanging();
+			entity.Quizze1 = null;
+		}
+		
 		private void attach_Questions(Question entity)
 		{
 			this.SendPropertyChanging();
@@ -1883,6 +3182,18 @@ namespace WpfApp2
 		{
 			this.SendPropertyChanging();
 			entity.Quizze = null;
+		}
+		
+		private void attach_Questions1(Question entity)
+		{
+			this.SendPropertyChanging();
+			entity.Quizze1 = this;
+		}
+		
+		private void detach_Questions1(Question entity)
+		{
+			this.SendPropertyChanging();
+			entity.Quizze1 = null;
 		}
 	}
 	
@@ -1996,6 +3307,272 @@ namespace WpfApp2
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.StartedCourses")]
+	public partial class StartedCourse : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private System.Nullable<int> _UID;
+		
+		private System.Nullable<int> _CID;
+		
+		private EntityRef<Course> _Course;
+		
+		private EntityRef<Course> _Course1;
+		
+		private EntityRef<User> _User;
+		
+		private EntityRef<User> _User1;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnUIDChanging(System.Nullable<int> value);
+    partial void OnUIDChanged();
+    partial void OnCIDChanging(System.Nullable<int> value);
+    partial void OnCIDChanged();
+    #endregion
+		
+		public StartedCourse()
+		{
+			this._Course = default(EntityRef<Course>);
+			this._Course1 = default(EntityRef<Course>);
+			this._User = default(EntityRef<User>);
+			this._User1 = default(EntityRef<User>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UID", DbType="Int")]
+		public System.Nullable<int> UID
+		{
+			get
+			{
+				return this._UID;
+			}
+			set
+			{
+				if ((this._UID != value))
+				{
+					if ((this._User.HasLoadedOrAssignedValue || this._User1.HasLoadedOrAssignedValue))
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUIDChanging(value);
+					this.SendPropertyChanging();
+					this._UID = value;
+					this.SendPropertyChanged("UID");
+					this.OnUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CID", DbType="Int")]
+		public System.Nullable<int> CID
+		{
+			get
+			{
+				return this._CID;
+			}
+			set
+			{
+				if ((this._CID != value))
+				{
+					if ((this._Course.HasLoadedOrAssignedValue || this._Course1.HasLoadedOrAssignedValue))
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCIDChanging(value);
+					this.SendPropertyChanging();
+					this._CID = value;
+					this.SendPropertyChanged("CID");
+					this.OnCIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Course_StartedCourse", Storage="_Course", ThisKey="CID", OtherKey="CID", IsForeignKey=true)]
+		public Course Course
+		{
+			get
+			{
+				return this._Course.Entity;
+			}
+			set
+			{
+				Course previousValue = this._Course.Entity;
+				if (((previousValue != value) 
+							|| (this._Course.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Course.Entity = null;
+						previousValue.StartedCourses.Remove(this);
+					}
+					this._Course.Entity = value;
+					if ((value != null))
+					{
+						value.StartedCourses.Add(this);
+						this._CID = value.CID;
+					}
+					else
+					{
+						this._CID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Course");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Course_StartedCourse1", Storage="_Course1", ThisKey="CID", OtherKey="CID", IsForeignKey=true, DeleteRule="CASCADE")]
+		public Course Course1
+		{
+			get
+			{
+				return this._Course1.Entity;
+			}
+			set
+			{
+				Course previousValue = this._Course1.Entity;
+				if (((previousValue != value) 
+							|| (this._Course1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Course1.Entity = null;
+						previousValue.StartedCourses1.Remove(this);
+					}
+					this._Course1.Entity = value;
+					if ((value != null))
+					{
+						value.StartedCourses1.Add(this);
+						this._CID = value.CID;
+					}
+					else
+					{
+						this._CID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Course1");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_StartedCourse", Storage="_User", ThisKey="UID", OtherKey="UID", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.StartedCourses.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.StartedCourses.Add(this);
+						this._UID = value.UID;
+					}
+					else
+					{
+						this._UID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_StartedCourse1", Storage="_User1", ThisKey="UID", OtherKey="UID", IsForeignKey=true, DeleteRule="CASCADE")]
+		public User User1
+		{
+			get
+			{
+				return this._User1.Entity;
+			}
+			set
+			{
+				User previousValue = this._User1.Entity;
+				if (((previousValue != value) 
+							|| (this._User1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User1.Entity = null;
+						previousValue.StartedCourses1.Remove(this);
+					}
+					this._User1.Entity = value;
+					if ((value != null))
+					{
+						value.StartedCourses1.Add(this);
+						this._UID = value.UID;
+					}
+					else
+					{
+						this._UID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("User1");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
 	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2022,6 +3599,14 @@ namespace WpfApp2
 		
 		private EntitySet<Checkpoint> _Checkpoints;
 		
+		private EntitySet<CompletedCourse> _CompletedCourses;
+		
+		private EntitySet<CompletedCourse> _CompletedCourses1;
+		
+		private EntitySet<CompletedQuizze> _CompletedQuizzes;
+		
+		private EntitySet<CompletedQuizze> _CompletedQuizzes1;
+		
 		private EntitySet<Course> _Courses;
 		
 		private EntitySet<FeedbackAndSupport> _FeedbackAndSupports;
@@ -2030,11 +3615,11 @@ namespace WpfApp2
 		
 		private EntitySet<Progress> _Progresses;
 		
-		private EntitySet<CompletedQuizze> _CompletedQuizzes;
-		
-		private EntitySet<CompletedCourse> _CompletedCourses;
+		private EntitySet<Progress> _Progresses1;
 		
 		private EntitySet<StartedCourse> _StartedCourses;
+		
+		private EntitySet<StartedCourse> _StartedCourses1;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2063,13 +3648,17 @@ namespace WpfApp2
 		public User()
 		{
 			this._Checkpoints = new EntitySet<Checkpoint>(new Action<Checkpoint>(this.attach_Checkpoints), new Action<Checkpoint>(this.detach_Checkpoints));
+			this._CompletedCourses = new EntitySet<CompletedCourse>(new Action<CompletedCourse>(this.attach_CompletedCourses), new Action<CompletedCourse>(this.detach_CompletedCourses));
+			this._CompletedCourses1 = new EntitySet<CompletedCourse>(new Action<CompletedCourse>(this.attach_CompletedCourses1), new Action<CompletedCourse>(this.detach_CompletedCourses1));
+			this._CompletedQuizzes = new EntitySet<CompletedQuizze>(new Action<CompletedQuizze>(this.attach_CompletedQuizzes), new Action<CompletedQuizze>(this.detach_CompletedQuizzes));
+			this._CompletedQuizzes1 = new EntitySet<CompletedQuizze>(new Action<CompletedQuizze>(this.attach_CompletedQuizzes1), new Action<CompletedQuizze>(this.detach_CompletedQuizzes1));
 			this._Courses = new EntitySet<Course>(new Action<Course>(this.attach_Courses), new Action<Course>(this.detach_Courses));
 			this._FeedbackAndSupports = new EntitySet<FeedbackAndSupport>(new Action<FeedbackAndSupport>(this.attach_FeedbackAndSupports), new Action<FeedbackAndSupport>(this.detach_FeedbackAndSupports));
 			this._Flashcards = new EntitySet<Flashcard>(new Action<Flashcard>(this.attach_Flashcards), new Action<Flashcard>(this.detach_Flashcards));
 			this._Progresses = new EntitySet<Progress>(new Action<Progress>(this.attach_Progresses), new Action<Progress>(this.detach_Progresses));
-			this._CompletedQuizzes = new EntitySet<CompletedQuizze>(new Action<CompletedQuizze>(this.attach_CompletedQuizzes), new Action<CompletedQuizze>(this.detach_CompletedQuizzes));
-			this._CompletedCourses = new EntitySet<CompletedCourse>(new Action<CompletedCourse>(this.attach_CompletedCourses), new Action<CompletedCourse>(this.detach_CompletedCourses));
+			this._Progresses1 = new EntitySet<Progress>(new Action<Progress>(this.attach_Progresses1), new Action<Progress>(this.detach_Progresses1));
 			this._StartedCourses = new EntitySet<StartedCourse>(new Action<StartedCourse>(this.attach_StartedCourses), new Action<StartedCourse>(this.detach_StartedCourses));
+			this._StartedCourses1 = new EntitySet<StartedCourse>(new Action<StartedCourse>(this.attach_StartedCourses1), new Action<StartedCourse>(this.detach_StartedCourses1));
 			OnCreated();
 		}
 		
@@ -2266,6 +3855,58 @@ namespace WpfApp2
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_CompletedCourse", Storage="_CompletedCourses", ThisKey="UID", OtherKey="UID")]
+		public EntitySet<CompletedCourse> CompletedCourses
+		{
+			get
+			{
+				return this._CompletedCourses;
+			}
+			set
+			{
+				this._CompletedCourses.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_CompletedCourse1", Storage="_CompletedCourses1", ThisKey="UID", OtherKey="UID")]
+		public EntitySet<CompletedCourse> CompletedCourses1
+		{
+			get
+			{
+				return this._CompletedCourses1;
+			}
+			set
+			{
+				this._CompletedCourses1.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_CompletedQuizze", Storage="_CompletedQuizzes", ThisKey="UID", OtherKey="UID")]
+		public EntitySet<CompletedQuizze> CompletedQuizzes
+		{
+			get
+			{
+				return this._CompletedQuizzes;
+			}
+			set
+			{
+				this._CompletedQuizzes.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_CompletedQuizze1", Storage="_CompletedQuizzes1", ThisKey="UID", OtherKey="UID")]
+		public EntitySet<CompletedQuizze> CompletedQuizzes1
+		{
+			get
+			{
+				return this._CompletedQuizzes1;
+			}
+			set
+			{
+				this._CompletedQuizzes1.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Course", Storage="_Courses", ThisKey="UID", OtherKey="CreatedBy")]
 		public EntitySet<Course> Courses
 		{
@@ -2318,29 +3959,16 @@ namespace WpfApp2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_CompletedQuizze", Storage="_CompletedQuizzes", ThisKey="UID", OtherKey="UID")]
-		public EntitySet<CompletedQuizze> CompletedQuizzes
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Progress1", Storage="_Progresses1", ThisKey="UID", OtherKey="UID")]
+		public EntitySet<Progress> Progresses1
 		{
 			get
 			{
-				return this._CompletedQuizzes;
+				return this._Progresses1;
 			}
 			set
 			{
-				this._CompletedQuizzes.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_CompletedCourse", Storage="_CompletedCourses", ThisKey="UID", OtherKey="UID")]
-		public EntitySet<CompletedCourse> CompletedCourses
-		{
-			get
-			{
-				return this._CompletedCourses;
-			}
-			set
-			{
-				this._CompletedCourses.Assign(value);
+				this._Progresses1.Assign(value);
 			}
 		}
 		
@@ -2354,6 +3982,19 @@ namespace WpfApp2
 			set
 			{
 				this._StartedCourses.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_StartedCourse1", Storage="_StartedCourses1", ThisKey="UID", OtherKey="UID")]
+		public EntitySet<StartedCourse> StartedCourses1
+		{
+			get
+			{
+				return this._StartedCourses1;
+			}
+			set
+			{
+				this._StartedCourses1.Assign(value);
 			}
 		}
 		
@@ -2387,6 +4028,54 @@ namespace WpfApp2
 		{
 			this.SendPropertyChanging();
 			entity.User = null;
+		}
+		
+		private void attach_CompletedCourses(CompletedCourse entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_CompletedCourses(CompletedCourse entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_CompletedCourses1(CompletedCourse entity)
+		{
+			this.SendPropertyChanging();
+			entity.User1 = this;
+		}
+		
+		private void detach_CompletedCourses1(CompletedCourse entity)
+		{
+			this.SendPropertyChanging();
+			entity.User1 = null;
+		}
+		
+		private void attach_CompletedQuizzes(CompletedQuizze entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_CompletedQuizzes(CompletedQuizze entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_CompletedQuizzes1(CompletedQuizze entity)
+		{
+			this.SendPropertyChanging();
+			entity.User1 = this;
+		}
+		
+		private void detach_CompletedQuizzes1(CompletedQuizze entity)
+		{
+			this.SendPropertyChanging();
+			entity.User1 = null;
 		}
 		
 		private void attach_Courses(Course entity)
@@ -2437,28 +4126,16 @@ namespace WpfApp2
 			entity.User = null;
 		}
 		
-		private void attach_CompletedQuizzes(CompletedQuizze entity)
+		private void attach_Progresses1(Progress entity)
 		{
 			this.SendPropertyChanging();
-			entity.User = this;
+			entity.User1 = this;
 		}
 		
-		private void detach_CompletedQuizzes(CompletedQuizze entity)
+		private void detach_Progresses1(Progress entity)
 		{
 			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_CompletedCourses(CompletedCourse entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_CompletedCourses(CompletedCourse entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
+			entity.User1 = null;
 		}
 		
 		private void attach_StartedCourses(StartedCourse entity)
@@ -2471,6 +4148,18 @@ namespace WpfApp2
 		{
 			this.SendPropertyChanging();
 			entity.User = null;
+		}
+		
+		private void attach_StartedCourses1(StartedCourse entity)
+		{
+			this.SendPropertyChanging();
+			entity.User1 = this;
+		}
+		
+		private void detach_StartedCourses1(StartedCourse entity)
+		{
+			this.SendPropertyChanging();
+			entity.User1 = null;
 		}
 	}
 	
@@ -2657,1045 +4346,6 @@ namespace WpfApp2
 		{
 			this.SendPropertyChanging();
 			entity.VocabularyWord = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.WordsInFlashcards")]
-	public partial class WordsInFlashcard : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private System.Nullable<int> _WID;
-		
-		private System.Nullable<int> _FID;
-		
-		private EntityRef<Flashcard> _Flashcard;
-		
-		private EntityRef<VocabularyWord> _VocabularyWord;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnWIDChanging(System.Nullable<int> value);
-    partial void OnWIDChanged();
-    partial void OnFIDChanging(System.Nullable<int> value);
-    partial void OnFIDChanged();
-    #endregion
-		
-		public WordsInFlashcard()
-		{
-			this._Flashcard = default(EntityRef<Flashcard>);
-			this._VocabularyWord = default(EntityRef<VocabularyWord>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WID", DbType="Int")]
-		public System.Nullable<int> WID
-		{
-			get
-			{
-				return this._WID;
-			}
-			set
-			{
-				if ((this._WID != value))
-				{
-					if (this._VocabularyWord.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnWIDChanging(value);
-					this.SendPropertyChanging();
-					this._WID = value;
-					this.SendPropertyChanged("WID");
-					this.OnWIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FID", DbType="Int")]
-		public System.Nullable<int> FID
-		{
-			get
-			{
-				return this._FID;
-			}
-			set
-			{
-				if ((this._FID != value))
-				{
-					if (this._Flashcard.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnFIDChanging(value);
-					this.SendPropertyChanging();
-					this._FID = value;
-					this.SendPropertyChanged("FID");
-					this.OnFIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Flashcard_WordsInFlashcard", Storage="_Flashcard", ThisKey="FID", OtherKey="FID", IsForeignKey=true)]
-		public Flashcard Flashcard
-		{
-			get
-			{
-				return this._Flashcard.Entity;
-			}
-			set
-			{
-				Flashcard previousValue = this._Flashcard.Entity;
-				if (((previousValue != value) 
-							|| (this._Flashcard.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Flashcard.Entity = null;
-						previousValue.WordsInFlashcards.Remove(this);
-					}
-					this._Flashcard.Entity = value;
-					if ((value != null))
-					{
-						value.WordsInFlashcards.Add(this);
-						this._FID = value.FID;
-					}
-					else
-					{
-						this._FID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Flashcard");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="VocabularyWord_WordsInFlashcard", Storage="_VocabularyWord", ThisKey="WID", OtherKey="WID", IsForeignKey=true)]
-		public VocabularyWord VocabularyWord
-		{
-			get
-			{
-				return this._VocabularyWord.Entity;
-			}
-			set
-			{
-				VocabularyWord previousValue = this._VocabularyWord.Entity;
-				if (((previousValue != value) 
-							|| (this._VocabularyWord.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._VocabularyWord.Entity = null;
-						previousValue.WordsInFlashcards.Remove(this);
-					}
-					this._VocabularyWord.Entity = value;
-					if ((value != null))
-					{
-						value.WordsInFlashcards.Add(this);
-						this._WID = value.WID;
-					}
-					else
-					{
-						this._WID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("VocabularyWord");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CompletedQuizzes")]
-	public partial class CompletedQuizze : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private System.Nullable<int> _UID;
-		
-		private System.Nullable<int> _QID;
-		
-		private EntityRef<Quizze> _Quizze;
-		
-		private EntityRef<User> _User;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnUIDChanging(System.Nullable<int> value);
-    partial void OnUIDChanged();
-    partial void OnQIDChanging(System.Nullable<int> value);
-    partial void OnQIDChanged();
-    #endregion
-		
-		public CompletedQuizze()
-		{
-			this._Quizze = default(EntityRef<Quizze>);
-			this._User = default(EntityRef<User>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UID", DbType="Int")]
-		public System.Nullable<int> UID
-		{
-			get
-			{
-				return this._UID;
-			}
-			set
-			{
-				if ((this._UID != value))
-				{
-					if (this._User.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnUIDChanging(value);
-					this.SendPropertyChanging();
-					this._UID = value;
-					this.SendPropertyChanged("UID");
-					this.OnUIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QID", DbType="Int")]
-		public System.Nullable<int> QID
-		{
-			get
-			{
-				return this._QID;
-			}
-			set
-			{
-				if ((this._QID != value))
-				{
-					if (this._Quizze.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnQIDChanging(value);
-					this.SendPropertyChanging();
-					this._QID = value;
-					this.SendPropertyChanged("QID");
-					this.OnQIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Quizze_CompletedQuizze", Storage="_Quizze", ThisKey="QID", OtherKey="QID", IsForeignKey=true)]
-		public Quizze Quizze
-		{
-			get
-			{
-				return this._Quizze.Entity;
-			}
-			set
-			{
-				Quizze previousValue = this._Quizze.Entity;
-				if (((previousValue != value) 
-							|| (this._Quizze.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Quizze.Entity = null;
-						previousValue.CompletedQuizzes.Remove(this);
-					}
-					this._Quizze.Entity = value;
-					if ((value != null))
-					{
-						value.CompletedQuizzes.Add(this);
-						this._QID = value.QID;
-					}
-					else
-					{
-						this._QID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Quizze");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_CompletedQuizze", Storage="_User", ThisKey="UID", OtherKey="UID", IsForeignKey=true)]
-		public User User
-		{
-			get
-			{
-				return this._User.Entity;
-			}
-			set
-			{
-				User previousValue = this._User.Entity;
-				if (((previousValue != value) 
-							|| (this._User.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._User.Entity = null;
-						previousValue.CompletedQuizzes.Remove(this);
-					}
-					this._User.Entity = value;
-					if ((value != null))
-					{
-						value.CompletedQuizzes.Add(this);
-						this._UID = value.UID;
-					}
-					else
-					{
-						this._UID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("User");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CompletedCourses")]
-	public partial class CompletedCourse : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private System.Nullable<int> _UID;
-		
-		private System.Nullable<int> _CID;
-		
-		private System.Nullable<System.DateTime> _DateCompleted;
-		
-		private EntityRef<Course> _Course;
-		
-		private EntityRef<User> _User;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnUIDChanging(System.Nullable<int> value);
-    partial void OnUIDChanged();
-    partial void OnCIDChanging(System.Nullable<int> value);
-    partial void OnCIDChanged();
-    partial void OnDateCompletedChanging(System.Nullable<System.DateTime> value);
-    partial void OnDateCompletedChanged();
-    #endregion
-		
-		public CompletedCourse()
-		{
-			this._Course = default(EntityRef<Course>);
-			this._User = default(EntityRef<User>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UID", DbType="Int")]
-		public System.Nullable<int> UID
-		{
-			get
-			{
-				return this._UID;
-			}
-			set
-			{
-				if ((this._UID != value))
-				{
-					if (this._User.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnUIDChanging(value);
-					this.SendPropertyChanging();
-					this._UID = value;
-					this.SendPropertyChanged("UID");
-					this.OnUIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CID", DbType="Int")]
-		public System.Nullable<int> CID
-		{
-			get
-			{
-				return this._CID;
-			}
-			set
-			{
-				if ((this._CID != value))
-				{
-					if (this._Course.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCIDChanging(value);
-					this.SendPropertyChanging();
-					this._CID = value;
-					this.SendPropertyChanged("CID");
-					this.OnCIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateCompleted", DbType="DateTime")]
-		public System.Nullable<System.DateTime> DateCompleted
-		{
-			get
-			{
-				return this._DateCompleted;
-			}
-			set
-			{
-				if ((this._DateCompleted != value))
-				{
-					this.OnDateCompletedChanging(value);
-					this.SendPropertyChanging();
-					this._DateCompleted = value;
-					this.SendPropertyChanged("DateCompleted");
-					this.OnDateCompletedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Course_CompletedCourse", Storage="_Course", ThisKey="CID", OtherKey="CID", IsForeignKey=true)]
-		public Course Course
-		{
-			get
-			{
-				return this._Course.Entity;
-			}
-			set
-			{
-				Course previousValue = this._Course.Entity;
-				if (((previousValue != value) 
-							|| (this._Course.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Course.Entity = null;
-						previousValue.CompletedCourses.Remove(this);
-					}
-					this._Course.Entity = value;
-					if ((value != null))
-					{
-						value.CompletedCourses.Add(this);
-						this._CID = value.CID;
-					}
-					else
-					{
-						this._CID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Course");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_CompletedCourse", Storage="_User", ThisKey="UID", OtherKey="UID", IsForeignKey=true)]
-		public User User
-		{
-			get
-			{
-				return this._User.Entity;
-			}
-			set
-			{
-				User previousValue = this._User.Entity;
-				if (((previousValue != value) 
-							|| (this._User.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._User.Entity = null;
-						previousValue.CompletedCourses.Remove(this);
-					}
-					this._User.Entity = value;
-					if ((value != null))
-					{
-						value.CompletedCourses.Add(this);
-						this._UID = value.UID;
-					}
-					else
-					{
-						this._UID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("User");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.StartedCourses")]
-	public partial class StartedCourse : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private System.Nullable<int> _UID;
-		
-		private System.Nullable<int> _CID;
-		
-		private EntityRef<Course> _Course;
-		
-		private EntityRef<User> _User;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnUIDChanging(System.Nullable<int> value);
-    partial void OnUIDChanged();
-    partial void OnCIDChanging(System.Nullable<int> value);
-    partial void OnCIDChanged();
-    #endregion
-		
-		public StartedCourse()
-		{
-			this._Course = default(EntityRef<Course>);
-			this._User = default(EntityRef<User>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UID", DbType="Int")]
-		public System.Nullable<int> UID
-		{
-			get
-			{
-				return this._UID;
-			}
-			set
-			{
-				if ((this._UID != value))
-				{
-					if (this._User.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnUIDChanging(value);
-					this.SendPropertyChanging();
-					this._UID = value;
-					this.SendPropertyChanged("UID");
-					this.OnUIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CID", DbType="Int")]
-		public System.Nullable<int> CID
-		{
-			get
-			{
-				return this._CID;
-			}
-			set
-			{
-				if ((this._CID != value))
-				{
-					if (this._Course.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCIDChanging(value);
-					this.SendPropertyChanging();
-					this._CID = value;
-					this.SendPropertyChanged("CID");
-					this.OnCIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Course_StartedCourse", Storage="_Course", ThisKey="CID", OtherKey="CID", IsForeignKey=true)]
-		public Course Course
-		{
-			get
-			{
-				return this._Course.Entity;
-			}
-			set
-			{
-				Course previousValue = this._Course.Entity;
-				if (((previousValue != value) 
-							|| (this._Course.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Course.Entity = null;
-						previousValue.StartedCourses.Remove(this);
-					}
-					this._Course.Entity = value;
-					if ((value != null))
-					{
-						value.StartedCourses.Add(this);
-						this._CID = value.CID;
-					}
-					else
-					{
-						this._CID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Course");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_StartedCourse", Storage="_User", ThisKey="UID", OtherKey="UID", IsForeignKey=true)]
-		public User User
-		{
-			get
-			{
-				return this._User.Entity;
-			}
-			set
-			{
-				User previousValue = this._User.Entity;
-				if (((previousValue != value) 
-							|| (this._User.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._User.Entity = null;
-						previousValue.StartedCourses.Remove(this);
-					}
-					this._User.Entity = value;
-					if ((value != null))
-					{
-						value.StartedCourses.Add(this);
-						this._UID = value.UID;
-					}
-					else
-					{
-						this._UID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("User");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Questions")]
-	public partial class Question : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _QUID;
-		
-		private System.Nullable<int> _QID;
-		
-		private string _Question1;
-		
-		private string _FirstAnswer;
-		
-		private string _SecondAnswer;
-		
-		private string _ThirdAnswer;
-		
-		private string _IsCorrect;
-		
-		private EntityRef<Quizze> _Quizze;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnQUIDChanging(int value);
-    partial void OnQUIDChanged();
-    partial void OnQIDChanging(System.Nullable<int> value);
-    partial void OnQIDChanged();
-    partial void OnQuestion1Changing(string value);
-    partial void OnQuestion1Changed();
-    partial void OnFirstAnswerChanging(string value);
-    partial void OnFirstAnswerChanged();
-    partial void OnSecondAnswerChanging(string value);
-    partial void OnSecondAnswerChanged();
-    partial void OnThirdAnswerChanging(string value);
-    partial void OnThirdAnswerChanged();
-    partial void OnIsCorrectChanging(string value);
-    partial void OnIsCorrectChanged();
-    #endregion
-		
-		public Question()
-		{
-			this._Quizze = default(EntityRef<Quizze>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QUID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int QUID
-		{
-			get
-			{
-				return this._QUID;
-			}
-			set
-			{
-				if ((this._QUID != value))
-				{
-					this.OnQUIDChanging(value);
-					this.SendPropertyChanging();
-					this._QUID = value;
-					this.SendPropertyChanged("QUID");
-					this.OnQUIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QID", DbType="Int")]
-		public System.Nullable<int> QID
-		{
-			get
-			{
-				return this._QID;
-			}
-			set
-			{
-				if ((this._QID != value))
-				{
-					if (this._Quizze.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnQIDChanging(value);
-					this.SendPropertyChanging();
-					this._QID = value;
-					this.SendPropertyChanged("QID");
-					this.OnQIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="Question", Storage="_Question1", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
-		public string Question1
-		{
-			get
-			{
-				return this._Question1;
-			}
-			set
-			{
-				if ((this._Question1 != value))
-				{
-					this.OnQuestion1Changing(value);
-					this.SendPropertyChanging();
-					this._Question1 = value;
-					this.SendPropertyChanged("Question1");
-					this.OnQuestion1Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstAnswer", DbType="NVarChar(200)")]
-		public string FirstAnswer
-		{
-			get
-			{
-				return this._FirstAnswer;
-			}
-			set
-			{
-				if ((this._FirstAnswer != value))
-				{
-					this.OnFirstAnswerChanging(value);
-					this.SendPropertyChanging();
-					this._FirstAnswer = value;
-					this.SendPropertyChanged("FirstAnswer");
-					this.OnFirstAnswerChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SecondAnswer", DbType="NVarChar(200)")]
-		public string SecondAnswer
-		{
-			get
-			{
-				return this._SecondAnswer;
-			}
-			set
-			{
-				if ((this._SecondAnswer != value))
-				{
-					this.OnSecondAnswerChanging(value);
-					this.SendPropertyChanging();
-					this._SecondAnswer = value;
-					this.SendPropertyChanged("SecondAnswer");
-					this.OnSecondAnswerChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThirdAnswer", DbType="NVarChar(200)")]
-		public string ThirdAnswer
-		{
-			get
-			{
-				return this._ThirdAnswer;
-			}
-			set
-			{
-				if ((this._ThirdAnswer != value))
-				{
-					this.OnThirdAnswerChanging(value);
-					this.SendPropertyChanging();
-					this._ThirdAnswer = value;
-					this.SendPropertyChanged("ThirdAnswer");
-					this.OnThirdAnswerChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsCorrect", DbType="NVarChar(50)")]
-		public string IsCorrect
-		{
-			get
-			{
-				return this._IsCorrect;
-			}
-			set
-			{
-				if ((this._IsCorrect != value))
-				{
-					this.OnIsCorrectChanging(value);
-					this.SendPropertyChanging();
-					this._IsCorrect = value;
-					this.SendPropertyChanged("IsCorrect");
-					this.OnIsCorrectChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Quizze_Question", Storage="_Quizze", ThisKey="QID", OtherKey="QID", IsForeignKey=true)]
-		public Quizze Quizze
-		{
-			get
-			{
-				return this._Quizze.Entity;
-			}
-			set
-			{
-				Quizze previousValue = this._Quizze.Entity;
-				if (((previousValue != value) 
-							|| (this._Quizze.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Quizze.Entity = null;
-						previousValue.Questions.Remove(this);
-					}
-					this._Quizze.Entity = value;
-					if ((value != null))
-					{
-						value.Questions.Add(this);
-						this._QID = value.QID;
-					}
-					else
-					{
-						this._QID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Quizze");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -38,7 +39,14 @@ namespace WpfApp2.View
                 }
             }
         }
-
+        private string ComputeHash(string input)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(input));
+                return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
+            }
+        }
         private void btnAddUser_Click(object sender, RoutedEventArgs e)
         {
             if (txtBFName.Text.Length > 0 && txtBLName.Text.Length > 0 && txtBPasswd.Text.Length > 0 &&
@@ -52,7 +60,7 @@ namespace WpfApp2.View
                         FirstName = txtBFName.Text,
                         LastName = txtBLName.Text,
                         Email = txtBEmail.Text,
-                        Password = txtBPasswd.Text,
+                        Password =ComputeHash(txtBPasswd.Text),
                         Role = txtBRole.Text,
                         LastLoginDate= DateTime.Now,
                         RegistrationDate= DateTime.Now

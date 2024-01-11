@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,15 @@ namespace WpfApp2.View
             InitializeComponent();
             txtUserName.Text = UserProfile.user.FirstName + " " + UserProfile.user.LastName;
             FrameMain.Content = new PageEducatorCourses();
+
+            if (UserProfile.user.ProfilePicture != null)
+            {
+                BitmapImage bitmapImage = ConvertToBitmapImage(UserProfile.user.ProfilePicture.ToArray());
+                if (myEllipse.Fill is ImageBrush imageBrush)
+                {
+                    imageBrush.ImageSource = bitmapImage;
+                }
+            }
         }
 
         private void BtnEducatorCourses_Click(object sender, RoutedEventArgs e)
@@ -49,6 +59,30 @@ namespace WpfApp2.View
         private void BtnAddCourses_Click(object sender, RoutedEventArgs e)
         {
             FrameMain.Content =new PageAddCourses();
+        }
+
+        private void BtnShowProfile_Click(object sender, RoutedEventArgs e)
+        {
+            FrameMain.Content = new PageProfile();
+        }
+
+        private BitmapImage ConvertToBitmapImage(byte[] imageData)
+        {
+            if (imageData == null || imageData.Length == 0)
+            {
+                return null;
+            }
+
+            BitmapImage bitmapImage = new BitmapImage();
+            using (MemoryStream memoryStream = new MemoryStream(imageData))
+            {
+                bitmapImage.BeginInit();
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.StreamSource = memoryStream;
+                bitmapImage.EndInit();
+            }
+
+            return bitmapImage;
         }
     }
 }

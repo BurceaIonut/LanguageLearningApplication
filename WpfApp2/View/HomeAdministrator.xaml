@@ -53,7 +53,7 @@
                         <!--MEnu Logo-->
                         <Border Width="80" Height="80" Padding="3" Background="White" CornerRadius="100"
                                 DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="20 -30 0 0">
-                            <Ellipse>
+                            <Ellipse x:Name="myEllipse">
                                 <Ellipse.Fill>
                                     <ImageBrush ImageSource="/imagini/user2.png"/>
                                 </Ellipse.Fill>
@@ -77,7 +77,7 @@
                                     <TextBlock Text="Useri"/>
                                 </StackPanel>
                             </Button>
-                            <Button Style="{StaticResource menuButton}">
+                            <Button Style="{StaticResource menuButton}" Click="Button_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="/imagini/house.png" Height="20"/>
                                     <TextBlock Text="Profil"/>

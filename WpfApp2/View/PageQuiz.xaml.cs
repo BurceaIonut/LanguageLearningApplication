@@ -60,7 +60,7 @@ namespace WpfApp2.View
                 radioButton2.GroupName = $"Group_{q.QUID}";
 
                 innerStackPanel.Children.Add(radioButton2);
-                //innerStackPanel.Height= 20;
+                
                 innerStackPanel.Children.Add(new TextBlock { Text = " ", Height = 10 });
                 stkPnl1.Children.Add(groupBox);
                 
@@ -139,7 +139,7 @@ namespace WpfApp2.View
                     {
                         Progress progres = new Progress {
                             UID = UserProfile.user.UID,
-                            CompletedLessons = 1,//todo
+                            CompletedLessons = 1,
                             DailyStreak = 0,
                             QuizScores = nr,
                             TimeSpentLearning = 0
@@ -151,7 +151,7 @@ namespace WpfApp2.View
                     else
                     {
                         progress.QuizScores += nr;
-                        progress.CompletedLessons++;//to do 
+                        progress.CompletedLessons++;
                         AppDataContext.context.SubmitChanges();
                     }
 

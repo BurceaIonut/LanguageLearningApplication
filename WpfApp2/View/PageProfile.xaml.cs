@@ -45,7 +45,15 @@ namespace WpfApp2.View
             txtBLName.Text = UserProfile.user.LastName;
             txtBFName.Text = UserProfile.user.FirstName;
             txtBEmail.Text = UserProfile.user.Email;
-            
+
+            if (UserProfile.user.Role == "Educator" || UserProfile.user.Role == "admin")
+            {
+                txtBQuizeesScore.Visibility = Visibility.Hidden;
+                txtBTSL.Visibility = Visibility.Hidden;
+                lblScore.Visibility = Visibility.Hidden;
+                lblTime.Visibility = Visibility.Hidden;
+            }
+
         }
 
         private void btnChangePasswd_Click(object sender, RoutedEventArgs e)
@@ -106,8 +114,6 @@ namespace WpfApp2.View
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image files (*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*.jpg|All files (*.*)|*.*";
-            
-
             
 
 

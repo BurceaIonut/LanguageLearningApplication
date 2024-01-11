@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="LanguageLearningApplication" Class="LanguageLearningApplicationDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-MLLONH5;Initial Catalog=LanguageLearningApplication;Integrated Security=True" SettingsObjectName="WpfApp2.Properties.Settings" SettingsPropertyName="LanguageLearningApplicationConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=10.10.23.0;Initial Catalog=LanguageLearningApplication;Persist Security Info=True;User ID=vlad" SettingsObjectName="WpfApp2.Properties.Settings" SettingsPropertyName="LanguageLearningApplicationConnectionString3" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Checkpoints" Member="Checkpoints">
     <Type Name="Checkpoint">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -7,6 +7,38 @@
       <Column Name="LID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Lesson_Checkpoint" Member="Lesson" ThisKey="LID" OtherKey="LID" Type="Lesson" IsForeignKey="true" />
       <Association Name="User_Checkpoint" Member="User" ThisKey="UID" OtherKey="UID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.WordsInFlashcards" Member="WordsInFlashcards">
+    <Type Name="WordsInFlashcard">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="WID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Flashcard_WordsInFlashcard" Member="Flashcard" ThisKey="FID" OtherKey="FID" Type="Flashcard" IsForeignKey="true" />
+      <Association Name="VocabularyWord_WordsInFlashcard" Member="VocabularyWord" ThisKey="WID" OtherKey="WID" Type="VocabularyWord" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CompletedCourses" Member="CompletedCourses">
+    <Type Name="CompletedCourse">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DateCompleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Course_CompletedCourse" Member="Course" ThisKey="CID" OtherKey="CID" Type="Course" IsForeignKey="true" />
+      <Association Name="Course_CompletedCourse1" Member="Course1" ThisKey="CID" OtherKey="CID" Type="Course" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="User_CompletedCourse" Member="User" ThisKey="UID" OtherKey="UID" Type="User" IsForeignKey="true" />
+      <Association Name="User_CompletedCourse1" Member="User1" ThisKey="UID" OtherKey="UID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CompletedQuizzes" Member="CompletedQuizzes">
+    <Type Name="CompletedQuizze">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="QID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Quizze_CompletedQuizze" Member="Quizze" ThisKey="QID" OtherKey="QID" Type="Quizze" IsForeignKey="true" />
+      <Association Name="Quizze_CompletedQuizze1" Member="Quizze1" ThisKey="QID" OtherKey="QID" Type="Quizze" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="User_CompletedQuizze" Member="User" ThisKey="UID" OtherKey="UID" Type="User" IsForeignKey="true" />
+      <Association Name="User_CompletedQuizze1" Member="User1" ThisKey="UID" OtherKey="UID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Table Name="dbo.Courses" Member="Courses">
@@ -18,9 +50,12 @@
       <Column Name="DifficultyLevel" Type="System.String" DbType="VarChar(7) NOT NULL" CanBeNull="false" />
       <Column Name="Price" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CreatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Course_Lesson" Member="Lessons" ThisKey="CID" OtherKey="CID" Type="Lesson" />
       <Association Name="Course_CompletedCourse" Member="CompletedCourses" ThisKey="CID" OtherKey="CID" Type="CompletedCourse" />
+      <Association Name="Course_CompletedCourse1" Member="CompletedCourses1" ThisKey="CID" OtherKey="CID" Type="CompletedCourse" />
+      <Association Name="Course_Lesson" Member="Lessons" ThisKey="CID" OtherKey="CID" Type="Lesson" />
+      <Association Name="Course_Lesson1" Member="Lessons1" ThisKey="CID" OtherKey="CID" Type="Lesson" />
       <Association Name="Course_StartedCourse" Member="StartedCourses" ThisKey="CID" OtherKey="CID" Type="StartedCourse" />
+      <Association Name="Course_StartedCourse1" Member="StartedCourses1" ThisKey="CID" OtherKey="CID" Type="StartedCourse" />
       <Association Name="User_Course" Member="User" ThisKey="CreatedBy" OtherKey="UID" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
@@ -54,7 +89,9 @@
       <Column Name="Content" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
       <Association Name="Lesson_Checkpoint" Member="Checkpoints" ThisKey="LID" OtherKey="LID" Type="Checkpoint" />
       <Association Name="Lesson_Quizze" Member="Quizzes" ThisKey="LID" OtherKey="LID" Type="Quizze" />
+      <Association Name="Lesson_Quizze1" Member="Quizzes1" ThisKey="LID" OtherKey="LID" Type="Quizze" />
       <Association Name="Course_Lesson" Member="Course" ThisKey="CID" OtherKey="CID" Type="Course" IsForeignKey="true" />
+      <Association Name="Course_Lesson1" Member="Course1" ThisKey="CID" OtherKey="CID" Type="Course" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Table Name="dbo.Progresses" Member="Progresses">
@@ -66,6 +103,20 @@
       <Column Name="QuizScores" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="TimeSpentLearning" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="User_Progress" Member="User" ThisKey="UID" OtherKey="UID" Type="User" IsForeignKey="true" />
+      <Association Name="User_Progress1" Member="User1" ThisKey="UID" OtherKey="UID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Questions" Member="Questions">
+    <Type Name="Question">
+      <Column Name="QUID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="QID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Question" Member="Question1" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="FirstAnswer" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="SecondAnswer" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="ThirdAnswer" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="IsCorrect" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Quizze_Question" Member="Quizze" ThisKey="QID" OtherKey="QID" Type="Quizze" IsForeignKey="true" />
+      <Association Name="Quizze_Question1" Member="Quizze1" ThisKey="QID" OtherKey="QID" Type="Quizze" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Table Name="dbo.Quizzes" Member="Quizzes">
@@ -75,8 +126,11 @@
       <Column Name="Title" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="DifficultyLevel" Type="System.String" DbType="VarChar(7) NOT NULL" CanBeNull="false" />
       <Association Name="Quizze_CompletedQuizze" Member="CompletedQuizzes" ThisKey="QID" OtherKey="QID" Type="CompletedQuizze" />
+      <Association Name="Quizze_CompletedQuizze1" Member="CompletedQuizzes1" ThisKey="QID" OtherKey="QID" Type="CompletedQuizze" />
       <Association Name="Quizze_Question" Member="Questions" ThisKey="QID" OtherKey="QID" Type="Question" />
+      <Association Name="Quizze_Question1" Member="Questions1" ThisKey="QID" OtherKey="QID" Type="Question" />
       <Association Name="Lesson_Quizze" Member="Lesson" ThisKey="LID" OtherKey="LID" Type="Lesson" IsForeignKey="true" />
+      <Association Name="Lesson_Quizze1" Member="Lesson1" ThisKey="LID" OtherKey="LID" Type="Lesson" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Table Name="dbo.SecurityTokens" Member="SecurityTokens">
@@ -84,6 +138,17 @@
       <Column Name="TokenID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="TokenString" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
       <Column Name="Expired" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StartedCourses" Member="StartedCourses">
+    <Type Name="StartedCourse">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Course_StartedCourse" Member="Course" ThisKey="CID" OtherKey="CID" Type="Course" IsForeignKey="true" />
+      <Association Name="Course_StartedCourse1" Member="Course1" ThisKey="CID" OtherKey="CID" Type="Course" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="User_StartedCourse" Member="User" ThisKey="UID" OtherKey="UID" Type="User" IsForeignKey="true" />
+      <Association Name="User_StartedCourse1" Member="User1" ThisKey="UID" OtherKey="UID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Table Name="dbo.Users" Member="Users">
@@ -98,13 +163,17 @@
       <Column Name="LastLoginDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="Role" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
       <Association Name="User_Checkpoint" Member="Checkpoints" ThisKey="UID" OtherKey="UID" Type="Checkpoint" />
+      <Association Name="User_CompletedCourse" Member="CompletedCourses" ThisKey="UID" OtherKey="UID" Type="CompletedCourse" />
+      <Association Name="User_CompletedCourse1" Member="CompletedCourses1" ThisKey="UID" OtherKey="UID" Type="CompletedCourse" />
+      <Association Name="User_CompletedQuizze" Member="CompletedQuizzes" ThisKey="UID" OtherKey="UID" Type="CompletedQuizze" />
+      <Association Name="User_CompletedQuizze1" Member="CompletedQuizzes1" ThisKey="UID" OtherKey="UID" Type="CompletedQuizze" />
       <Association Name="User_Course" Member="Courses" ThisKey="UID" OtherKey="CreatedBy" Type="Course" />
       <Association Name="User_FeedbackAndSupport" Member="FeedbackAndSupports" ThisKey="UID" OtherKey="UID" Type="FeedbackAndSupport" />
       <Association Name="User_Flashcard" Member="Flashcards" ThisKey="UID" OtherKey="UID" Type="Flashcard" />
       <Association Name="User_Progress" Member="Progresses" ThisKey="UID" OtherKey="UID" Type="Progress" />
-      <Association Name="User_CompletedQuizze" Member="CompletedQuizzes" ThisKey="UID" OtherKey="UID" Type="CompletedQuizze" />
-      <Association Name="User_CompletedCourse" Member="CompletedCourses" ThisKey="UID" OtherKey="UID" Type="CompletedCourse" />
+      <Association Name="User_Progress1" Member="Progresses1" ThisKey="UID" OtherKey="UID" Type="Progress" />
       <Association Name="User_StartedCourse" Member="StartedCourses" ThisKey="UID" OtherKey="UID" Type="StartedCourse" />
+      <Association Name="User_StartedCourse1" Member="StartedCourses1" ThisKey="UID" OtherKey="UID" Type="StartedCourse" />
     </Type>
   </Table>
   <Table Name="dbo.VocabularyWords" Member="VocabularyWords">
@@ -115,55 +184,6 @@
       <Column Name="TranslationToEnglish" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="PartOfSpeech" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Association Name="VocabularyWord_WordsInFlashcard" Member="WordsInFlashcards" ThisKey="WID" OtherKey="WID" Type="WordsInFlashcard" />
-    </Type>
-  </Table>
-  <Table Name="dbo.WordsInFlashcards" Member="WordsInFlashcards">
-    <Type Name="WordsInFlashcard">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="WID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="FID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Flashcard_WordsInFlashcard" Member="Flashcard" ThisKey="FID" OtherKey="FID" Type="Flashcard" IsForeignKey="true" />
-      <Association Name="VocabularyWord_WordsInFlashcard" Member="VocabularyWord" ThisKey="WID" OtherKey="WID" Type="VocabularyWord" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.CompletedQuizzes" Member="CompletedQuizzes">
-    <Type Name="CompletedQuizze">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="UID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="QID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Quizze_CompletedQuizze" Member="Quizze" ThisKey="QID" OtherKey="QID" Type="Quizze" IsForeignKey="true" />
-      <Association Name="User_CompletedQuizze" Member="User" ThisKey="UID" OtherKey="UID" Type="User" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.CompletedCourses" Member="CompletedCourses">
-    <Type Name="CompletedCourse">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="UID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="DateCompleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="Course_CompletedCourse" Member="Course" ThisKey="CID" OtherKey="CID" Type="Course" IsForeignKey="true" />
-      <Association Name="User_CompletedCourse" Member="User" ThisKey="UID" OtherKey="UID" Type="User" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.StartedCourses" Member="StartedCourses">
-    <Type Name="StartedCourse">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="UID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Course_StartedCourse" Member="Course" ThisKey="CID" OtherKey="CID" Type="Course" IsForeignKey="true" />
-      <Association Name="User_StartedCourse" Member="User" ThisKey="UID" OtherKey="UID" Type="User" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Questions" Member="Questions">
-    <Type Name="Question">
-      <Column Name="QUID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="QID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Question" Member="Question1" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
-      <Column Name="FirstAnswer" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="SecondAnswer" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="ThirdAnswer" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="IsCorrect" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="Quizze_Question" Member="Quizze" ThisKey="QID" OtherKey="QID" Type="Quizze" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

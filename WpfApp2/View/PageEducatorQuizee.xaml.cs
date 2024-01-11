@@ -69,7 +69,6 @@ namespace WpfApp2.View
             {
                 var editedQuiz = e.Row.Item as Quizze;
 
-                // Verifică dacă cursul este nul și efectuează acțiunile necesare
                 if (editedQuiz != null)
                 {
                     string colName = e.Column.Header.ToString();
@@ -97,8 +96,6 @@ namespace WpfApp2.View
                                   select c;
 
                         DataGridQuizees.ItemsSource = quizzes;
-                    // Aici poți efectua acțiunile necesare pentru salvarea modificărilor
-                    // Poți utiliza valorile noi din e.EditingElement pentru a actualiza obiectul Course.
                 }
             }
         }
@@ -109,7 +106,6 @@ namespace WpfApp2.View
             {
                 var editedQuestion = e.Row.Item as Question;
 
-                // Verifică dacă cursul este nul și efectuează acțiunile necesare
                 if (editedQuestion != null)
                 {
                     string colName = e.Column.Header.ToString();
@@ -155,8 +151,6 @@ namespace WpfApp2.View
                                   select c;
 
                     DataGridQuestionsAnswers.ItemsSource = questions;
-                    // Aici poți efectua acțiunile necesare pentru salvarea modificărilor
-                    // Poți utiliza valorile noi din e.EditingElement pentru a actualiza obiectul Course.
                 }
             }
         }
@@ -165,7 +159,6 @@ namespace WpfApp2.View
         {
             var selectedQuestion = DataGridQuestionsAnswers.SelectedItem as Question;
 
-            // Verificarea dacă există un curs selectat
             if (selectedQuestion != null)
             {
                 var question = (from c in AppDataContext.context.Questions where c.QUID == selectedQuestion.QUID select c).FirstOrDefault();
@@ -188,7 +181,6 @@ namespace WpfApp2.View
             }
             else
             {
-                // În cazul în care nu există niciun curs selectat, poți afișa un mesaj sau să iei alte acțiuni
                 MessageBox.Show("Selectează o intrebare înainte de a continua.", "Avertisment", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
@@ -197,7 +189,6 @@ namespace WpfApp2.View
         {
             var selectedQuiz = DataGridQuizees.SelectedItem as Quizze;
 
-            // Verificarea dacă există un curs selectat
             if (selectedQuiz != null)
             {
                 var quiz = (from c in AppDataContext.context.Quizzes where c.QID == selectedQuiz.QID select c).FirstOrDefault();
@@ -224,7 +215,6 @@ namespace WpfApp2.View
             }
             else
             {
-                // În cazul în care nu există niciun curs selectat, poți afișa un mesaj sau să iei alte acțiuni
                 MessageBox.Show("Selectează un quiz înainte de a continua.", "Avertisment", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }

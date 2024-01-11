@@ -73,6 +73,13 @@ namespace WpfApp2.View
 
             }
         }
+        private void Window_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // Obține referința către butonul care a generat evenimentul

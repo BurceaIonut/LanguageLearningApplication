@@ -40,7 +40,6 @@ namespace WpfApp2.View
         {
             var selectedLesson = DataGridLessons.SelectedItem as Lesson;
 
-            // Verificarea dacă există un curs selectat
             if (selectedLesson != null)
             {
                 var lesson = (from c in AppDataContext.context.Lessons where c.LID == selectedLesson.LID select c).FirstOrDefault();
@@ -70,7 +69,6 @@ namespace WpfApp2.View
             }
             else
             {
-                // În cazul în care nu există niciun curs selectat, poți afișa un mesaj sau să iei alte acțiuni
                 MessageBox.Show("Selectează o lectie înainte de a continua.", "Avertisment", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
@@ -81,7 +79,6 @@ namespace WpfApp2.View
             {
                 var editedLesson = e.Row.Item as Lesson;
 
-                // Verifică dacă cursul este nul și efectuează acțiunile necesare
                 if (editedLesson != null)
                 {
                     string colName = e.Column.Header.ToString();
@@ -134,8 +131,6 @@ namespace WpfApp2.View
 
                     if (lessons != null)
                         DataGridLessons.ItemsSource = lessons;
-                    // Aici poți efectua acțiunile necesare pentru salvarea modificărilor
-                    // Poți utiliza valorile noi din e.EditingElement pentru a actualiza obiectul Course.
                 }
             }
 

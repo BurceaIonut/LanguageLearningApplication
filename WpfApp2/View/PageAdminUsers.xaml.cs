@@ -65,7 +65,7 @@ namespace WpfApp2.View
                     }
                     else if (colName == "Password")
                     {
-                        user.Password = result.Text;
+                        user.Password = ComputeHash(result.Text);
                     }
                     else if (colName == "First Name")
                     {
@@ -117,7 +117,14 @@ namespace WpfApp2.View
                 }
             }
         }
-
+        private string ComputeHash(string input)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(input));
+                return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
+            }
+        }
         private void btnDeleteUser_Click(object sender, RoutedEventArgs e)
         {
             var selectedUser = DataGridUsers.SelectedItem as User;

@@ -44,7 +44,7 @@
           AutoGenerateColumns="False" AlternatingRowBackground="#F2F2F2" GridLinesVisibility="All"
           HorizontalGridLinesBrush="#E1E1E1" VerticalGridLinesBrush="#E1E1E1"
           CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False"
-          SelectionMode="Single" SelectionUnit="FullRow" Margin="0,10,1,87" CellEditEnding="DataGridLessons_CellEditEnding">
+          SelectionMode="Single" SelectionUnit="FullRow" Margin="0,10,1,87" CellEditEnding="DataGridLessons_CellEditEnding" BeginningEdit="DataGridLessons_BeginningEdit">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding LID}" Width="0" Visibility="Hidden"/>

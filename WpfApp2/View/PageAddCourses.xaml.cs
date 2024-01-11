@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace WpfApp2.View
 {
-    /// <summary>
-    /// Interaction logic for PageAddCourses.xaml
-    /// </summary>
     public partial class PageAddCourses : Page
     {
         public PageAddCourses()
@@ -37,9 +34,19 @@ namespace WpfApp2.View
                     Language = txtBLanguage.Text,
                     DifficultyLevel = txtBDifficulty.Text
                 };
-
+                
                 AppDataContext.context.Courses.InsertOnSubmit(newCourse);
                 AppDataContext.context.SubmitChanges();
+                PageEducatorCourses pel = new PageEducatorCourses();
+                var parentWindow = Window.GetWindow(this);
+                if (parentWindow != null)
+                {
+                    var frame = LogicalTreeHelper.FindLogicalNode(parentWindow, "FrameMain") as Frame;
+                    if (frame != null)
+                    {
+                        frame.Content = pel;
+                    }
+                }
             }
             else
             {

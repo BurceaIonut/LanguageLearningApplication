@@ -107,6 +107,9 @@
     <Compile Include="View\PageEducatorLessons.xaml.cs">
       <DependentUpon>PageEducatorLessons.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PageEducatorModifyContent.xaml.cs">
+      <DependentUpon>PageEducatorModifyContent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PageEducatorQuizee.xaml.cs">
       <DependentUpon>PageEducatorQuizee.xaml</DependentUpon>
     </Compile>
@@ -181,6 +184,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PageEducatorLessons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PageEducatorModifyContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -301,9 +308,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="text.txt" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Imagini\explore_courses.png" />

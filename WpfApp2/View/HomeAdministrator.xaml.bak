@@ -1,11 +1,11 @@
-﻿<Window x:Class="WpfApp2.View.HomeEducator"
+﻿<Window x:Class="WpfApp2.View.HomeAdministrator"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2.View"
         mc:Ignorable="d"
-        Title="LanguageLearningApplication" Height="550" Width="800"
+        Title="HomeAdministrator" Height="550" Width="800"
         WindowStyle="None"
         ResizeMode="CanResizeWithGrip"
         WindowStartupLocation="CenterScreen"
@@ -38,17 +38,19 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
+            <!--Left Menu-->
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
+                <!--Menu Icon-->
                 <Button Margin="20,28,0,35" Style="{StaticResource topButton}"/>
 
                 <Border Background="#623ed0" CornerRadius="0 50 0 30" Margin="0,43,0,0" Grid.RowSpan="2">
                     <DockPanel>
-
+                        <!--MEnu Logo-->
                         <Border Width="80" Height="80" Padding="3" Background="White" CornerRadius="100"
                                 DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="20 -30 0 0">
                             <Ellipse x:Name="myEllipse">
@@ -58,31 +60,27 @@
                             </Ellipse>
                         </Border>
 
-                        <TextBlock Text="Welcome," Foreground="White" FontSize="22"
+                        <!--Menu titles-->
+                        <TextBlock Text="Bine ai venit," Foreground="White" FontSize="22"
                                    FontWeight="SemiBold" DockPanel.Dock="Top" TextAlignment="Center"
                                    Margin="5 25 0 10"/>
                         <TextBlock x:Name="txtUserName" Text="Username" Foreground="#d0bfff" FontSize="14"
                                    FontWeight="SemiBold" DockPanel.Dock="Top" TextAlignment="Center"/>
-
+                        <!--Menu Separator-->
                         <Separator Margin="25" DockPanel.Dock="Top" Height="0.8" Background="#7e5fdc"/>
 
+                        <!--Menu Buttons-->
                         <StackPanel DockPanel.Dock="Top">
-                            <Button x:Name="BtnEducatorCourses" Style="{StaticResource menuButton}" Click="BtnEducatorCourses_Click">
+                            <Button x:Name="BtnUseri" Style="{StaticResource menuButton}" Click="BtnUseri_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="/imagini/study.png" Height="20"/>
-                                    <TextBlock Text="My Courses"/>
+                                    <TextBlock Text="Useri"/>
                                 </StackPanel>
                             </Button>
-                            <Button x:Name="BtnAddCourses" Style="{StaticResource menuButton}" Click="BtnAddCourses_Click">
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="/imagini/explore_courses.png" Height="20"/>
-                                    <TextBlock Text="Add New Course"/>
-                                </StackPanel>
-                            </Button>
-                            <Button x:Name="BtnShowProfile" Style="{StaticResource menuButton}" Click="BtnShowProfile_Click">
+                            <Button Style="{StaticResource menuButton}" Click="Button_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="/imagini/house.png" Height="20"/>
-                                    <TextBlock Text="Profile"/>
+                                    <TextBlock Text="Profil"/>
                                 </StackPanel>
                             </Button>
                         </StackPanel>
@@ -97,8 +95,12 @@
                 </Border>
             </Grid>
 
+
+
             <Frame x:Name="FrameMain" Panel.ZIndex="1" Margin="5,10,0,10" Grid.Column="1" NavigationUIVisibility="Hidden"/>
 
+
+            <!--Top buttons-->
             <Button Style="{StaticResource topButton}" Margin="0 0 55 0"/>
 
 

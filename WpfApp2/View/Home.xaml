@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2.View"
         mc:Ignorable="d"
-        Title="Home" Height="550" Width="800"
+        Title="LanguageLearningApplication" Height="550" Width="800"
         WindowStyle="None"
         ResizeMode="CanResizeWithGrip"
         WindowStartupLocation="CenterScreen"
@@ -33,26 +33,22 @@
             </LinearGradientBrush>
         </Border.Background>
         <Grid>
-                
+
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-
-            <!--Left Menu-->
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                
-                <!--Menu Icon-->
+
                 <Button Margin="20,28,0,35" Style="{StaticResource topButton}"/>
 
                 <Border Background="#623ed0" CornerRadius="0 50 0 30" Margin="0,43,0,0" Grid.RowSpan="2">
                     <DockPanel>
-                        <!--MEnu Logo-->
                         <Border Width="80" Height="80" Padding="3" Background="White" CornerRadius="100"
                                 DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="20 -30 0 0" Panel.ZIndex="1">
                             <Ellipse x:Name="myEllipse">
@@ -63,22 +59,20 @@
 
 
                         </Border>
-                        
-                        <!--Menu titles-->
-                        <TextBlock Text="Bine ai venit," Foreground="White" FontSize="22"
+
+                        <TextBlock Text="Welcome," Foreground="White" FontSize="22"
                                    FontWeight="SemiBold" DockPanel.Dock="Top" TextAlignment="Center"
                                    Margin="5 25 0 10"/>
                         <TextBlock x:Name="txtUserName" Text="Username" Foreground="#d0bfff" FontSize="14"
                                    FontWeight="SemiBold" DockPanel.Dock="Top" TextAlignment="Center"/>
-                        <!--Menu Separator-->
+
                         <Separator Margin="25" DockPanel.Dock="Top" Height="0.8" Background="#7e5fdc"/>
 
-                        <!--Menu Buttons-->
                         <StackPanel DockPanel.Dock="Top">
                             <Button x:Name="BtnUser" Style="{StaticResource menuButton}" Click="BtnUser_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="/imagini/study.png" Height="20"/>
-                                    <TextBlock Text="Cursurile mele"/>
+                                    <TextBlock Text="My Courses"/>
                                 </StackPanel>
                             </Button>
                             <Button x:Name="BtnShowCourses" Style="{StaticResource menuButton}" Click="BtnShowCourses_Click">
@@ -90,7 +84,7 @@
                             <Button x:Name="btnProfile" Style="{StaticResource menuButton}" Click="btnProfile_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="/imagini/house.png" Height="20"/>
-                                    <TextBlock Text="Profil"/>
+                                    <TextBlock Text="Profile"/>
                                 </StackPanel>
                             </Button>
                         </StackPanel>
@@ -111,10 +105,8 @@
                 
             </Frame>
 
-
-            <!--Top buttons-->
             <Button Style="{StaticResource topButton}" Margin="0 0 55 0"/>
-
+            
 
 
         </Grid>

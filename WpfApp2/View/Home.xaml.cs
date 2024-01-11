@@ -15,12 +15,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-//Data Source = DESKTOP - MLLONH5; Initial Catalog = LanguageLearningApp; Integrated Security = True
+
 namespace WpfApp2.View
 {
-    /// <summary>
-    /// Interaction logic for Home.xaml
-    /// </summary>
     public partial class Home : Window
     {
         private string firstName; 
@@ -32,8 +29,6 @@ namespace WpfApp2.View
             this.lastName = lastName;
             txtUserName.Text = firstName + " " + lastName;
             FrameMain.Content = new PageUserCourses(this.firstName,this.lastName);
-
-
             if (UserProfile.user.ProfilePicture != null)
             {
                 BitmapImage bitmapImage = ConvertToBitmapImage(UserProfile.user.ProfilePicture.ToArray());
@@ -42,8 +37,6 @@ namespace WpfApp2.View
                     imageBrush.ImageSource = bitmapImage;
                 }
             }
-
-
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -70,27 +63,12 @@ namespace WpfApp2.View
 
         private void BtnUser_Click(object sender, RoutedEventArgs e)
         {
-            
             FrameMain.Content = new PageUserCourses(this.firstName, this.lastName);
         }
 
         private void btnProfile_Click(object sender, RoutedEventArgs e)
         {
             FrameMain.Content = new PageProfile();
-
-            //OpenFileDialog openDialog = new OpenFileDialog();
-            //openDialog.Filter = "Image files|*.bmp;*.jpg;*.png";
-            //openDialog.FilterIndex = 1;
-
-            //if (openDialog.ShowDialog() == true)
-            //{
-               
-            //    imagePicture.Source = new BitmapImage(new Uri(openDialog.FileName));
-                
-            //}
-
-
-
         }
         private BitmapImage ConvertToBitmapImage(byte[] imageData)
         {
@@ -109,15 +87,6 @@ namespace WpfApp2.View
             }
 
             return bitmapImage;
-        }
-        private void btnMinimize_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
-
-        private void btnClose_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
         }
     }
 

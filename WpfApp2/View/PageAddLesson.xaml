@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WpfApp2.View"
       mc:Ignorable="d" 
       d:DesignHeight="530" d:DesignWidth="595"
-      Title="PageAddLesson">
+      Title="LanguageLearningApplication">
 
     <Grid Background="White">
 
@@ -70,7 +70,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Label Content="Titlu" FontSize="11" 
+        <Label Content="Title" FontSize="11" 
        FontWeight="Bold" 
        Foreground="#2C3E50" HorizontalAlignment="Left" Margin="19,64,0,0" VerticalAlignment="Top" Width="68"/>
         <TextBox x:Name="txtBTitle" FontSize="14" 
@@ -79,7 +79,7 @@
          BorderBrush="#3498DB" 
          Background="#ECF0F1" 
          Foreground="#2C3E50" HorizontalAlignment="Left" Margin="108,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="448" Height="36" RenderTransformOrigin="0.483,0.603"/>
-        <Label Content="Continut" FontSize="11" 
+        <Label Content="Content" FontSize="11" 
        FontWeight="Bold" 
        Foreground="#2C3E50" HorizontalAlignment="Left" Margin="19,171,0,0" VerticalAlignment="Top" Width="68"/>
         <TextBox x:Name="txtBContent" FontSize="14" 

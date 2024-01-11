@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace WpfApp2.View
 {
-    /// <summary>
-    /// Interaction logic for HomeAdministrator.xaml
-    /// </summary>
     public partial class HomeAdministrator : Window
     {
         public HomeAdministrator()
@@ -57,6 +54,11 @@ namespace WpfApp2.View
         {
             FrameMain.Content = new PageAdminUsers();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            FrameMain.Content = new PageProfile();
+        }
         private BitmapImage ConvertToBitmapImage(byte[] imageData)
         {
             if (imageData == null || imageData.Length == 0)
@@ -74,11 +76,6 @@ namespace WpfApp2.View
             }
 
             return bitmapImage;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            FrameMain.Content=new PageProfile();
         }
     }
 }

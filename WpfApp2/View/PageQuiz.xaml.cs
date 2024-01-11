@@ -93,7 +93,7 @@ namespace WpfApp2.View
             
             MessageBox.Show($"Ai raspuns corect la {nr} intrebari din {questions.Count()}!", "Felicitari", MessageBoxButton.OK, MessageBoxImage.Information);
 
-            if (nr >= 3/4*questions.Count())
+            if (nr >= 3*questions.Count()/4)
             {
                 var completed = new CompletedQuizze
                 {
@@ -195,18 +195,18 @@ namespace WpfApp2.View
                         if (innerControl is RadioButton radioButton && radioButton.IsChecked == true)
                         {
                             isAnyAnswerSelected = true;
-                            break;  // A fost selectat cel puțin un răspuns, nu mai este nevoie să continuăm verificarea
+                            break;  
                         }
                     }
 
                     if (!isAnyAnswerSelected)
                     {
-                        return false;  // Cel puțin o întrebare nu are răspuns selectat
+                        return false;  
                     }
                 }
             }
 
-            return true;  // Toate întrebările au răspunsuri selectate
+            return true; 
         }
 
         

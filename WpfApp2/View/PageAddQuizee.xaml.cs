@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace WpfApp2.View
 {
-    /// <summary>
-    /// Interaction logic for PageAddQuizee.xaml
-    /// </summary>
     public partial class PageAddQuizee : Page
     {
         private int LID;

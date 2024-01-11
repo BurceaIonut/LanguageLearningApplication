@@ -78,7 +78,7 @@ namespace WpfApp2.View
             if (e.EditAction == DataGridEditAction.Commit)
             {
                 var editedLesson = e.Row.Item as Lesson;
-
+                
                 if (editedLesson != null)
                 {
                     string colName = e.Column.Header.ToString();
@@ -93,10 +93,7 @@ namespace WpfApp2.View
                     {
                         lesson.Title = result.Text;
                     }
-                    else if (colName == "Content")
-                    {
-                        lesson.Content = result.Text;
-                    }
+                    
                     else if (colName == "Order in Course")
                     {
                         var lastLesson = (from l in AppDataContext.context.Lessons
@@ -189,6 +186,32 @@ namespace WpfApp2.View
                     }
                 }
            
+        }
+
+        private void DataGridLessons_BeginningEdit(object sender, DataGridBeginningEditEventArgs e)
+        {
+            string colName = e.Column.Header.ToString();
+            if(colName == "Content")
+            {
+                var editedLesson = e.Row.Item as Lesson;
+                //lesson.Content = result.Text;
+
+                DataGridCellInfo currentCell = DataGridLessons.CurrentCell;
+                int rowIndex = DataGridLessons.Items.IndexOf(currentCell.Item);
+                int colIndex = DataGridLessons.Columns.IndexOf(currentCell.Column);
+                string currentText = DataGridLessons.Items[rowIndex].GetType().GetProperty(DataGridLessons.Columns[colIndex].SortMemberPath).GetValue(DataGridLessons.Items[rowIndex])?.ToString();
+                PageEducatorModifyContent pec = new PageEducatorModifyContent(editedLesson.LID, this.CID, currentText);
+                var parentWindow = Window.GetWindow(this);
+                if (parentWindow != null)
+                {
+                    var frame = LogicalTreeHelper.FindLogicalNode(parentWindow, "FrameMain") as Frame;
+                    if (frame != null)
+                    {
+                        frame.Content = pec;
+                    }
+                }
+                
+            }
         }
     }
 }

@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace WpfApp2.View
 {
-    /// <summary>
-    /// Interaction logic for PageAddQuestion.xaml
-    /// </summary>
     public partial class PageAddQuestion : Page
     {
         private int CID;

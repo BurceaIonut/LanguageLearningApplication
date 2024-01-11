@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace WpfApp2.View
 {
-    /// <summary>
-    /// Interaction logic for HomeEducator.xaml
-    /// </summary>
     public partial class HomeEducator : Window
     {
         public HomeEducator()
@@ -25,7 +22,6 @@ namespace WpfApp2.View
             InitializeComponent();
             txtUserName.Text = UserProfile.user.FirstName + " " + UserProfile.user.LastName;
             FrameMain.Content = new PageEducatorCourses();
-
             if (UserProfile.user.ProfilePicture != null)
             {
                 BitmapImage bitmapImage = ConvertToBitmapImage(UserProfile.user.ProfilePicture.ToArray());
@@ -65,7 +61,6 @@ namespace WpfApp2.View
         {
             FrameMain.Content = new PageProfile();
         }
-
         private BitmapImage ConvertToBitmapImage(byte[] imageData)
         {
             if (imageData == null || imageData.Length == 0)

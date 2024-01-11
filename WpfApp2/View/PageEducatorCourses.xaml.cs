@@ -85,6 +85,7 @@ namespace WpfApp2.View
           
             if (e.EditAction == DataGridEditAction.Commit)
             {
+                
                 var editedCourse = e.Row.Item as Course;
 
                 if (editedCourse != null)

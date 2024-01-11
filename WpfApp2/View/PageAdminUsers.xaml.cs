@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace WpfApp2.View
 {
-    /// <summary>
-    /// Interaction logic for PageAdminUsers.xaml
-    /// </summary>
     public partial class PageAdminUsers : Page
     {
         public PageAdminUsers()
@@ -34,8 +31,6 @@ namespace WpfApp2.View
             if (e.EditAction == DataGridEditAction.Commit)
             {
                 var editedUser = e.Row.Item as User;
-
-                // Verifică dacă cursul este nul și efectuează acțiunile necesare
                 if (editedUser != null)
                 {
                     string colName = e.Column.Header.ToString();
@@ -95,10 +90,7 @@ namespace WpfApp2.View
                     var users = from c in AppDataContext.context.Users
                                   select c;
 
-
                     DataGridUsers.ItemsSource = users;
-                    // Aici poți efectua acțiunile necesare pentru salvarea modificărilor
-                    // Poți utiliza valorile noi din e.EditingElement pentru a actualiza obiectul Course.
                 }
             }
            
@@ -117,19 +109,10 @@ namespace WpfApp2.View
                 }
             }
         }
-        private string ComputeHash(string input)
-        {
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                byte[] hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(input));
-                return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
-            }
-        }
+
         private void btnDeleteUser_Click(object sender, RoutedEventArgs e)
         {
             var selectedUser = DataGridUsers.SelectedItem as User;
-
-            // Verificarea dacă există un curs selectat
             if (selectedUser != null)
             {
                 var user = (from c in AppDataContext.context.Users where c.UID == selectedUser.UID select c).FirstOrDefault();
@@ -144,8 +127,15 @@ namespace WpfApp2.View
             }
             else
             {
-                // În cazul în care nu există niciun curs selectat, poți afișa un mesaj sau să iei alte acțiuni
                 MessageBox.Show("Selectează un user înainte de a continua.", "Avertisment", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+        private string ComputeHash(string input)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(input));
+                return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
             }
         }
     }

@@ -18,9 +18,6 @@ using System.Windows.Shapes;
 
 namespace WpfApp2.View
 {
-    /// <summary>
-    /// Interaction logic for LoginView.xaml
-    /// </summary>
     public static class AppDataContext
     {
         public static LanguageLearningApplicationDataContext context = new LanguageLearningApplicationDataContext();

@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace WpfApp2.View
 {
-    /// <summary>
-    /// Interaction logic for PageAddLesson.xaml
-    /// </summary>
     public partial class PageAddLesson : Page
     {
         private int CID;

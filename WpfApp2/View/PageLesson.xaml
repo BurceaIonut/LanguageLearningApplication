@@ -1,0 +1,15 @@
+﻿<Page x:Class="WpfApp2.View.PageLesson"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp2.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="530" d:DesignWidth="595"
+      Title="PageLesson">
+
+    <Grid Background="White">
+        <TextBox x:Name="txtBox" HorizontalAlignment="Left" IsReadOnly="True" Margin="27,0,0,0" TextWrapping="Wrap" Text="asdasdasdasdasdas&#xD;&#xA;sads ad s&#xD;&#xA;&#xD;&#xA;&#xD;&#xA; asdasdasdasdasdasdsf                                                           &#xD;&#xA;sdfds&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;sadfsdfds&#xD;&#xA;dsfasdfds&#xD;&#xA;fdsafdsf&#xD;&#xA;dsfds&#xD;&#xA;" VerticalAlignment="Center" Width="538" Height="482"/>
+
+    </Grid>
+</Page>

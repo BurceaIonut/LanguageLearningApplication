@@ -1,2 +1,0 @@
-# LanguageLearningApplication
-Muie Dinamo
